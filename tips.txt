@@ -1,0 +1,5 @@
+git status
+git add .
+git status -> 빨간놈이 초록이 된다.
+git commit
+git push -> 끝끝
