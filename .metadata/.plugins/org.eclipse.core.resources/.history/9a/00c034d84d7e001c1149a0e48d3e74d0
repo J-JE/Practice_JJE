@@ -1,0 +1,79 @@
+package com.hw3.model.vo;
+
+import java.io.Serializable;
+
+public class Book implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1003355034656548435L;
+	//위의 클래스 옆에 implements Serializable 한 후 
+	//Book 누르면 자동으로 생김!!! 역직렬화시 제대로 읽어들일 수 있도록 생성해주는 것! 
+	//만약 이게 없다면 자바 내부에서 자동으로 작성을 하게 되는데 ---> 나중에 어떠한 문제가 생겼을 때 값이 달라져버림.... 
+	private String title;
+	private String author;
+	private int price; 
+	private String dates; //BookManager레서 해결 안돼서 일단 반환형 String으로 함... 찾아봐서 수정할것!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	private double discountRate;
+	
+	//기본 생성자
+	public Book() {	}
+
+	//매개변수 생성자
+	public Book(String title, String author, int price, String dates, double discountRate) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.price = price;
+		this.dates = dates;
+		this.discountRate = discountRate;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public String getDates() {
+		return dates;
+	}
+
+	public double getDiscountRate() {
+		return discountRate;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public void setDates(String dates) {
+		this.dates = dates;
+	}
+
+	public void setDiscount(double discountRate) {
+		this.discountRate = discountRate;
+	}
+
+	@Override
+	public String toString() {
+		return title + " " + author + " " + price + " " + dates + " 출간 " + discountRate;
+	}
+	
+	
+}

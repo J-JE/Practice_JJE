@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;09.상속/src/com/uni/chap01_before_vs_after/model/vo/Smartphone.java&apos; to &apos;SmartPhone.java&apos;" description="Rename resource &apos;Smartphone.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/uni/chap01_before_vs_after/model/vo/Smartphone.java" name="SmartPhone.java" stamp="1640156106329" updateReferences="true"/>
+</session>

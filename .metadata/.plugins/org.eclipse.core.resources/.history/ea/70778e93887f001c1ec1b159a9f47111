@@ -1,0 +1,10 @@
+package com.kh2.collection.silsub1.view;
+
+public class BoardMenu {
+	private sc : Scanner 
+	private bm : BoardManager 
+	
+	public void mainMenu()
+	public void sortSubMenu()
+
+}

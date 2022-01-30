@@ -1,0 +1,21 @@
+package com.kh2.collection.silsub1.view;
+
+import java.util.Scanner;
+
+import com.kh2.collection.silsub1.controller.BoardManager;
+
+public class BoardMenu {
+	private Scanner sc = new Scanner(System.in);
+	private BoardManager bm = new BoardManager();
+	
+	public BoardMenu() { } //기본 생성자
+	
+	public void mainMenu() {
+		
+	}
+	
+	public void sortSubMenu() {
+		
+	}
+
+}
