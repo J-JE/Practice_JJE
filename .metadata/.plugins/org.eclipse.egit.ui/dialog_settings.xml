@@ -7,12 +7,15 @@
 		<item value="bitbucket.org"/>
 	</list>
 	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://github.com/J-JE/Practice_JJE.git"/>
 		<item value="https://github.com/DevelopHeon/miniProject.git"/>
 	</list>
 	<list key="CommitDialog.authorValues">
+		<item value="JJE &lt;91669718+J-JE@users.noreply.github.com&gt;"/>
 		<item value="J-JE &lt;leehj9709@gmail.com&gt;"/>
 	</list>
 	<list key="CommitDialog.committerValues">
+		<item value="JJE &lt;91669718+J-JE@users.noreply.github.com&gt;"/>
 		<item value="J-JE &lt;leehj9709@gmail.com&gt;"/>
 	</list>
 	<section name="GitImportWizard">
@@ -38,6 +41,9 @@
 		<item key="sortItemState" value="false"/>
 	</section>
 	<section name="GitCommitMessageComponent">
+		<list key="C:\Users\Administrator\git\Practice_JJE\.git">
+			<item value="empty"/>
+		</list>
 	</section>
 	<section name="org.eclipse.egit.ui.internal.push.PushResultDialog.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="392"/>
