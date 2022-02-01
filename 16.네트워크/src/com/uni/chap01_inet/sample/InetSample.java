@@ -34,6 +34,7 @@ public class InetSample {
 			System.out.println("내파일명 : "+localIp.getHostName());
 			System.out.println("내IP : "+localIp.getHostAddress());
 			
+			//도메인 이름으로 IP주소 가져오기
 			InetAddress naverIP = InetAddress.getByName("www.naver.com");
 			System.out.println("네이버서버명 : "+naverIP.getHostName());
 			System.out.println("네이버IP : "+naverIP.getHostAddress());
