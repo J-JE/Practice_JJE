@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;12.예외처리/src/com/uni/exception/controller/A_UncheckedException.java&apos; to &apos;A_UnCheckedException.java&apos;" description="Rename resource &apos;A_UncheckedException.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/uni/exception/controller/A_UncheckedException.java" name="A_UnCheckedException.java" stamp="1640674982798" updateReferences="true"/>
-</session>

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;06_Object_Homework_전재은/src/mvc/view/View.java&apos; to &apos;MemberView.java&apos;" description="Rename resource &apos;View.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/mvc/view/View.java" name="MemberView.java" stamp="1640019282838" updateReferences="true"/>
-</session>

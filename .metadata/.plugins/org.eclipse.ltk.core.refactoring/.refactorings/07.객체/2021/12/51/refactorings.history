@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;07.객체/src/com/uni/chap04_field/moder&apos; to &apos;model&apos;" description="Rename resource &apos;moder&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/uni/chap04_field/moder" name="model" stamp="1639731981286" updateReferences="true"/>
-</session>

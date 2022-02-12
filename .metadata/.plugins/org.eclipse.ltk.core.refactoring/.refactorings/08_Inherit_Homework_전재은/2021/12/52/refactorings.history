@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;08_Inherit_Homework_전재은/src/com/hw2/model/vo/Circl.java&apos; to &apos;Circle.java&apos;" description="Rename resource &apos;Circl.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/hw2/model/vo/Circl.java" name="Circle.java" stamp="1640189485189" updateReferences="true"/>
-</session>
