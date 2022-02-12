@@ -1,0 +1,27 @@
+package com.kh.service;
+
+//static 필수! .* 필수!
+import static com.kh.common.JDBCTemplate.*;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.kh.model.dao.ProductIODao;
+import com.kh.model.vo.ProductIO;
+
+public class ProductService {
+
+	public ArrayList<ProductIO> selectAllIo() {
+		Connection conn = getConnection();
+		ArrayList<ProductIO> list = new ProductIODao().selectAllIo(conn);
+		
+		return list;
+	}
+
+	public ArrayList<ProductIO> selectInOut() {
+		Connection conn = getConnection();
+		ArrayList<ProductIO> list = new ProductIODao().selectIn(conn);
+		
+		return list;
+	}
+}

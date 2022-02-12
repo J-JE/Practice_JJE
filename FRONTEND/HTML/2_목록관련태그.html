@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2_목록관련태그</title>
+</head>
+<body>
+    <!--순서 없는 목록(Unordered List)은 번호 대신 점이나 사각형 등의 도형이 목록 앞에 붙고
+        순서 없는 목록은 ul로, 목록의 내용은 li로 만든다
+        순서 없는 목록을 만들면 디폴트로 '•' 기호가 붙는데, type 속성을 지정해서 이 기호를 바꿀 수도 있습니다.
+        <ul> 시작 태그 안에 type="   "를 쓰고, 쌍따옴표 안에 disc, circle, square, none 중 하나를 쓰면 됩니다.
+        물론 disc는 디폴트이므로 타입을 지정하지 않아도 됩니다.
+
+        -  disc :  디폴트로 나타나는 까만 동그라미(•)
+        -  circle :  하얀 동그라미(◦)
+        -  square :  까만 사각형(◼️)
+        -  none :  글머리 기호가 없는 것
+    -->
+    <h1>순서 없는 목록태그</h1>
+    <h3>화면 구현 수업 내용</h3>
+    <ul>
+        <li>HTML5</li>
+        <li>CSS</li>
+        <li>JAVASCRIPT</li>
+        <li>JQUERY</li>
+    </ul>
+
+    <ul type="square">
+        <li>HTML5</li>
+        <li>CSS</li>
+        <li>JAVASCRIPT</li>
+        <li>JQUERY</li>
+    </ul>
+
+    <h1>순서 있는 목록태그</h1>
+    <h3>화면 구현 수업 내용</h3>
+    <ol>
+        <li>HTML5</li>
+        <li>CSS</li>
+        <li>JAVASCRIPT</li>
+        <li>JQUERY</li>
+    </ol>
+
+    <ol reversed>
+        <li>HTML5</li>
+        <li>CSS</li>
+        <li>JAVASCRIPT</li>
+        <li>JQUERY</li>
+    </ol>
+
+    <ol start="6">
+        <li>HTML5</li>
+        <li>CSS</li>
+        <li>JAVASCRIPT</li>
+        <li>JQUERY</li>
+    </ol>
+
+    <!--
+        정의 목록(Definition List)은 용어와 그 뜻을 나열할 때 사용자
+        정의 목록은 dl로, 용어는 dt로, 그 뜻은 dd
+    -->
+    <h1>설명 목록 태그</h1>
+    <dl>
+        <dt>이곳은 목록의 제목을 적는 곳입니다.</dt>
+        <dd>이곳은 목록에 대한 설명을 적는 곳입니다.</dd>
+        <dd>여러줄을 작성 할 수도 있습니다. </dd>
+        <dt>또 다른 제목을 적어 새로운 목록을 만들 수도 있습니다.</dt>
+        <dd>새로운 목록도 설명을 작성할수 있으며</dd>
+        <dd>역시 여러줄을 작성할수도 있습니다. </dd>
+        <dd>목록별로 설명에 필요한 행을 다르게 할 수 도 있습니다</dd>
+    </dl>
+
+</body>
+</html>

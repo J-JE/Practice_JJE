@@ -1,0 +1,45 @@
+package com.kh.service;
+
+//static 필수! .* 필수!
+import static com.kh.common.JDBCTemplate.*;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.kh.common.exception.ProductException;
+import com.kh.model.dao.ProductIODao;
+import com.kh.model.vo.ProductIO;
+import com.kh.view.ProductMenu;
+import com.uni.member.view.MemberMenu;
+
+public class ProductService {
+
+	public ArrayList<ProductIO> selectAllIo() throws ProductException { //전체 입출고 내역 조회
+		Connection conn = getConnection();
+		ArrayList<ProductIO> list = new ProductIODao().selectAllIo(conn);
+		
+		return list;
+	}
+
+	public ArrayList<ProductIO> selectInOut(int i) throws ProductException { //입/출고 내역 조회
+		Connection conn = getConnection();
+		ArrayList<ProductIO> list = new ProductIODao().selectInOut(conn, i);
+		
+		return list;
+	}
+
+	public int ProductInOut(ProductIO p) throws ProductException { //상품 입/출고
+		Connection conn = getConnection();
+		int result = new ProductIODao().ProductInOut(conn, p);
+		try {
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+		} catch (ProductException e) {
+			new ProductMenu().displayError("출고하고자 하는 제품의 재고 수량이 부족합니다.");
+		}
+		return result;
+	}
+}

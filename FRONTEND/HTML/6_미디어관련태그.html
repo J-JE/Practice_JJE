@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>미디어관련태그</title>
+</head>
+<body>
+    <h1>미디어관련태그</h1>
+    <h3>오디오관련태그</h3>
+    <!--오디오 태그 속성
+        src : 경로
+        controls : 재생도구 출력 지정
+        autoplay : 자동 재생여부 지정 (모바일은 적용 안됨)
+        loop : 반복여부 지정
+        preload : 미리 로드 할지 여부 지정 
+    -->
+
+    <audio src="sample/audio/major.mp3" controls autoplay loop></audio>
+    <!-- <audio src="sample/audio/major.mp3" controls autoplay="autoplay" loop></audio> -->
+
+    <h3>비디오관련태그</h3>
+    <!--비디오 태그 속성 
+        src : 경로
+        controls : 재생도구 출력 지정
+        autoplay : 자동 재생여부 지정 (모바일은 적용 안됨)
+        loop : 반복여부 지정
+        preload : 미리 로드 할지 여부 지정 
+        poster : 재생전 출력할 이미지 출력(경로 입력)
+        width/ height
+    -->
+    <video src="sample/video/video1.mp4" controls autoplay poster="sample/image/flower1.PNG"></video>
+
+    <!--유튜브-->
+    <iframe width="788" height="443" src="https://www.youtube.com/embed/o97NRF_2KAY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</body>
+</html>
