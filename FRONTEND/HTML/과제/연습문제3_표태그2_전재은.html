@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표 연습문제</title>
+    <style>
+        caption{color:red}
+        thead{background-color: pink; color:white}
+        tbody{background-color: yellow; text-align:center}
+        input{background-color: skyblue; color:white}
+        tfoot{background-color: red; color:blue}
+    </style>
+</head>
+<body>
+    <form method="get">
+        <table border="1">
+            <caption><font size="5px"><b>KH 정보교육원 강의</b></font></caption>
+            <thead>
+                <th>관</th>
+                <th>강의장</th>
+                <th>인원수</th>
+                <th>강의명</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="6">1관</td>
+                    <td rowspan="2">I강의장</td>
+                    <td rowspan="2">30명</td>
+                    <td>
+                        오전 : 유재석
+                        <input type="submit" value="신청하기">
+                    </td>
+                </tr>
+                <tr>
+                    <td>오전 : 유재석
+                        <input type="submit" value="신청하기">
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">G강의장</td>
+                    <td rowspan="2">23명</td>
+                    <td>오후 : 김종민
+                        <input type="submit" value="신청하기">
+                    </td>
+                </tr>
+                <tr>
+                    <td>오전 : 김종민
+                        <input type="submit" value="신청하기">
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">H강의장</td>
+                    <td rowspan="2">27명</td>
+                    <td>오후 : 정재형
+                        <input type="submit" value="신청하기">
+                    </td>
+                </tr>
+                <tr>
+                    <td>오후 : 정재형
+                        <input type="submit" value="신청하기">
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">많이 신청해주세요!</th>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+</body>
+</html>
