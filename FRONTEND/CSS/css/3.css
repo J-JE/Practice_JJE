@@ -1,0 +1,103 @@
+/*****************일반구조선택자*****************/
+/* 형제관계 태그중 첫번째 태그 선택 */
+#test1 p:first-child{
+    background-color: red;
+    color : white;
+}
+
+/* 형제관계 태그중 마지막 태그 선택 */
+#test1 p:last-child{
+    background-color: orange;
+    color : white;
+}
+
+/* 형제관계 태그중 앞에서 수열번째 태그 선택 */
+#test1 p:nth-child(2n){
+    background-color: yellowgreen;
+    color:white;
+}
+
+/* 형제관계 태그중 뒤에서 수열번째 태그 선택 (pre태그 포함 뒤에서 네번째)*/
+#test1 p:nth-last-child(4){
+    background-color: skyblue;
+    color: white;
+}
+
+/*****************형태구조선택자*****************/
+/* 형제관계 태그중에서 첫번째 태그 선택 */
+#test2 p:first-of-type{
+    background-color: red;
+    color: white;
+}
+
+/* 형제관계 태그중에서 마지막 태그 선택 */
+#test2 p:last-of-type{
+    background-color: orange;
+    color: white;
+}
+
+/* 형제관계 태그중 앞에서 수열번째 태그 선택 */
+#test2 p:nth-of-type(2n){
+    background-color: yellowgreen;
+    color:white;
+}
+
+/* 형제관계 태그중 뒤에서 수열번째 태그 선택 (p태그들 중에 뒤에서 네번째) */
+#test2 p:nth-last-of-type(3){
+    background-color: skyblue;
+    color: white;
+}
+
+/*****************문자선택자*****************/
+/* 첫번째 글자선택 (:: -> 가상요소선택자 : 문자에 있는 특정 영역이나 뭐를?? 선택하기 위한 선택자)*/
+#test3 p::first-letter{
+    font-size:2em;
+}
+
+/*첫번째 줄선택*/
+#test3 p::first-line{
+    background-color: cyan;
+}
+
+/* 태그 뒤에 위치하는 공간선택 (암것도 안하면 인라인 글자처럼 삽입됨
+block을 적용해야 높이, 길이 가능, 컨텐츠 지우면 암것도 안나옴)*/
+#test3 p::after{
+    content:"";/*내용이 없어도 빈값으로 꼭 명시를 해야만 표현됨*/
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+/* #test3 p::before{
+    content: "태그앞에추가@@@";
+    content:"1. ";
+} */
+
+#test3 p::selection{
+    background-color: red;
+    color: white;
+}
+
+/* 부정선택자 */
+#test4 p:not(:nth-child(2n-1)){
+    background-color: orange;
+}
+
+/* 태그별로 자동 번호를 매겨주는 속성 */
+#test3 p{
+    counter-increment: rint;
+}
+
+/* 태그앞에 추가 */
+#test3 p::before{
+    content: counter(rint)". ";
+}
+
+#test4 p{
+    counter-increment: rint;
+}
+
+#test4 p::before{
+    content: counter(rint)" .";
+}
