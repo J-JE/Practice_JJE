@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html_css_전재은</title>
+    <link rel="stylesheet" href="html_css_전재은.css">
+    <style>
+        #out{
+            width: 400px;
+            border: 10px solid rgb(135, 206, 235) ;
+            border-radius: 10px;
+            padding: 5px;
+            background-color: rgb(135, 206, 235);
+        }
+        .field{
+            padding-top: 5px;
+        }
+        .in{
+            margin: 1px;
+            padding: 5px 15px 15px 15px;
+            border: 1px solid white ;
+            border-radius: 12px;
+            background-color: rgb(182, 225, 243);
+        }
+        #bar{padding-bottom: 35px; }
+
+        input[value]{ color: grey;}
+        input{float: right;}
+        input[name=grade]{float: left;}
+        input[name=submit]{
+            float:left;
+            width: 80px;
+            height: 30px;
+            border: none;
+            border-radius: 20px;
+            background-color: rgb(52, 82, 7);
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="out">
+        <form method="get">
+            <fieldset class="field">
+                <legend>Step 1: 로그인 정보</legend>
+
+                <div class="in">
+                    아이디
+                <input type="text" name="userId" required></div>
+
+                <div class="in">
+                    비밀번호
+                <input type="password" name="password" required></div>
+
+                <div class="in">
+                    비밀번호 확인
+                <input type="password" name="pwdCheck" required></div>
+                </label>
+
+                <div class="in">
+                    회원 등급
+                <input type="text" name="userGrade" value="준회원" style="color:black;" required>
+                </div>
+            </fieldset>
+
+            <fieldset class="field">
+                <legend>Step 2: 개인 정보</legend>
+                <div class="in">
+                    이름
+                <input type="text" name="userName" value="5자미만 공백없이" maxlength="5" required>
+                </div>
+                
+                <div class="in">
+                    메일 주소
+                <input type="email" name="email" value="abcd@domain.com" required>
+                </div>
+
+                <div class="in">
+                    연락처
+                <input type="tel" name="phone">
+                </div>
+            </fieldset>
+
+            <fieldset class="field" id="gf">
+                <legend>Step 3: 코딩 숙련도(상, 중, 하)</legend>
+                <div class="in" id="bar">
+                    <input type="range" name="grade" min="1" max="3" value="2" required>
+                </div>
+            </fieldset>
+            <fieldset class="field">
+                <div id="sbm">
+                    <input type="submit" name="submit" value="제출">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
