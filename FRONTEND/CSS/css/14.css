@@ -1,0 +1,20 @@
+.wrap{
+    border: 1px solid black;
+    height: 300px;
+}
+
+.column1{
+    column-width: 300px;
+    column-gap: 50px;
+    overflow: hidden;
+    /* 넘치는 글을 안보이게 */
+    overflow: scroll;
+    /* overflow: visible; */
+    /* overflow: auto; */
+}
+
+.column2{
+    column-count: 3;
+    column-rule: dashed;
+    overflow: scroll;
+}

@@ -1,0 +1,114 @@
+.positioning{
+    border: 1px solid black;
+}
+
+.outer{
+    position: relative;
+}
+
+.first{
+    width: 300px;
+    height: 300px;
+    background-color: yellow;
+    position: static;
+}
+
+.second{ /*outer에 relative를 주지 않으면 뷰포트 기준으로 위치한다.*/
+    width: 200px;
+    height: 200px;
+    background-color: yellowgreen;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    /* positoin :relative로 지정한 부모요소를 기준으로 배치 */
+}
+
+.third{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: absolute;
+    top: 100px;
+    left: 100px; 
+}
+
+.fixed-area{
+    width: 100px;
+    height: 100px;
+    /* position: fixed; */
+    background-color: red;
+}
+
+span{
+    background-color: blue;
+    width: 100px;
+    height: 100px;
+    /* position: fixed; */
+    /*span태그의 부모가 없기 때문에 뷰포트 기준으로 위치한다.*/
+    top: 100px;
+    left: 100px;
+    /* position : absolute, fixed를 적용하면 display 속성이 블럭요소로 바뀐다.
+    (relative는 안됨) 
+    크기 지정이 적용이 된다. display:block 설정을 따로 명시할 필요가 없다.*/
+}
+
+.vis-test{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.vis-test1{
+    background-color: red;
+}
+
+.vis-test2{
+    background-color: yellow;
+    visibility: hidden;
+    /* display: none; */
+}
+
+.vis-test3{
+    background-color: green;
+}
+
+.wrap{
+    position: relative;
+}
+
+.z-test{
+    width: 150px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.z-test1{
+    background-color: yellow;
+    top: 100px;
+    left: 100px;
+    position: absolute;
+    z-index: 1000;
+}
+
+.z-test2{
+    background-color: green;
+    top: 50px;
+    left: 50px;
+    position: absolute;
+    z-index: 100;
+}
+
+.z-test3{
+    background-color: red;
+    z-index: 1;
+}
+
+.float-test{
+    border: 1px solid black;
+    width: 100px;
+    height: 50px;
+    /* float: left; */
+    float: right;
+}
+
+
