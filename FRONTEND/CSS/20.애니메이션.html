@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션</title>
+    <style>
+        @keyframes trans1 {
+            from{
+                background-color: green;
+                border: 1px solid black;
+            }
+            to{
+                background-color: yellow;
+                border-radius: 50%;
+                transform: rotate(360deg);
+                border: 3px solid red;
+            }
+        }
+
+        @keyframes trans2{
+            0%{
+                background-color: green;
+                border: 3px solid black; 
+            }
+            30%{
+                transform: translate(50px, 50px);
+            }
+            50%{
+                background-color: pink;
+                transform: scale(1.2);
+                border: 3px solid yellow;
+            }
+            100%{
+                background-color: blue;
+                transform: rotate(25deg);
+                border: 3px solid red;
+            }
+        }
+
+        .div1{
+            margin: 100px;
+            width: 100px;
+            height: 100px;
+            /* background-color: gray; */
+
+            animation-name: trans1;
+            animation-duration: 5s;
+            animation-iteration-count: 10;/*반복횟수*/
+            animation-direction: alternate;
+        }
+
+        .div2{
+            margin: 100px;
+            width: 100px;
+            height: 100px;
+
+            animation-name: trans2;
+            animation-duration: 5s;
+            animation-iteration-count: 3;/*반복횟수*/
+            animation-direction: alternate;
+        }
+
+        img{
+            margin: 100px;
+            width: 100px;
+            height: 500px;
+
+            animation-name: trans1;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;/*반복횟수*/
+            animation-direction: alternate;
+        }
+    </style>
+</head>
+<body>
+    <h1>애니메이션</h1>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <img src="sample/image/iconsample.PNG">
+
+</body>
+</html>
