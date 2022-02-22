@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트입/출력</title>
+    <script>
+        function start(){
+            alert("문서가 로딩되었습니다.")
+        }
+        
+    </script>
+    <style>
+        .area{
+            width: 300px;
+            height: 200px;
+            border:1px solid red
+        }
+    </style>
+</head>
+<!-- <body onload="start()"> -->
+<body>
+    <h1>자바스크립트 입출력</h1>
+    <script>
+        
+        // window.onload = function(){
+            // alert("window onload")
+        // }
+        /*
+            * window 객체 : 자바스크립트 내장 객체로 브라우저 창이 열릴 때 마다 
+                            하나씩 만들어지는 객체, 브라우저 창 안에 존재하는 
+                            모든 요소의 최상위 객체
+                            (즉, 모두 적용되는것이기 때문에 생략 가능)
+        
+            * document 객체 : 웹 문서마다 하나씩 만들어지는 객체로 
+                                body 태그에 의해 만들어짐
+                                (HTML 문서에 대한 정보를 가지고 있다. )
+            
+            1. 데이터 출력하는 기본 구문
+            1) [window.]alert("알람창에 띄워줄 문구"); <br>
+            2) document.write("화면에 띄워줄 문구"); <br>
+            3) [window.]console.log("콘솔창에 띄워줄 문구"); <br>
+            4) 요소.innerHTML = "요소내용 변경할 문구";  (요소에 출력)
+            
+            2. 데이터 입력받는 기본 문구 (변수에 기록도 가능)
+            1) 변수 = [window.]confirm("질문내용"); <br>
+            2) 변수 = [window.]prompt("질문내용"); <br>
+            3) 변수 = 요소.innerHTML; <br>
+            4) 변수 = input요소.value;  */
+        
+        
+            // window.onload : 페이지가 로드된 직후 바로 실행
+    </script>
+    <h3>innerHTML 요소의 내용 변경하기</h3>
+    <div id ="area1" class = "area">자바스크립트에서 엘리면트 값을 읽어가거나 값을 변경할 때 innerHTML 속성을 사용</div>
+    <br>
+    <button onclick="checkValue()">innerHTML 확인</button>
+    <script>
+        function checkValue(){
+            const area1 = document.getElementById("area1") //변수에 담아서 쓰기 const->상수 개념, var, let->
+            console.log(area1) //area1 한줄이 모두 뜸
+            console.log(area1.innerHTML) //요소 내용이 뜸
+            console.log(document.getElementById("area1")) //변수에 담지 않고 쓰기
+
+            area1.innerHTML = "innerHTML 속성으로 값을 변경함 <br> 여러 줄을 작성할 수 있음"
+        }
+    </script>
+    <hr>
+
+    <h3>console.log() 로 개발자 도구 콘솔화면 출력하기 </h3>
+    <p>개발자도구 콘솔화면에 출력하고자 할때 사용하며, 디버깅할때 주로 사용한다</p>
+    <button onclick="printConsole()">콘솔에 대한 내용 출력</button>
+    <script>
+        let sum;
+
+        function printConsole(){
+            const num1=3;
+            const num2=3;
+
+            sum = num1+num2;
+            console.log(sum)
+        }
+    </script>
+
+    <hr>
+
+    <script>
+        document.write("<h1> document.write()로 출력함</h1>")
+        function test1(){//웹페이지의 모든 내용이 로딩된 후에 실행되면 데이터를 지우고 출력 (이전 문장들은 전부 사라지고 실행된 내용만 출력됨)
+            document.write("<h1> document.write()로 출력함</h1>") 
+        }
+    </script>
+    
+    <button onclick="test1()">document.write 확인</button>
+
+    <hr>
+    <h3>window.confirm()을 이용한 데이터입력</h3>
+    <p>어떤 질문에 대해 "예/아니오"의 결과를 얻을때 사용한다</p>
+    <p>확인버튼과 취소 버튼이 나타나며, 확인버튼클릭시 true, 취소버튼 클릭시 false 를 리턴한다.</p>
+    <button onclick="checkGender()">성별확인하기</button>
+    <div id="area2" class="area"></div>
+    <script>
+        function checkGender(){
+            const result = confirm("남자면 확인, 여자면 취소버튼을 누르시오")
+            console.log(result)
+
+            let gender="";
+            if(result){
+                gender='남자';
+            }else{
+                gender='여자';
+            }
+
+            const area2 = document.getElementById("area2") //이 줄 다시 보기
+            area2.innerHTML +="당신은 "+gender+"입니다. <br>"
+        }
+
+    </script>
+
+    
+    <h3>window.prompt()을 이용한 데이터 입력</h3>
+    <p>텍스트 필드와 확인/ 취소 버튼이 있는 대화상자를 출력하고, 입력한 메세지 내용을 리턴값으로 돌려받는다</p>
+    <button onclick="testPrompt();">이름입력</button>
+    <div id = "area3" class = "area"></div>
+    <script>
+        function testPrompt(){//당신의 이름은 무엇입니까 **님 반갑습니다. (+=사용)\
+            const name = prompt("당신의 이름은 무엇입니까");//이름 입력 받기
+            console.log(name) //콘솔에 저장
+
+            const area3 = document.getElementById("area3")
+            area3.innerHTML += name+"님 반갑습니다. <br>" //innerHTML에 name을 추가하기
+        }
+
+    </script>
+
+
+    <h3>window.prompt() 를 이용한 숫자입력후 연산</h3>
+    <p>window.prompt() 는 입력받은 텍스트를 문자열로 취급한다.</p>
+    <button onclick="sumTwoNumber()">계산하기</button>
+    <div id = "area4" class="area"></div>
+    <script>
+        function sumTwoNumber(){
+            const num1 = Number(prompt("첫번째 숫자입력 "));
+            const num2 = Number(prompt("두번째 숫자입력 "));
+
+            const sum = num1+num2;
+            const area4 = document.getElementById("area4")
+            area4.innerHTML = "두 수 의 합은 "+sum+"입니다."
+
+            if(Number(sum)){
+                console.log('value is number')
+            }else{
+                console.log('No a Numer')
+            }
+        }
+    </script>
+
+
+</body>
+</html>

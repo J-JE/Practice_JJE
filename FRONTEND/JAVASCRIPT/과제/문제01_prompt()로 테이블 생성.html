@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>실습문제 1</title>
+</head>
+<body>
+	<h1> 자동 테이블 만들기 </h1>
+    <h5>    힌트 : 반복문은 자바랑 같습니다. 다만! 변수만 var 데이터형이라는걸 기억해주세요 <br>
+                 document.write()를 이용하여 표를 출력하면 됩니다!</h5>
+	
+	<button onclick="makeTable();">테이블 생성</button>
+	
+	<script>
+    	function makeTable(){
+			var row = prompt("테이블 행의 갯수는?")
+			console.log(row)
+			var col = prompt("테이블 열의 갯수는?")
+			console.log(col)
+
+			document.write("<table border='1'>");
+			var count =1;
+			for(var i = 0; i<row;i++){
+				document.write('<tr style="height: 40px;">');
+					for(var j=0; j<col;j++){
+						document.write('<td style="width: 40px;">');
+						document.write(count);
+						count++;
+						document.write('</td>');
+					}
+				document.write('</tr>');
+			}
+			document.write("</table>");
+		}
+	</script>
+	
+	<!-- <table border='1'>
+		<tr style="height: 40px;">
+			<td style="width: 40px;">
+				1
+			</td>
+		</tr>
+	</table> -->
+
+</body>
+</html>
