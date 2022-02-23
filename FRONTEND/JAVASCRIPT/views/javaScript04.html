@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수와자료형</title>
+    <script>
+
+        str ="전역변수";
+
+        var str2 ="var 전역변수" //특정함수 외부에 선언한 변수는  var를 붙여도 전역변수
+        // onload -> 
+        window.onload=function(){
+            var str= "지역변수";
+            var str3 ="새로운 지역변수";
+            str4 ="될까요??";//특정함수 내에서 var를 붙이지 않으면 전역변수
+
+            console.log("-------------str호출---------------");
+            console.log(str); //지역변수
+            console.log(this.str); //전역변수 호출시 this. window. 으로 호출
+            console.log(window.str);
+
+            console.log("-------------str2호출---------------");
+            console.log(str2); //지역변수 내에 없기 때문에 자동으로 전역변수에서 찾는다.
+            console.log(this.str2);
+            console.log(window.str2);
+
+            console.log("-------------str3호출---------------");
+            console.log(str3);
+            console.log(this.str3); //undefined (정의되어있지 않다.)
+            console.log(window.str3);
+        
+            console.log("-------------str4호출---------------");
+            console.log(str4); //전역변수
+            console.log(this.str4);
+            console.log(window.str4);
+        }
+    </script>
+    <style>
+        .area{
+            border:1px solid black;
+            height: 200px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>변수와 자료형</h1>
+	<h3>변수 선언</h3>
+    <pre>
+        &lt;script&gt;
+            변수명;         // 전역 변수 (global)
+
+            var 변수명;     // 전역 변수 (global)
+
+            function 함수명(){
+                변수명;     // 전역 변수 (global)
+
+                var 변수명; // 지역 변수 (local)
+            }
+        &lt;/script&gt;
+    </pre>
+	<p>지역변수 :함수 내부에서 var 변수명;으로 선언<br>
+	   전역변수: 함수 내부에서  변수명; 함수 밖에서 변수명; 혹은 var 변수명;으로 선언.<br>
+		지역변수와 전역변수가 같은 이름인 경우 함수 내부에서 변수명을 호출하면 지역변수가 우선권을 가지기 때문에<br>
+		전역변수 사용 시 window.변수명 혹은 this.변수명 으로 표현하여 지역변수와 구분한다<br>
+		전역변수는 해당 window내에서 어디에서든 사용할 수 있으며, 지역변수는 해당 함수에서만 사용 가능하다.</p>
+
+        <!--
+
+        함수 레벨 스코프(Function-level scope)
+        함수 내에서 선언된 변수는 함수 내에서만 유효하며 함수 외부에서는 참조할 수 없다. 
+        즉, 함수 내부에서 선언한 변수는 지역 변수이며 함수 외부에서 선언한 변수는 모두 전역 변수이다.
+        블록 레벨 스코프(Block-level scope)
+        모든 코드 블록(함수, if 문, for 문, while 문, try/catch 문 등) 내에서 선언된 변수는 코드 블록 내에서만 유효하며 
+        코드 블록 외부에서는 참조할 수 없다. 즉, 코드 블록 내부에서 선언한 변수는 지역 변수이다.
+    -->
+    <h3>var와 let</h3>
+    <p>var : 선언된 위치 내부의 블록 전체에서 사용할 수 있는 범위의 변수 선언<br>
+
+       ES6에서추가<br>
+       let : 선언된 블록 영역만 사용할 수 있는 제한 범위 변수를 선언<br>
+       const : 블록 범위(let과 같음), 상수의 값은 재 할당을 통해 변경할 수 없으며 재 선언 불가
+    </p>
+    <button onclick="constTest();">const테스트</button><br>
+    <button onclick="letTest();">let테스트</button><br>
+    
+    <script>
+        function constTest(){
+            var x = 1;
+            const y = 3;
+
+            if(true){
+                var x = 2;
+                var x1 = 2;
+                const y = 2;
+                // y = 3; 수정불가능
+
+                console.log("[var] 내부에서 선언된 x : "+x);
+                console.log("[var] 내부에서 선언된 x1 : "+x1);//외부에서 선언된 x1인지 내부에서 선언된 x1인지 구분이 모호함
+                console.log("[var] 내부에서 선언된 y : "+y);
+            }
+            x = 5;            
+            // y = 4; 수정불가능
+            console.log("[var] 내부에서 선언된 x : "+x);
+            console.log("[var] 내부에서 선언된 x1 : "+x1);
+            console.log("[var] 내부에서 선언된 y : "+y);
+        }
+
+        function letTest(){
+            let x = 1;
+
+            if(true){
+                let x = 5;
+                let x1 = 2;
+                
+                console.log("[let] 내부에서 선언된 x : "+x);
+                console.log("[let] 내부에서 선언된 x1 : "+x1);
+            }
+
+            // x=3;
+            console.log("[let] 외부에서 선언된 x : "+x);
+            console.log("[let] 내부에서 선언된 x1 : "+x1);//에러발생
+        }
+    </script>
+
+    <h3>자료형</h3>
+    <p>자바스크립트에서 자료형별로 변수타입이 지정되지않고 리터럴에의해 자료형이 결정된다.</p>
+    <!--원시타입(primitive Type) 과 참조타입(referencetype) 제공
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#data_structures_and_types
+    -->
+    <button onclick="testType();">자료형테스트</button>
+
+    <div id="area1" class="area"></div>
+    <script>
+        function testType(){
+            // 문자열변수 
+            var name = "유재석";
+            console.log(name);
+            console.log(typeof(name));
+
+            //숫자변수
+            var age = 20;
+            console.log(age);
+            console.log(typeof(age));
+
+            //논리
+            var check = true;
+            console.log(check);
+            console.log(typeof(check));
+
+            //배열
+            var hobby = ["축구", "농구", "야구"]
+            console.log(hobby);
+            console.log(typeof(hobby));
+
+            //객체변수
+            var user = {
+                name : "유재석",
+                age : 20,
+                id : "user01"
+            }
+            console.log(user);
+            console.log(typeof(user));
+
+            //함수변수
+            var testFunction = function testFunction(num1, num2){
+                var sum = num1 + num2;
+            }
+            console.log(testFunction);
+            console.log(typeof(testFunction));
+
+            //정의되지 않은 변수
+            var apple;
+            console.log(apple);
+            console.log(typeof(apple));
+        
+            var area1 = document.getElementById("area1");
+            area1.innerHTML += "문자열 변수 : "+ name + "<br>";
+            area1.innerHTML += "숫자 변수 : "+ age + "<br>";
+            area1.innerHTML += "논리 변수 : "+ check + "<br>";
+            area1.innerHTML += "배열 : "+ hobby + "<br>";
+            area1.innerHTML += "배열인덱스[0] : "+ hobby[0] + "<br>";
+            area1.innerHTML += "객체 : "+ user + "<br>";
+            area1.innerHTML += "객체 속성접근 : "+ user.name + "<br>";
+            area1.innerHTML += "함수 : "+ testFunction + "<br>";
+            area1.innerHTML += "정의되지않은 변수  : "+ apple + "<br>";
+
+        }
+    </script>
+    <h3>동적 타입 테스트</h3>
+    <button onclick="testDynamicType();">실행확인</button>
+    <script>
+        function testDynamicType(){
+            var testVariable = 123;
+            console.log(typeof(testVariable) + ":" + testVariable);
+
+            testVariable = "안녕하세요";
+            console.log(typeof(testVariable) + ":" + testVariable);
+            console.log(getTypeTest(testVariable));
+
+            console.log(typeof(null));
+            console.log(typeof(undefined));
+
+            console.log(getTypeTest(null));
+            console.log(getTypeTest(undefined));
+
+            var hobby = ["축구", "농구", "야구"]
+
+            console.log(hobby);
+            console.log(typeof(hobby));
+            console.log(getTypeTest(hobby));
+            console.log(hobby.__proto__.toString.call(hobby)); //Array의 toString은 재정의가 되어있다.
+            console.log(Array.prototype.toString.call(hobby));
+            console.log(hobby.__proto__.__proto__.toString.call(hobby));
+            // console.log(typeof(hobby.__proto__.__proto__));
+        }
+        function getTypeTest(val){
+            return Object.prototype.toString.call(val).slice(8,-1);
+        }
+        // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/toString
+        //https://www.w3schools.com/js/js_function_call.asp
+    </script>
+
+</body>
+</html>

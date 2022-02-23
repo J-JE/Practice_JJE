@@ -1,0 +1,116 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>String과 Math</title>
+     <style>
+        .area-big{
+            border:1px solid red;
+            height: 450px;
+        }
+
+        .area{
+            border:1px solid red;
+            height: 200px;
+        }
+    </style>
+
+ </head>
+ <body>
+    <h1>String 과 Math</h1>
+    <h3>String</h3>
+    <p> 자바스크립트의 내장 객체로 문자열 취급을 위해 사용하는 내장 객체이다.<br>
+        " " 또는 '' 로 묶여있는 값(리터럴)  <br>
+        String 이라는 자바스크립트 내장객체가 존재하며 문자열과 관련된 기본적 메소드(함수)제공
+    </p>
+    <button onclick="showStringMethod()">문자열처리메소드</button>
+    <div id = "area1" class="area-big"></div>
+    <script>
+        function showStringMethod(){
+            var str1="Apple Iphone";
+            var area1 = document.getElementById("area1");
+
+            area1.innerHTML +="toUpperCase() : " + str1.toUpperCase() + "<br>";
+            area1.innerHTML +="toLowerCase() : " + str1.toLowerCase() + "<br>";
+            
+            area1.innerHTML +="length : " + str1.length + "<br>";
+            
+            area1.innerHTML +="문자열에서 e의 첫번째 위치 : " + (str1.indexOf('e')+1) + "<br>";
+            area1.innerHTML +="뒤에서부터 e의 첫번째 위치 : " + (str1.lastIndexOf('e')+1) + "<br>";
+
+            for(var i =0; i<str1.length;i++){
+            area1.innerHTML +=i+"번째 인덱스 : " + str1.charAt(i)+ "<br>";
+            }
+
+            area1.innerHTML +="문자열의 일부만 추출 : " + str1.substring(0,3)+ "<br>"; //0부터 3개
+
+
+            var str2="사과,바나나,복숭아,키위,파인애플";
+            var fruits =str2.split(",");
+            console.log(fruits)
+            area1.innerHTML +="fruits : " + fruits+ "<br>";
+            area1.innerHTML +="fruits 변수의 자료형 : " + typeof(fruits)+ "<br>";
+            
+        }
+    </script>
+
+    <h3>Math</h3>
+    <p>
+        정수, 부동소수점, Infinity, NaN 리터럴 <br>
+        Math라는 자바스크립트 내장객체가 존재하며 <br>
+        수학과 관련된 기본적인 메소드를 제공함
+    </p>
+    <button onclick="showMathMethod();">숫자처리메소드</button>
+    <div id = "area2" class="area"></div>
+    <script>
+        function showMathMethod(){
+            var num1 = -123;
+
+            var area2 = document.getElementById("area2");
+                area2.innerHTML += " 절대값 : "+ Math.abs(num1) + "<br>";
+                area2.innerHTML += "임의의 난수 발생 : " + Math.random() + "<br>";
+                area2.innerHTML += "반올림 : " + Math.round(123.556, 2) + "<br>"; 
+
+                area2.innerHTML += "반올림 : " + Math.round(123.456 * 100) / 100 + "<br>";
+                area2.innerHTML += "내림 : " + Math.floor(123.456) + "<br>";
+                area2.innerHTML += "올림 : " + Math.ceil(123.456) + "<br>";
+                area2.innerHTML += isFinite(Infinity) + "<br>"; //isFinite : 유한한 값인지 체크 
+                area2.innerHTML += isFinite(1) + "<br>";
+
+        }
+    </script>
+    <h3>infinity와 NaN</h3>
+    <p>대부분의 프로그래밍 언어는 0으로 숫자를 나누면 자동으로 오류가 발생하고 프로그램이 종료된다.<br>
+    하지만 자바스크립트는 0으로 숫자를 나누면 infinity라는 값이 들어가게 된다.<br>
+    또한 자바스크립트가 표현할 수 없는 숫자는 NaN(Not a Number)으로 표시된다.</p>
+    <button onclick="test3();">실행확인</button>
+    <div id = "area3" class="area"></div>
+    <script>
+        function test3(){
+            var num1 = 10/0;
+            var num2 =10/'a';
+            var area3 = document.getElementById("area3");
+            area3.innerHTML += num1;
+            area3.innerHTML += "10/0 : " + num1 +"<br>";
+            area3.innerHTML += "10/'a' : " + num2 +"<br>";
+            area3.innerHTML += "isFinite() : "+ isFinite(num1) + "<br>";
+            area3.innerHTML += "num1 === Infinity : "+ (num1 === Infinity) + "<br>";
+
+            /* NaN은 비교연산자로 비교 불가
+            if(num2 === NaN){
+                area3.innerHTML +="num2는 숫자가 아닙니다."
+            }else{
+                area3.innerHTML +="num2는 숫자입니다."
+            }*/
+
+            if(isNaN(num2)){
+                area3.innerHTML +="num2는 숫자가 아닙니다."
+            }else{
+                area3.innerHTML +="num2는 숫자입니다."
+            }
+        }
+    </script>
+ </body>
+ </html>l

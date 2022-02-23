@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바와 다른 연산자와 기본문법</title>
+    <style>
+        .area{
+            border:1px solid red;
+            height: 200px;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>자바와 다른 연산자와 기본문법</h1>
+    <p>값과 자료형 둘다 일치하는 지 일치하지 않는지 확인할때 사용한다. </p>
+    <h4>동등연산자(==,!=)</h4>
+    <p>자료형에 상관없이 값이 일치하면 true, 아니면 false 리턴</p>
+    <h4>일치연산자(===,!==)</h4>
+    <p>자료형과 값이 모두 일치하면 true, 아니면 false리턴 </p>
+    <button onclick="testOp();">확인하기</button>
+    <div id="area1" class = "area"></div>
+    <script>
+        function testOp(){
+            var check1 = 1;
+            var check2 = "1";
+
+            // 동등연산자 
+            area1.innerHTML +='check1 == 1 : '+ (check1==1)+"<br>";
+            area1.innerHTML +='check1 == "1" : '+ (check1=="1")+"<br>";
+            area1.innerHTML +='check2 == 1 : '+ (check2==1)+"<br>";
+            area1.innerHTML +='check2 == "1" : '+ (check2=="1")+"<br>";
+
+
+            // 일치연산자 
+            area1.innerHTML +='check1 === 1 : '+ (check1===1)+"<br>";
+            area1.innerHTML +='check1 === "1" : '+ (check1==="1")+"<br>";
+            area1.innerHTML +='check2 === 1 : '+ (check2===1)+"<br>";
+            area1.innerHTML +='check2 === "1" : '+ (check2==="1")+"<br>";
+
+            console.log(null == undefined);
+            console.log(null === undefined);
+
+            //true : 1, 2, -1, 'false'
+            //false : '', 0m NaN, Null, undefined
+            if('false'){
+                console.log('출력');
+            }
+
+        }
+    </script>
+
+    <h3>연산자를 이용한 짧은 조건문 테스트</h3>
+    <button onclick="checkLogic();">확인하기</button>
+    <script>
+        function checkLogic(){
+            var input = Number(prompt("숫자를 입력하세요."));
+
+            //짧은 조건문 : && 참이면 실행, || 거짓이면 실행
+
+            input % 2 === 0 && alert("짝수입니다.")
+            input % 2 === 0 || alert("홀수입니다.")
+
+            alert((input % 2 ===0)? "짝수입니다." : "홀수입니다.") 
+        }
+    </script>
+
+    <h3>switch 테스트</h3>
+    <button onclick="switchTest();">확인하기</button>
+    <script>
+        function switchTest(){
+            var today = new Date();
+            var hour = today.getHours();
+            console.log(hour);
+
+            switch(true){
+                case hour < 12 : alert("오전입니다.")
+                break;
+                case hour > 12 : alert("오후입니다.")
+                break;
+                default: alert("12시 입니다.")
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
