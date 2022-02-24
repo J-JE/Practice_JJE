@@ -9,25 +9,24 @@
     <style>
         #out{
             width: 400px;
-            border: 10px solid rgb(135, 206, 235) ;
+            /* border: 10px solid rgb(135, 206, 235) ; */
             border-radius: 10px;
-            padding: 5px;
-            background-color: rgb(135, 206, 235);
+            padding: 15px; /*border라인이 아니라 padding으로 설정한거였음. 이게 더 간단함*/
+            background-color: skyblue;
         }
         .field{
-            padding-top: 5px;
+            /* padding-top: 5px; 불필요함*/
         }
         .in{
             margin: 1px;
             padding: 5px 15px 15px 15px;
             border: 1px solid white ;
-            border-radius: 12px;
-            background-color: rgb(182, 225, 243);
+            border-radius: 10px;
+            background-color: rgb(182, 225, 243);/*rgba(255, 255, 255, 0.39) 색 지정이 아니라 투명도였음*/
         }
         #bar{padding-bottom: 35px; }
 
-        input[value]{ color: grey;}
-        input{float: right;}
+        input{float: right;} /*원본에서는 목록으로 작성했기 때문에 label을 float :left하면 해결됐음*/
         input[name=grade]{float: left;}
         input[name=submit]{
             float:left;
@@ -42,6 +41,8 @@
 
 </head>
 <body>
+    <!-- 목록으로 관리하면 편함. -->
+
     <div id="out">
         <form method="get">
             <fieldset class="field">
@@ -62,7 +63,7 @@
 
                 <div class="in">
                     회원 등급
-                <input type="text" name="userGrade" value="준회원" style="color:black;" required>
+                <input type="text" name="userGrade" value="준회원"required>
                 </div>
             </fieldset>
 
@@ -70,12 +71,12 @@
                 <legend>Step 2: 개인 정보</legend>
                 <div class="in">
                     이름
-                <input type="text" name="userName" value="5자미만 공백없이" maxlength="5" required>
+                <input type="text" name="userName" placeholder="5자미만 공백없이" maxlength="5" required>
                 </div>
                 
                 <div class="in">
                     메일 주소
-                <input type="email" name="email" value="abcd@domain.com" required>
+                <input type="email" name="email" placeholder="abcd@domain.com" required>
                 </div>
 
                 <div class="in">

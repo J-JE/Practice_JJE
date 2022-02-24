@@ -15,7 +15,7 @@
    <h1>회원가입</h1>
    <form>
        <fieldset>
-           <legend>필수입력사항</legend>
+           <legend>필수 입력 사항</legend>
             <table>
                 <tr>
                     <th>ID</th>
@@ -45,16 +45,18 @@
        </fieldset>
        
         <fieldset>
-            <legend>추가정보</legend>
-            <label>프로필 사진 :</label>>
+            <legend>추가 정보</legend>
+            <label>프로필 사진 :</label>
             <input type="file">
             <br><br>
 
             <label>성별 :</label>
-            <input type="radio" name="gender" value="M"> 남자
-            <input type="radio" name="gender" value="F"> 여자
+            <input type="radio" id="male" name="gender" value="M" checked>
+            <label for="male">남자</label> &nbsp;
+            <input type="radio" id="female" name="gender" value="F">
+            <label for="female">여자</label>
             <br><br>
-        
+
             <label>생년월일 :</label>
             <input type="date" name="birth">
             <br><br>
@@ -68,7 +70,7 @@
             <input type="checkbox" id="football" name="hobby" value="football">
             <label for="football">축구</label>
             <br>
-            <input type="checkbox" id="study" name="hobby" value="study">
+            <input type="checkbox" id="study" name="hobby" value="study" checked>
             <label for="study">공부</label>&nbsp;&nbsp;
             <input type="checkbox" id="music" name="hobby" value="music">
             <label for="music">음악감상</label>

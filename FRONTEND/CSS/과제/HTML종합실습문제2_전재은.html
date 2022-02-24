@@ -5,11 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML종합실습문제2</title>
-    <style>
-        input[value]{
-            color: gray;
-        }
-    </style>
+    
 </head>
 <body>
     <form method="get">
@@ -17,19 +13,20 @@
             <legend>납품자 정보</legend>
             <ol type="1">
                 <li><label>납품자명 : </label>
-                <input type="text" name="name" value="name" required></li><br>
+                <input type="text" name="name" placeholder="name" required></li><br>
                 <li><label>email : </label>
-                <input type="email" name="email" value="answs@naver.com" required></li><br>
+                <input type="email" name="email" placeholder="answs@naver.com" required></li><br>
                 <li><label>홈페이지 : </label>
-                <input type="text" name="homepage" value="http://"></li>
+                <input type="text" name="homepage" placeholder="http://"></li>
             </ol>
         </fieldset>
+        <br>
         <fieldset id="info2">
             <legend>납품정보</legend>
             <ul>
                 <li><label>상품명 : </label>
                 <input type="text" name="pName" required></li><br>
-                <li><label>상품수량 : </label>
+                <li><label>납품수량 : </label>
                 <input type="number" name="amount" placeholder="최소 100" required></li><br>
                 <li><label>납품등급 : </label>
                 <input type="range" name="grade" required></li><br>
