@@ -10,6 +10,8 @@
                  document.write()를 이용하여 표를 출력하면 됩니다!</h5>
 	
 	<button onclick="makeTable();">테이블 생성</button>
+	<br>
+	<div id="area1"></div>
 	
 	<script>
     	function makeTable(){
@@ -21,9 +23,9 @@
 			document.write("<table border='1'>");
 			var count =1;
 			for(var i = 0; i<row;i++){
-				document.write('<tr style="height: 40px;">');
+				document.write('<tr style="height: 50px;">');
 					for(var j=0; j<col;j++){
-						document.write('<td style="width: 40px;">');
+						document.write('<td style="width: 50px;">');
 						document.write(count);
 						count++;
 						document.write('</td>');
@@ -33,7 +35,36 @@
 			document.write("</table>");
 		}
 	</script>
-	
+
+	<!-- 새로운 페이지가 아니라 내부에서 테이블이 생성되게 함 -->
+	<!-- <script>
+    	function makeTable(){
+            var row = prompt("테이블 행의 갯수는? ");
+            var col = prompt("테이블 열의 갯수는? ");
+
+            var count = 1;
+
+            var table = '<table border="1">';
+
+            for(var i = 0; i < row; i++){
+                table += '<tr style="height: 50px;">';
+
+                for(var j=0; j<col; j++){
+                    table += '<td style="width: 50px;">' + count++ + '</td>';
+                }
+
+                table += '</tr>';
+            }
+
+            table += '</table>';
+            console.log(table);
+            
+            var area1 = document.getElementById("area1");
+            area1.innerHTML = table; 
+        
+    	}
+	</script> -->
+
 	<!-- <table border='1'>
 		<tr style="height: 40px;">
 			<td style="width: 40px;">

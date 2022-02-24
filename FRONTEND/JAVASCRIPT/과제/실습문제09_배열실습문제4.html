@@ -26,35 +26,27 @@
 	
 	<script>
 		function print2Test(){
-			let label = document.getElementById('stringla4').innerHTML.split(" ");//보기 음식
 
-			let del = document.getElementById('remove').value;//삭제
-			console.log(del);
-
-			let add = document.getElementById('add').value;//추가
-			console.log(add);
+			var str = document.getElementById("stringla4").innerHTML;
+			var arr = str.split(' ');
 			
-			let print = document.getElementById('print4');//출력 창
-		
-			if(del!=""){
-				label.splice(label.indexOf(del),1);
-				print.innerHTML = label.join(' ');
-			}if(add!=""){
-				label.push(add)
-				print.innerHTML = label.join(' ');
-			}else{
-				print.innerHTML = label.join(' ');
+			var remove = document.getElementById("remove").value;
+			var add = document.getElementById("add").value;
+
+			for(var i=0; i<arr.length; i++){
+				if(arr[i] == remove){
+					arr.splice(i, 1);
+				}
 			}
-			console.log(label);
-			// 출력할 때 .join(' ') 붙인거 빼고는 기능은 똑같음.
-			// for(var i=0; i<arr.length; i++){ //for문을 돌려서 배열에서 remove와 같은 글자를 찾아 지움
-			// 	if(arr[i] == remove){
-			// 		arr.splice(i, 1);
-			// 	}
-			// }
-			// arr.push(add); //add를 push로 배열에 추가함
-			//document.getElementById("print4").innerHTML = arr.join(' '); //.join(' ');을 붙여서 출력함
+
+			arr.push(add);
+	
+			document.getElementById("print4").innerHTML = arr.join(' ');
+		
 		}
 	</script>
+	
+	
+	
 </body>
 </html>

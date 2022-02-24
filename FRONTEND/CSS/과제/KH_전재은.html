@@ -7,7 +7,7 @@
     <title>Document</title>
     <style>
         div, form, input, img{
-            /* border:1px solid green; */
+            border:1px solid green;
             box-sizing: border-box;
         }
 
@@ -26,7 +26,7 @@
 
          /* header 영역에 대한 전반적인 구조 */
          #header>div{height:100%; float:left;}
-         #header_logo{width:20%;}
+         #header_logo{width:20%; position: relative;}
          #header_search{width: 60%; position: relative;}
          #header_blank{width: 20%;}
 
@@ -42,27 +42,32 @@
              
          }
          #header_search form{
-            position: relative;
+            position: absolute;
+            margin: auto;
+            top:0; 
+            bottom:0; 
+            left:0; 
+            right:0;
             width: 70%;
-            height: 35%;
-            margin: 40px 0px 0px 80px;
+            height: 30%;
+            /* margin: 40px 0px 0px 80px; */
          }
          #search_input{
             width: 80%;
             height: 100%;
          }
          #search_button{
-            position: absolute;
             width: 20%;
             height: 100%;
             background: url(image/search.png);
             background-repeat: no-repeat;
             background-size: 30px 25px;
             background-position: 35px;
+            float:right;
          }
-         #search_button:hover img{
+         /* #search_button:hover img{
              background-color: rgb(78, 78, 78  0.5);
-         }
+         } */
 
          /* navigator 세부 스타일 */
          #navigator{
@@ -180,7 +185,12 @@
             <div id="header_search">
                 <form id="search_form">
                     <input type="search" id="search_input">
+
                     <input type="submit" id="search_button" value="">
+                    <!-- input이 아니라 button으로 submit -->
+                    <!-- <button type="submit">
+                        <img src="image/search.png" alt="" width="40%" height="70%" id="search_button">
+                    </button> -->
                 </form>
             </div>
             
@@ -205,7 +215,7 @@
 
                 <div id="content_main_2">
                     <div id="content_main_notice">안녕하세요 여기는 공지사항 기록이 들어오는 자리입니다.</div>
-
+                    <!-- <a>를 사용함 아래 리스트도 리스트를 빼고 <a>로만 사용함 -->
                     <div id="content_main_list">
                         <ul>
                             <li><a href="">경제</a></li>
@@ -238,6 +248,7 @@
                                 <td><a href="">비밀번호찾기</a></td>
                                 <td><a href="">회원가입</a></td>
                             </tr>
+                            <!-- table을 사용하지 않고 그냥 만들었음. 중간에 들어가는 바는 "|"를 넣은거였음 -->
                         </table>
                     </div>
                 </div>
