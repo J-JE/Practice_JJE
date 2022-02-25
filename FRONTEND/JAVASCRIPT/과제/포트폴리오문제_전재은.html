@@ -6,31 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>포트폴리오 문제</title>
     <style>
-        #line{
+        /* #line{
             border: 1px solid black;
             padding: 10px;
             box-sizing: border-box;
-        }
+        } */
         h1{margin: 0;}
 
         /* 공지사항 작성 */
         label{
-            /* background-color: aqua; */
             text-align: center;
             display: block;
             width: 70px;
             float: left;    
         }
-        /* input[name=title]{width: 230px; margin-bottom: 5px;}
-        textarea[name=content]{width: 232px; height: 100px;}
-        #content_label{margin-top: 40px;}
-        #submit{margin: 15px 0px 0px 130px;} */
+       
         input[name=title]{width: 100%;}
         textarea[name=content]{width: 100%;}
         #submit{margin-top: 5px;}
 
 
-        /* 공지사항 */
+        /* 공지사항 테이블 */
         #notice_table th{background-color: lightsalmon; color: white;}
         #notice_table td{background-color: beige;}
         .notice{ width: 400px;}
@@ -49,25 +45,7 @@
         <form action="insert.no" method="post">
             <fieldset id="write">
                 <legend>공지사항 작성하기</legend>
-                    <!-- <label>
-                        <b>제목</b>
-                    </label>
-                    <input type="text" name="title" required placeholder="제목을 입력하시오.">
-                    <br>
-
-                    <label id="content_label">
-                        <b>내용</b>
-                    </label>
-                    <textarea name="content" required placeholder="내용을 입력하시오." style="resize:none" cols="30"></textarea>
-                    <br>
-
-                    <label>
-                        <b>첨부파일</b>
-                    </label>
-                    <input type="file" name="uploadfile">
-                    <br>
-
-                    <input type="submit" value="작성하기" id="submit"> -->
+                  
                 <table>
                     <tr>
                         <th><label>제목</label></th>
