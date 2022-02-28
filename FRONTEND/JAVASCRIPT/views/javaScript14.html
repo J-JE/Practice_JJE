@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        .area{
+            background: lightgray;
+            border: 1px solid black;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>객체관련키워드</h1>
+    <h3>instanceof 키워드</h3>
+    <p>A instanceof B : A는 B의 한 종류이다.</p>
+    <button onclick="test1();">실행확인</button>
+    <div id = "area1" class="area"></div>
+    <script>
+        function Dog(name){
+            this.name=name;
+            this.toString=function(){
+                return "이름 : " + this.name;
+            }
+        }
+        function test1(){
+            var myDog = new Dog("바둑이");
+            console.log(myDog);
+
+            area1.innerHTML += "myDog instanceof Dog: "+(myDog instanceof Dog)+ "<br>";
+            area1.innerHTML += "myDog instanceof Dog: " + (myDog instanceof Dog) +"<br>";
+            area1.innerHTML += "myDog instanceof Object: " + (myDog instanceof Object) +"<br>";
+            area1.innerHTML += "myDog instanceof Number: " + (myDog instanceof Number) +"<br>";
+            area1.innerHTML += "myDog instanceof String: " + (myDog instanceof String) +"<br>";
+            area1.innerHTML += "myDog instanceof Boolean: " + (myDog instanceof Boolean) +"<br>";
+            area1.innerHTML += "myDog instanceof Function: " + (myDog instanceof Function) +"<br>";
+            area1.innerHTML += "Dog instanceof Object: " + (Dog instanceof Object) +"<br>";
+            area1.innerHTML += "Dog instanceof Function: " + (Dog instanceof Function) +"<br>";
+            area1.innerHTML += "test1 instanceof Function: " + (test1 instanceof Function) +"<br>";
+        }
+    </script>
+
+    <h3>캡슐화와 상속</h3>
+    <h3>캡슐화</h3>
+    <p> 생성자함수에서 속성정의시 <br>
+        this. 키워드를 사용하지않고 지역변수로 선언할경우 <br>
+        캡슐화된 객체의 속성은 직접 접근할수 없으므로 <br>
+        간접적으로 접근할수 있도록 get/setter메소드를 정의해야함 
+    </p>
+    <p>객체 내부의 내용을 바깥으로 표출하지 않는다.</p>
+
+    <button onclick="test3();">실행확인</button>
+    <div id = "area3" class="area"></div>
+    <script>
+        function Fruit(fname, fcolor, forigin){
+            var name = fname;
+            var color = fcolor;
+            var origin = forigin;
+
+            this.getName = function(){
+                return name;
+            }
+
+            this.getColor = function(){
+                return color;
+            }
+
+            this.getOrigin = function(){
+                return origin;
+            }
+
+            this.setName = function(fname){
+                name = fname;
+            }
+
+            this.setColor = function(fcolor){
+                color = fcolor;
+            }
+
+            this.setOrigin= function(forigin){
+                origin = forigin;
+            }
+        }
+        
+        function test3(){
+            var fname = "사과";
+            var fcolor = "red";
+            var forigin = "deagu";
+
+            var fruit1 = new Fruit(fname, fcolor, forigin);
+
+            console.log(fruit1);
+            console.log(fruit1.name);
+            console.log(fruit1.getName());
+
+            // fruit1.name = '배'; //캡슐화로 불가능
+            fruit1.setName("배");
+            console.log(fruit1);
+            console.log(fruit1.getName());
+
+            with(fruit1){
+                area3.innerHTML += "과일명 : " + getName() + "<br>"
+                area3.innerHTML += "과일색 : " + getColor() + "<br>"
+                area3.innerHTML += "과일원산지 : " + getOrigin() + "<br>"
+            }
+
+        }
+    </script>
+
+    <P>하나의 객체를 만들때 직접 모든내용을 만드는것이아니라 <br>
+        부모로 부터  존재하는 값을 기본으로 가지고 시작할수 있도록 <br>
+        즉 코드의 재사용성을 고려한 기술이 상속이다.<br>
+    </P>
+    <h3>프로토 타입</h3>
+    <p>자바 스크립트에서 객체와 객체를 연결하여 속성, 메소드를 공유함<br>
+        프로토 타입(prototype)은 두가지로 이루어짐 <br>
+        - __proto__ 속성은 모든객체가 빠짐없이 가지고 있는 속성이고 <br>
+                        , 상위객체로 부터 물려받은 프로토 타입정보 (Prototype Object를 가리킴)<br>
+
+        - prototype(Prototype Object) : 하위객체로 물려줄 프로토 타입 정보(현재 객체 정보)<br>
+
+        - 객체의 __proto__ 와 생성자 함수의 프로토타입 객체의 참조관계를 프로토타입링크(prototype link)라고 부튼다.
+
+    </p>
+    <button onclick="test4();">실행확인</button>
+    <script>
+        function Book(t, a, p, d){
+            var title = t;
+            var author = a;
+            var price = p;
+            var discountRate = d;
+
+            this.getTitle = function(){
+                return title;
+            }
+            this.getAuthor = function(){
+                return author;
+            }
+            this.getPrice = function(){
+                return price;
+            }
+            this.getDiscountRate = function(){
+                return discountRate;
+            }
+
+            this.setTitle = function(t){
+                title = t;
+            }
+            this.setAuthor = function(a){
+                author = a;
+            }
+            this.setPrice = function(p){
+                if(p <= 0){
+                    throw new Error('가격은 0보다 커야합니다.');
+                }else{
+                    price = p;
+                }
+            }
+            this.setDiscountRate = function(d){
+                if(d < 0){
+                    throw new Error('할인율은 0이상이어야합니다.');
+                }else{
+                    discountRate = d;
+                }
+            }
+
+            Book.prototype.getSellPrice = function(){
+                return this.getPrice() - (this.getPrice()*this.getDiscountRate());
+            }
+        }
+
+        function test4(){
+            try{
+                var myBook = new Book("언어의온도","이기주",10000,0.1);
+                // myBook.setPrice(-10000);
+                console.log(myBook);
+            }catch(e){
+                alert(e.meseage);
+                return false;
+            }
+
+            alert("title : "+ myBook.getTitle()+ "\n"
+                + "author : "+ myBook.getAuthor()+"\n"
+                + "판매가 : "+ myBook.getSellPrice());
+        }
+    </script>
+    
+    <h3>상속확인하기</h3>
+    <button onclick="test5();">실행확인</button>
+    <script>
+        function Novel(t, a, p, d, tp){
+            //부모 정의
+            this.parent = Book;
+            this.parent(t,a,p,d);
+            
+            var type = tp;
+
+            this.getType = function(){
+                return type;
+            }
+
+            this.setType = function(tp){
+                type = tp;
+            }
+
+            //부모함수의 프로토타입 받아오기
+            Novel.prototype = Book.prototype;
+            console.log(Novel.prototype);
+        }
+
+        function test5(){
+
+            var novel1 = new Novel(
+                '고양이',
+                '베르나르베르베르',
+                15000,
+                0.1,
+                '소설'
+            )
+            console.log(novel1);
+            alert("title : "+ novel1.getTitle()+ "\n"
+                + "author : "+ novel1.getAuthor()+"\n"
+                + "type : "+ novel1.getType()+"\n"
+                + "판매가 : "+ novel1.getSellPrice());
+        }
+    </script>
+
+</body>
+</html>

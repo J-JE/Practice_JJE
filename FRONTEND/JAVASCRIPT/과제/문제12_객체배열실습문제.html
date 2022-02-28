@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>객체 실습 문제</h1>
+	
+	문제2. <br>
+	다음 입력 버튼 클릭시 학생정보를 3명 저장받아(for문 사용) <br>
+	테이블을 생성하여 출력하는 코드를 작성하세요. <br>
+	단, 학생 정보는 객체로 처리하여 저장후 테이블에 입력하고<br>
+	모든 학생 정보는 객체 배열에 저장하여 console.log(objectArr)로 출력시 <br>
+	객체 배열 정보가 console.log에 나와야 함 <br>
+	
+
+	<div align="center">
+        <table id="memberInfo" border="1" style="width:500px; height:300px;">
+            <tr>
+            	<th>이름</th>
+            	<th>나이</th>
+            	<th>주소</th>
+            </tr>
+            <tr>
+            	<td class="name"></td>
+            	<td class="age"></td>
+            	<td class="addr"></td>
+            </tr>
+            <tr>
+            	<td class="name"></td>
+            	<td class="age"></td>
+            	<td class="addr"></td>
+            </tr>
+            <tr>
+            	<td class="name"></td>
+            	<td class="age"></td>
+            	<td class="addr"></td>
+            </tr>
+        </table>
+		<label style="color:red;">학생정보 테이블</label><br>
+		<button onclick="student();">입력 및 출력</button>
+	</div>  
+	
+	<!-- <script>
+		function Students(sName, sAge, sAddr){
+			this.name = sName;
+			this.age = sAge;
+			this.addr = sAddr;
+		}
+
+		function student(){
+			var objectArr = [];
+
+			for(var i =0; i<3;i++){ //입력
+				objectArr.push(new Students(prompt(i+1+"번째 학생 이름 입력"),
+									parseInt(prompt(i+1+"번째 학생 나이 입력")),
+									prompt(i+1+"번째 학생 주소 입력")));
+
+			}
+			console.log(objectArr);
+			console.log(objectArr.length);
+
+			var nameTable = document.getElementsByClassName("name");
+			var ageTable = document.getElementsByClassName("age");
+			var addrTable = document.getElementsByClassName("addr");
+
+			for(var i =0; i<objectArr.length;i++){ //출력
+				nameTable[i].innerHTML = objectArr[i].name;
+				ageTable[i].innerHTML = objectArr[i].age;
+				addrTable[i].innerHTML = objectArr[i].addr;
+			}
+		}
+	</script> -->
+
+	<script>
+		function Students(sName, sAge, sAddr){
+			var name = sName;
+			var age = sAge;
+			var addr = sAddr;
+
+			this.getName = function(){
+                return name;
+            }
+			this.getAge = function(){
+                return age;
+            }
+			this.getAddr = function(){
+                return addr;
+            }
+
+			this.setName = function(sName){
+				name = sName;
+			}
+			this.setAge = function(sAge){
+				age = sAge;
+			}
+			this.setAddress = function(sAddr){
+				addr = sAddr;
+			}
+		}
+
+		function student(){
+			var objectArr = [];
+
+			for(var i =0; i<3;i++){ //입력
+				objectArr.push(new Students(prompt(i+1+"번째 학생 이름 입력"),
+									parseInt(prompt(i+1+"번째 학생 나이 입력")),
+									prompt(i+1+"번째 학생 주소 입력")));
+
+			}
+			console.log(objectArr);
+			console.log(objectArr.length);
+
+			var nameTable = document.getElementsByClassName("name");
+			var ageTable = document.getElementsByClassName("age");
+			var addrTable = document.getElementsByClassName("addr");
+
+			for(var i =0; i<objectArr.length;i++){ //출력
+				nameTable[i].innerHTML = objectArr[i].getName();
+				ageTable[i].innerHTML = objectArr[i].getAge();
+				addrTable[i].innerHTML = objectArr[i].getAddr();
+			}
+		}
+	</script>
+	
+</body>
+</html>
