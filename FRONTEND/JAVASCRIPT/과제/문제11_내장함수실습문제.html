@@ -110,47 +110,18 @@
 	</div>
 	
 	<script>
-
-		var result = document.getElementById("result");
-
 		function buttonClick(buttons){
-				
-			if (!isNaN(buttons)){
-				result.innerHTML += buttons;
-			}else{
-				if(buttons == "AC"){
-					result.innerHTML = "";
-				}else if (buttons == "="){
-					result.innerHTML = eval(result.value);
-				}else{
-					result.innerHTML += buttons;
-				}
+
+			var result = document.getElementById('result'); //보여지는 화면
+
+			if(buttons == "AC"){ //값 초기화
+				result.innerHTML = "";
+			}else if(buttons == "="){ //계산
+				var end = eval(result.innerHTML); //eval 함수로 result에 올라온 식 계산
+            	result.innerHTML = end;
+			}else{ //요소 입력
+           		result.innerHTML += buttons; //result에 요소 추가
 			}
-
-		}
-
-		function addOutput(num) {
-		var display = document.getElementById("display");
-		display.value += num;
-		}
-		
-		function calculate() {
-		var display = document.getElementById("display");
-		var result = eval(display.value);
-		var displayResult = document.getElementById("result");
-		displayResult.value = result;
-		}
-		
-		function reset() {
-		var display = document.getElementById("display");
-		display.value = "";
-		var displayResult = document.getElementById("result");
-		displayResult.value = "";
-		}
-		
-		function del() {
-		var display = documnet.getElementById("display");
-		display.value = display.value.substring(0, display.value.length - 1);
 		}
 	</script>
 	
