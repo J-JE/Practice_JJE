@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>03-2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function addFile(){
+            $("div input:file").clone().insertAfter("div");
+        }
+        function delFile(){
+            $("input:file").remove()
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input type="file">
+        <input type="button" value="추가" onclick="addFile()">
+        <input type="button" value="삭제" onclick="delFile()">
+    </div>
+</body>
+</html>

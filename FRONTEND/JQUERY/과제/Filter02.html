@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>02-2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function selectBtn(){
+            $("select").children().each(function(){
+                var result = $(this).is(':selected');
+                if(result){
+                    console.log(this.value+"번");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <select>
+        <option value="1" selected="selected">1번</option>
+        <option value="2">2번</option>
+        <option value="3">3번</option>
+    </select>
+    <br/>
+    <input type="button" value="Select 버튼 확인" onclick="selectBtn()">
+</body>
+</html>
