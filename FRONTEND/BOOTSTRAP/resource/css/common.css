@@ -1,0 +1,49 @@
+header {
+    color: white;
+    text-shadow: 1px 1px 2px lightgray;
+}
+
+nav {
+    font-weight:bolder;
+    text-shadow: 1px 1px 2px gray;
+}
+
+nav div:hover{
+    background: green;
+    color:aliceblue;
+    text-shadow: 1px 1px 2px white;
+    float: right;
+}
+
+section{
+    background:skyblue;
+    text-align:center;
+}
+.content{
+    padding:10px 10px;
+    border: 1px solid black;
+    height:200px;
+    display: inline-block;
+}
+
+.content:hover{
+    background:tomato;
+    color: snow;
+    border: 2px solid lightgreen;
+}
+
+aside{
+    background: snow;
+    height: 100%;
+}
+aside p:hover{
+    background: black;
+    color:snow;
+}
+
+footer{
+    background: gray;
+        height: 200px;
+        color: white;
+        text-align:center;
+}

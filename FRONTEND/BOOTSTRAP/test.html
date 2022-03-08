@@ -1,0 +1,94 @@
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Test Bootstrap</title>
+      
+        <link rel="stylesheet" href="../resource/css/common.css">
+            <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+        <!-- container, container-fluid
+        부트스트랩에서 반응형으로 사용할 HTML 요소들을 둘러싸는 기본 클래스
+        container는 반응형 고정 너비 컨테이너, container-fluid는 viewport 전체 너비에 걸친 전체 너비 컨테이너
+        container-fluid는 항상 화면 너비 전체를 사용, width가 항상 100%
+    
+        반응형으로 width를 지정하고 싶을 경우 : container 사용
+        width를 화면의 100%로 지정하고 싶을 경우 : container-fluid 사용 -->
+        <div class="container-fluid bg-dark">
+            <header>
+                <!-- row = 행, row class = 가로로 그룹 지을 컬럼들의 집합
+                    row class는 container나 container-fluid 안에 있어야 정상적인 배열이나 패팅을 지원해준다.
+                    즉, container 내에 row를 배치해야 한다. -->
+                <div class="row">
+                    <h1>Test Bootstrap</h1> 
+                </div>
+                <!-- - navbar :
+                    부트스트랩을 사용하면 navbar가 화면 크기에 따라 확장하거나 줄어들 수 있다
+                    - navbar-expand-sm :
+                    표준 navbar는 navbar 클래스와 함께 만들어지고,
+                    반응형 축소 클래스 : navbar-expand-(크기에따라 xl|lg|md|sm)가 뒤따른다.
+                    navbar-expand-sm : medium or small screens 반응형 축소 클래스 -->
+                <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                     <!-- navbar에 링크 추가하는 방법
+                            1. ul태그에 navbar-nav클래스 사용
+                            2. li 태그 안에 nav-item 클래스 사용
+                            3. a태그 안에 nav-link클래스를 사용하고 링크 삽입
+    
+                            mr-auto : [margin-right:auto], 오른쪽 여백을 브라우저가 자동 계산 해 오른쪽 정렬
+                        
+                            myNav : 클래스명 지정
+    
+                            active/disable : a태그에 사용해서 링크를 활성/비활성화 상태로 지정한다.-->
+                    <ul class="navbar-nav mr-auto myNav">
+                        <li class="nav-item active"><a class="nav-link" href="myPage.html">Navigation 1</a></li>
+                        <li class="nav-item"><a class="nav-link" href="views/GridLayout.html">그리드 레이아웃</a></li>
+                        <li class="nav-item"><a class="nav-link" href="views/Size.html">가변 사이즈 활용</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <div class="row">
+                <!-- 그리드 레이아웃을 구성할 땐 반드시 .row(행)을 먼저 배치하고,
+                    행 안에 .col-size-n을 필요한 갯수만큼 배치한다.
+                    그리고 .col-size-n 내부에 컨텐츠를 배치한다.
+    
+                    col-size-n 이라는 옵션은 화면의 크기가 size 이하일때 n만큼 세로로 배치하겠다는 것이다.
+                    
+                    .col-size-n에서 size에는 xs, sm, md, lg 중 하나를 지정한다.
+                    xs, sm, md, lg는 화면 크기에 따라서 구분
+                    (xs 스마트폰 / sm 태블릿 / md 데스크탑 / lg 큰 데스크탑)
+                
+                    .col-size-n에서 n에는 1부터 12까지의 숫자 중 하나를 지정하며 하나의 컬럼 크기를 나타낸다.
+                    각 단위는 12등분으로 표현하며 12가 전체 길이이다. -->
+                <section class="col-sm-8">
+                   Section Part<br>
+                   <!--카드는 부트스트랩 4에서 내용 주위에 padding(안쪽 여백)이 있는 테두리 박스를 말한다.
+                    header, footer, 내용, 색상 등의 옵션이 포함되어 있다. -->
+                    <div class="card col-sm-5 content"> test 1 </div>
+                    <div class="card col-sm-5 content"> test 2 </div>
+                    <div class="card col-sm-10 content" style="margin-top:10px; margin-bottom: 25px;"> test 3 </div>
+                </section>
+                <aside class="col-sm-4">
+                    <p>Aside Content 1</p>
+                    <p>Aside Content 2</p>
+                    <p>Aside Content 3</p>
+                    <p>Aside Content 4</p>
+                </aside>
+            </div>
+            <footer class="row"> 
+                <div class="col-md-12">
+                    Copyright by J <br>  
+                </div>
+            </footer>
+        </div>
+        </body>
+    
+    </html>

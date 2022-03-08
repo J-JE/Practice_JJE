@@ -1,0 +1,91 @@
+﻿<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Test Bootstrap</title>
+  
+    <link rel="stylesheet" href="../resource/css/common.css">
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid bg-dark">
+        <!-- 
+            container-fluid : 뷰포트의 전체 너비에 걸쳐 있는 전체 너비 컨테이너(크기 고정X, width는 항상 100%)
+            bg-dark :[bg-색상] dark -> 어두운색 배경 (background:dark)
+         -->
+        <header>
+            <div class="row">
+                <!-- 
+                    row : 행 생성
+                 -->
+                <h1>Test Bootstrap</h1> 
+            </div>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                <!--
+                    navbar : 네비게이션 바는 navar 클래스를 사용해서 생성한다.
+                    navbar-expand-sm : [navbar-expand-사이즈(xl/lg/md/sm)]
+                                        보여질 화면 크기를 지정하는 클래스, 브라우저 넓이가 지정한 크기 이하라면 세로방향으로 정렬된다.
+
+                    navbar-dark : [navbar-색상] (dark -> 밝은 글씨 색)
+                -->
+                <ul class="navbar-nav mr-auto myNav">
+                    <!-- 
+                        navbar에 링크 추가하는 방법
+                        1. ul태그에 navbar-nav클래스 사용
+                        2. li 태그 안에 nav-item 클래스 사용
+                        3. a태그 안에 nav-link클래스를 사용하고 링크 삽입
+
+                        mr-auto : 오른쪽 여백을 브라우저가 자동 계산 해 정렬 (margin-right:auto)
+                        myNav : 클래스명
+
+                        active/disable : a태그에 사용해서 링크를 활성/비활성화 상태로 지정한다. 
+                     -->
+                    <li class="nav-item active"><a class="nav-link" href="myPage.html">Navigation 1</a></li>
+                    <li class="nav-item "><a class="nav-link" href="views/GridLayout.html">그리드 레이아웃</a></li>
+                    <li class="nav-item"><a class="nav-link" href="views/Size.html">가변 사이즈 활용</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="row">
+            <section class="col-sm-8">
+                Section Part<br>
+                <div class="card col-sm-5 content"> test 1 </div>
+                <div class="card col-sm-5 content"> test 2 </div>
+                <div class="card col-sm-10 content" style="margin-top:10px; margin-bottom: 25px;"> test 3 </div>
+                <!-- 
+                    col : 부트스트랩에서 미리 정의해 놓은 컬럼 영역을 사용하는 클래스. (반응형 그리드)
+                        col- : 초소형 기기 - 화면 너비가 576px 미만 -> 항상 세로로 표시
+                        col-sm- : 소형 기기 - 화면 너비가 576px 이상 -> 576px이하에서 세로로 표시
+                        col-md- : 중형 기기 - 화면 너비가 768px 이상 -> 768px이하에서 세로로 표시
+                        col-lg- : 대형 기기 - 화면 너비가 992px 이상 -> 992px이하에서 세로로 표시
+                        col-xl- : xlarge 장치 - 화면 너비가 1200px 이상 -> 1200px이하에서 세로로 표시
+                        col-*-[숫자] : 부트스트랩은 한 화면의 영역을 12개로 나눠놓음.
+                                             정의된 숫자 만큼의 영역을 차지함
+                                             다만 정의된 클래스 사이즈(sm, md, lg, xl) 이하로 줄어들면 모두 동일한 가로길이를 갖게됨
+                    
+                    card : 카드형 배열을 만드는 클래스
+                 -->
+            </section>
+            <aside class="col-sm-4">
+                <p>Aside Content 1</p>
+                <p>Aside Content 2</p>
+                <p>Aside Content 3</p>
+                <p>Aside Content 4</p>
+            </aside>
+        </div>
+        <footer class="row"> 
+            <div class="col-md-12">
+                Copyright by J <br>  
+            </div>
+        </footer>
+    </div>
+    </body>
+
+</html>

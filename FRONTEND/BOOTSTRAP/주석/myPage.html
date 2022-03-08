@@ -1,0 +1,366 @@
+﻿<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>First My Bootstrap Page</title>
+    <!-- bootstrap css include -->
+	<link rel="stylesheet" href="../resource/css/main.css">
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <!-- Popper JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container-fluid">
+    <body class="container-fluid">
+        <!-- 클래스를 사용하여 .container-fluid 항상 사용해서
+             전체 너비에 걸쳐 있는 컨테이너를 만들어준다.(width는 항상 100%) -->
+        <header>
+            <div class="row">
+                <!-- row : 컬럼을 나누려면 반드시 row를 먼저 선언 하고 그 안에 column을 사용한다.
+                            또한 column을 사용하였다면 반드시 랩핑으로 row 클래스를 가진 태그가 필요하다. -->
+                <h1>First My Bootstrap Page</h1>
+            </div>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+                <!-- navbar : 웹페이지의 화면 상단에서 볼 수 있는 메뉴 바의 기본 틀을 제공 -->
+                <!-- .navbar-expand-xl|lg|md|sm : 반응형 축소 클래스 
+                xs(Extra small) : 항상 가로로 배치
+                sm(Small) : 768px 이하에서 세로로 표시 시작
+                md(Medium) : 992px 이하에서 세로로 표시 시작
+                lg(Large) : 1200px 이하에서 세로로 표시 시작
+                
+                navbar-dark : 글자 색을 dark로 변경
+                bg-primary : background 색을 primary로 변경-->
+    
+                <ul class="navbar-nav mr-auto">
+                    <!-- navbar 내부에 링크를 추가하려면 class="navbar-nav"와 함께 <ul> 요소를 사용  
+                        mr-auto : margin-right:auto 검색 바 오른쪽으로 정렬 -->
+    
+                    <li class="nav-item active"><a class="nav-link" href="index.html">Navigation 1</a></li>
+                    <!-- 간단한 수평 메뉴를 만들경우 <ul> 요소에 .nav 클래스를 추가하고 각 <li>에 대해
+                        .nav-item을 추가하고 해당 링크에 nav-link 클래스를 추가해준다.
+                        active 선택자를 추가하면 버튼 클릭했을때 느낌을 줄 수 있다. -->
+    
+                    <li class="nav-item dropdown">
+                        <!-- dropdown : 사용자가 미리 정의된 목록에서 하나의 값을 선택할 수 있는 토글 가능한 메뉴-->
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Navigation 2</a>
+                        <!-- 전체 기능을 포함한 영역에는
+                                'dropdown' 클래스를, 드롭다운 메뉴를 열려면 .dropdown-toggle 클래스와 
+                                data-toggle="dropdown" 속성이 있는 버튼이나 링크를 사용하여야 한다.-->
+                        <div class="dropdown-menu">
+                            <!-- dropdown-menu : 드롭다운시 보여줄 목록 -->
+                            <a class="dropdown-item" href="index.html">메인화면</a>
+                            <!-- item : 클릭해서 보여지는 메뉴 목록들 -->
+                            <a class="dropdown-item" href="views/GridLayout.html">그리드 메뉴</a>
+                            <a class="dropdown-item" href="views/Size.html">사이즈</a>
+                            <div class="dropdown-divider"></div>
+                            <!-- dropdown-divider : 드롭다운 메뉴 내부의 링크를 분리하는데 사용, 얇은 선을 그어준다(<hr> 처럼) -->
+                            <a class="dropdown-item" href="#">또다른 메뉴</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Navigation 3</a></li>
+                </ul>
+                <form class="form-inline my-2 my-md-0">
+                    <!-- form-inline : 부트스트랩은 두 가지 유형의 양식 레이아웃을 제공 스택(전체너비), 인라인 
+                                       스택양식은 전체 너비를 사용하기때문에 한줄을 다 차지하고 인라인의 경우
+                                        모든 요소가 인라인되고 왼쪽 정렬이 된다.-->
+                    <!-- my(margin y축)-2, my-md-0 : 공백을 주는 요소 -->
+                    <input class="form-control" type="text" placeholder="Search">&nbsp;
+                    <!-- form-control : input, select, textarea 등의 태그 스타일을 줄때 사용 -->
+                    <button class="btn btn-light my-2 my-md-0" type="submit">Search</button>
+                    <!-- btn-light : 버튼의 배경 색  -->
+                </form>
+            </nav>
+        </header>
+
+    <!-- 지수 -->
+    <div class="row">
+        <!-- 
+            row : 행을 생성. 행 안에는 원하는 수의 열(적절한 .col-*-*클래스가 있는 태그)을 추가
+         -->
+        <section class="col-md-9">
+            <!-- 
+                col-*-* : 첫 번째 별(*)은 sm, md, lg 또는 xl의 응답성(기기의 사이즈)을 나타내고 두 번째 별은 숫자(사용할 부분)
+                col-md-9 : 중형 기기 크기의 화면에서 한 row안의 12개의 열 중 9개를 차지. (즉, 9/12 -> 4/3 차지)
+                           (*본 문서에서 카드 3장이 12열 중 9열의 크기를 사용하고, 측면 메뉴 부분이 12열 중 3열의 크기를 사용) 
+            -->
+            
+            <!-- 카드 그룹 1 시작 -->
+            <div class="row card-group">
+                <!-- 
+                    row card-group : 한 row에서 card 클래스의 묶음 (*본 문서에서 article 태그로 선언된 card 클래스 3개의 묶음을 의미)
+                -->       
+                <!-- 카드 1  -->
+                <article class="card" style="width: 18rem; margin: 15px;"> 
+                     <!-- 
+                        card : 콘텐츠 목록을 보여줄 때 카드형 배열을 사용하겠다 지정 
+                               카드란 내용 주위에 패딩이 있는 테두리가 있는 상자를 의미 
+                               카드에는 머리글, 바닥글, 콘텐츠, 색상 등에 대한 옵션이 포함
+                               .card-header(제목), .card-footer(바닥글)
+                     -->
+                    <img class="card-img-top" src="../resource/image/flower1.PNG" alt="Card image cap">
+                    <!--  
+                        card-img-top : 속성 src 경로의 이미지를 이미지를 카드 내부의 *상단*에 배치
+                        card-img-bottom : 속성 src 경로의 이미지를 이미지를 카드 내부의 *하단*에 배치
+                    -->
+                    <div class="card-body ">
+                        <!-- 
+                           card-body : 카드의 내용(카드 제목과 상세내용을 포함)
+                                       card-link 모든 링크에 자동으로 파란색을 추가하고 호버 효과 
+                         -->
+                        <h5 class="card-title">Card title</h5>
+                        <!-- 
+                            card-title :  카드 제목
+                                          기본적으로 왼쪽 정렬. font-size는 20px. 
+                        -->
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <!-- 
+                            card-text : 카드 상세내용 
+                                        만약 카드 영역에서 <p>태그가 마지막 자식(또는 유일한 자식)인 경우 해당 요소의 아래쪽 여백을 제거
+                         -->
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <!-- 
+                            btn : 버튼(미 기재시 버튼 모양이 사라지고, 텍스트만 나오며, 호버시 링크의미의 밑줄 생성)
+                            btn-primary : 버튼의 컬러를 파란색(primary)으로 한다. 
+                         -->
+                    </div>
+                </article>
+                <!-- 카드 2  -->
+                <article class="card" style="width: 18rem; margin: 15px;">
+                    <img class="card-img-top" src="../resource/image/flower2.PNG" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </article>
+                 <!-- 카드 3  -->
+                <article class="card" style="width: 18rem; margin: 15px;">
+                    <img class="card-img-top" src="../resource/image/flower3.PNG" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </article>  
+            </div>
+            <!-- 카드 그룹1 종료 -->
+
+            <!-- 현빈 -->
+            <div class="row card-group"> 
+                <!--card-deck : 사용 시 너비와 높이를 style로 지정해주지않아도 자동으로 간격 설정이 되어있음-->
+
+                <!--row card-group
+                    row : 컬럼을 나누려면 반드시 row를 선언하고 그안에 column을 사용하며, 또한 column을 사용하였다면 반드시 랩핑
+                    card-group : 카드 그룹을 사용하여 너비와 동일한 열이 있는 하나의 연결된 요소로 카드를 만들 수 있는 카드 그룹-->
+
+            <article class="card" style="width: 18rem; margin: 15px;"> 
+                <!--카드 내용 만들기 카드는 이미지, 텍스트, 그룹, 링크 등을 포함한 다양한 콘텐츠를 지원하며, 
+                    간격은 따로 없기에 필요에 따라 간격 유틸리티를 사용함-->
+
+                <img class="card-img-top" src="../resource/image/flower4.PNG" alt="Card image cap">
+                <!--card-img-top : card 안에 img를 상단에 놓을때 사용 아래는 top -> bottom 으로 수정
+                    div 클래스를 하나 더 추가하여 card-img-overlay 사용 시 이미지를 배경으로 깔아놓고 card내의 text 및 기능 사용 가능 -->
+
+                <div class="card-body">
+                <!--카드 본문 내의 일부 텍스트가 들어갈 공간 / 카드 안에 패딩된 부분이 필요할 때마다 사용-->
+                    <h5 class="card-title">Card title</h5>
+                 <!--카드 제목을 지정  h* 태그로 크기 지정가능 -->
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <!--카드 안에 텍스트를 작성-->
+                    <a href="#" class="btn btn-primary">Go somewhere</a> 
+                </div>
+            </article>
+            <article class="card" style="width: 18rem; margin: 15px;">
+                <img class="card-img-top" src="../resource/image/flower5.PNG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </article>
+            <article class="card" style="width: 18rem; margin: 15px;">
+                <img class="card-img-top" src="../resource/image/river2.PNG" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            </article>
+        </section>
+
+        <!-- 영아 -->
+        <aside class="col-md-3">
+            <p>측면 메뉴 1</p>
+            <p>측면 메뉴 2</p>
+            <p>측면 메뉴 3</p>
+            <p>측면 메뉴 4</p>
+    <!--
+        BS4 Grid Basic
+        -Bootstrap의 그리드 시스템은 반응형 웹페이지를 위한 기능이다.
+        -flexbox로 구축되어있으며 기본적으로 12개의 열로 구성되어 있다.
+        -.col-(sm|md|lg|xl)-*을 사용하여 배치할 개수와 넓이를 정의할 수 있다.
+          ex) 12개의 열 중 같은 넓이의 3개의 컬럼을 쓰고자 한다면 3개의 .col-(sm|md|lg|xl)-* 사용한다.
+    -->
+
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        클릭하세요~
+    </button>
+    <!--
+        BS4 Button
+        -Bootstrap4에서 제공하는 다양한 스타일의 버튼이다. 스타일마다 색상이 정해져 있다.
+        
+        -btn : 기초 스타일
+        -btn btn-primary : 파란색
+        -btn btn-secondary : 회색
+        -btn btn-success : 초록색
+        -btn btn-info : 청록색
+        -btn btn-warning : 노란색
+        -btn btn-danger : 빨간색
+        -btn btn-dark : 검정색
+        -btn btn-light : 밝은 회색
+        -btn btn-link : 일반 링크 모양
+    -->
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+        <div class="modal-content">
+    <!--
+        BS4 Modal 
+        -Modal은 현재 페이지 상단에 표시되는 대화 상자/팝업 창이다.
+        -Modal은 modal-dialog, modal-content 안에 modal-header, modal-body, modal-footer로 구성되어 있다.
+        
+        <Modal Size>
+        -Small Modal : <div class="modal-dialog modal-sm">
+        -Large Modal : <div class="modal-dialog modal-lg">
+        -Xlarge Modal(초대형 모달) : <div class="modal-dialog modal-xl">
+    -->
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <!-- 
+                data-dismiss="modal" : data-dismiss 속성을 적용하면 modal을 닫게하는 기능을 적용
+            -->
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+            팝업창입니다.
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>      
+        </div>
+        </div>
+    </div>
+</aside>
+
+    <div class="row align-items-end" id="backtotop">
+        <button type="button" class="btn btn-info btn-lg" onclick="window.scrollTo(0,0);">
+            ▲TOP
+        </button>
+    </div>
+    <!--
+        BS4 Flex
+        항목 정렬(.align-items-*) : 클래스를 사용하여 플렉스 항목의 단일 행 수직 정렬을 제어합니다.
+        -.align-items-start : 상단에 붙인다.
+        -.align-items-end : 하단에 붙인다.
+        -.align-items-center : 가운데 정렬한다.
+        -.align-items-baseline : 베이스 라인에 배치한다.
+        -.align-items-stretch : 세로폭을 꽉 채운다.
+    -->
+</div>
+
+<footer class="row bg-dark">
+    <!--
+        BS4 Grid System
+        <그리드 시스템>
+        -테이블 형식대로 row와 col-*클래스들로 자유롭게 구성이 가능하다.
+        -그리드 시스템의 규칙
+        1. row 클래스는 .container와 .container-fluid 안에 있어야 정상적인 배열을 지원해준다.
+        2. row 클래스를 이용해 가로 열 그룹을 만들어야 한다.(col은 flexbox 형태, 12개의 열로 구성)
+        3. content는 col-* 클래스 안에 있어야 하며, col-*은 row의 직계 자식으로 구성해야한다.
+        4. 칼럼은 총 12칼럼으로 구성되어 있고, 배치할 %에 따라 클래스를 정의한다. 
+           예를 들어 3개의 동일한 크기의 열을 만드려면 .col-sm-4로 정의한다.
+        5. 12칼럼이 넘어가면 새로운 줄로 칼럼이 배치된다.
+        6. 열 너비는 백분율로 표시되므로 항상 유동적이고, 상위 요소를 기준으로 크기가 조정된다.
+
+        BS4 Color
+        <배경색>
+        -배경색에 대한 클래스를 사용하여 배경색을 지정할 수 있다.
+        -.bg-primary : 파란색
+        -.bg-success : 초록색
+        -.bg-info : 청록색(하늘색)
+        -.bg-warning : 노란색
+        -.bg-danger : 빨간색
+        -.bg-secondary : 회색
+        -.bg-dark : 검은색
+        -.bg-light : 흰색
+    -->      
+    <p>하단의 footer 설명문입니다.</p>
+    <div class="col-md-4">
+     <h3 class="text-white">Useful Links</h3>
+     <hr style="background:white; margin-top:-1px">
+        <ul class="useful-link">
+            <li><a href="https://www.w3schools.com/" target="_blank">w3schools</a></li>
+            <li><a href="https://developer.mozilla.org/ko/" target="_blank">mdn 개발자 사이트</a></li>
+            <li><a href="https://www.w3schools.com/bootstrap4/default.asp" target="_blank">bootstrap 단계별 학습 사이트</a></li>
+        </ul>
+    </div>
+    <!--
+        BS4 Color
+        <텍스트 색상>
+        - 텍스트 색상에 대한 클래스를 사용하여 텍스트 색상을 정할 수 있다.
+        -.text-muted : 비활성화
+        -.text-primary : 파란색
+        -.text-success : 초록색
+        -.text-info : 청록색(하늘색)
+        -.text-warning : 노란색
+        -.text-danger : 빨간색
+        -.text-secondary : 회색
+        -.text-white : 흰색
+        -.text-dark : 어두운 회색
+        -.text-body : 기본 바디 색상/종종 검은색 
+        -.text-light : 밝은 회색
+    -->
+    <div class="col-md-4">
+     <h3 class="text-white">Curriculum</h3>
+     <hr style="background:white; margin-top:-1px">
+     <div class="row">
+        <ul class="curriculum">
+            <li>Java</li>
+            <li>Oracle</li>
+        </ul>
+        <ul class="curriculum">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>JQuery</li>
+            </ul>
+     </div>
+    </div>
+    
+    <div class="col-md-4">
+    <h3 class="text-white">작성자</h3>
+    <hr style="background:white; margin-top:-1px">
+    <div class="row">
+        <ul class="curriculum">
+            <li>J</li>
+        </ul>
+    </div>
+    </div>
+    <p>Copyright © 2021 B-CLASS</p>
+</footer>
+</body>
+</html>

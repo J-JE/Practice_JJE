@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<!-- bootstrap 3버전 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<!-- bootstrap 4버전 -->
+	<!--· CSS가 Less에서 Sass로 
+      · CSS에서 사용하는 단위가 px에서 em으로
+      · Media Queries도 px에서 em으로
+      · 글로벌 폰트 사이즈가 14px에서 16px로 -->
+
+	<!-- Latest compiled and minified CSS -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+	<!-- jQuery library -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+	<!-- Latest compiled JavaScript -->
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+	<!-- bootstrap 5버전 -->
+	<!--- Jquery 삭제
+      - IE10 & 11 지원 중단
+      -사용자 정의 SVG아이콘 라이브러리 제공
+      -Jekyll에서 Hugo로 전환
+      -자바스크립트 클래스 업데이트 -->
+	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
+
+	<title>그리드 레이아웃</title>
+
+	<style>
+		.row1 {
+			border: 1px solid black;
+			padding-top: 15px;
+			padding-left: 25px;
+			font-size: 20px;
+			height: 100px;
+			background: orange;
+		}
+
+		.row2 {
+			border: 1px solid black;
+			padding-top: 15px;
+			padding-left: 25px;
+			font-size: 20px;
+			height: 150px;
+			background: palegreen;
+		}
+
+		.row3 {
+			border: 1px solid black;
+			padding-top: 15px;
+			padding-left: 25px;
+			font-size: 20px;
+			height: 200px;
+			background: skyblue;
+		}
+
+		.for-xs {
+			border: 1px solid black;
+			font-size: 20px;
+			height: 150px;
+			background: pink;
+		}
+
+		h3 {
+			color: red;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- 그리드 시스템은 열을 나누어 콘텐츠를 원하는 위치에 배치하는 방법(Layout)을 말한다.
+      Bootstrap은 반응형 12열 그리드 시스템을 제공한다.
+
+      그리드 시스템은 정적, 동적, 반응형 그리드 시스템으로 나누어 볼 수 있겠다. 
+      여기서 정적인 그리드 시스템은 웹 페이지의 레이아웃의 폭이 고정되어 있는 시스템이며 
+      동적인 그리드 시스템은 레이아웃의 폭이 브라우저의 크기에 따라 바뀌는 시스템이다. 
+      반응형 그리드 시스템은 이용하는 기기에 따라 변경되는 화면 폭에 반응형으로 
+      레이아웃이 바뀌는 시스템을 말한다. 
+
+      그리드 클래스 : layout과 content 정렬을 위한 시스템, 최대 12개의 열을 허용
+      기본 구조 : container, row, column 
+      
+      1.container
+      - container가 감싸고 있는 contents를 가운데 정렬
+      - 반응형으로 지정할 경우 .container사용
+      - width를 화면의 100%로 지정할 경우 .container-fluid 사용
+
+      2.row
+      - columm을 감싸주는 역할
+
+      3.columm
+      - row에 들어가는 각각의 content
+      - 옵션을 지정 안하면 블록 요소처럼 한줄 씩 차지
+   
+        class= "col-*-*"
+      - 첫번째 별표(*)는 기기의 크기로서 sm,md,lg,xl 기입한다
+      - 두번째 별표(*)는 숫자를 적는 부분으로 각 행은 최대 12까지 사용 가능하다.
+         (12보다 크면 다음줄로 넘어간다)
+    -->
+
+	<h1 align="center">가변 그리드 레이아웃</h1>
+
+	<!--부트스트랩4는 그리드 시스템에 5개의 클래스가 있다.
+      col-xl-       : xlarge 장치에서 사용        
+      col-lg-       : 대형화면에서 n칸만 사용                       
+      col-md-       : 데스크톱에서 n칸만 사용             
+      col-sm-       : 테블릿에서 n칸만 사용            
+      col-xs-(3버전) / col-(4버전)       : 스마트폰에서 n칸만 사용, 4버전 부터 xs 생략                    
+                    ※ n은 최대 12까지 가능
+      
+      .visible-xs-   : 스마트폰에서만 보임
+      .visible-sm-   : 테블릿에서만 보임
+      .visible-md-   : 데스크톱에서만 보임
+      .visible-lg-   : 대형화면에서만 보임
+
+      ※ 각 기기별 크기
+        xlarge : 1200px 이상
+        대형화면 : 992px 이상
+        데스크탑 : 768px 이상
+        테블릿  : 576px 이상
+        스마트폰 : 576px 미만
+      
+      hidden-md      : 스마트폰, 태블릿, 대형화면에서 보임 / 데스크톱에서 안 보임
+      hidden-sm      : 스마트폰, 데스크톱, 대형화면에서 보임 / 태블릿에서 안 보임
+      hidden-xs      : 태블릿, 데스크톱, 대형화면에서 보임 / 스마트폰에서 안 보임
+      hidden-lg      : 스마트폰, 태블릿에서 보임 / 데스크톱, 대형 화면에서 안 보임
+      
+      Tip: 각 클래스는 확장되므로 sm과 md에 동일한 너비를 설정하려면 sm만 지정해주면 된다.
+   -->
+
+	<h3 align="center" class="hidden-md hidden-sm hidden-xs">현재 화면은 데스크탑 전용입니다.</h3>
+	<!--hidden-md hidden-sm hidden-xs : lg만 표시 (md, sm, xs를 숨김)-->
+
+	<h3 align="center" class="hidden-lg hidden-sm hidden-xs">현재 화면은 노트북 전용입니다.</h3>
+	<!-- hidden-lg hidden-sm hidden-xs : md만 표시 (lg, sm, xs를 숨김)-->
+
+	<h3 align="center" class="hidden-lg hidden-md hidden-xs">현재 화면은 태블릿 전용입니다.</h3>
+	<!-- hidden-lg hidden-md hidden-xs : sm만 표시 (lg, md, xs를 숨김)-->
+
+	<h3 align="center" class="hidden-lg hidden-md hidden-sm">현재 화면은 스마트폰 전용입니다.</h3>
+	<!-- hidden-lg hidden-md hidden-sm : xs만 표시 (lg, md, sm를 숨김)-->
+	<br>
+
+	<!-- 주황 박스 -->
+	<div class="row">
+		<!--
+		row1 col-lg-1 col-md-2 col-sm-3 col-xs-6
+		복합구성하면 viewport 너비에 따라 클래스가 적용된다
+		ex)너비가 768px 미만이면 xs-6 적용
+		
+		col-xs-(3버전) / col-(4버전)       : 스마트폰에서 n칸만 사용, 4버전 부터 xs 생략
+	-->
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">1</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">2</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">3</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">4</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">5</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">6</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">7</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">8</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">9</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">10</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">11</div>
+		<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">12</div>
+	</div>
+	<!-- 초록 박스 -->
+	<div class="row">
+		<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">1</div>
+		<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">2</div>
+		<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">3</div>
+		<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">4</div>
+		<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">5</div>
+		<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">6</div>
+	</div>
+	<!-- 파란 박스 -->
+	<div class="row">
+		<div class="row3 col-lg-2 col-md-1 col-sm-1 hidden-xs">1</div>
+		<div class="row3 col-lg-4 col-md-5 col-sm-5 hidden-xs">2</div>
+		<div class="row3 col-lg-4 col-md-5 col-sm-5 hidden-xs">3</div>
+		<div class="row3 col-lg-2 col-md-1 col-sm-1 hidden-xs">4</div>
+
+		<!-- 분홍 박스 -->
+		<!-- 기존 3버전에서 4버전으로 올라가면서 hidden, visible요소의 변화가 있음. -->
+		<!-- xs(스마트폰 사이즈)는 hidden이기 때문에 스마트폰 사이즈에서만 노출 (3버전 이하)-->
+		<div class="row3 for-xs hidden-lg hidden-md hidden-sm col-xs-6">1</div>
+		<div class="row3 for-xs hidden-lg hidden-md hidden-sm col-xs-6">2</div>
+		<div class="row3 for-xs hidden-lg hidden-md hidden-sm col-xs-6">3</div>
+		<div class="row3 for-xs hidden-lg hidden-md hidden-sm col-xs-6">4</div>
+</body>
+</html>

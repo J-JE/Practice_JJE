@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	       <!-- Latest compiled and minified CSS -->
+		   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		   <!-- jQuery library -->
+		   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		   <!-- Latest compiled JavaScript -->
+		   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<title>그리드 레이아웃</title>
+	<style>
+		.row1 {
+			border: 1px solid black;
+			padding-top: 15px;
+			padding-left: 25px;
+			font-size: 20px;
+			height:100px;
+			background: orange;
+		}
+		.row2 {
+			border:1px solid black;
+			padding-top: 15px;
+			padding-left: 25px;
+			font-size: 20px;
+			height:150px;
+			background: palegreen;
+		}
+		.row3 {
+			border:1px solid black;
+			padding-top: 15px;
+			padding-left: 25px;
+			font-size: 20px;
+			height:200px;
+			background:skyblue;
+		}
+		.for-xs {
+			border:1px solid black;
+			font-size: 20px;
+			height:150px;
+			background:pink;
+		}
+		h3 {
+			color:red;
+		}
+	</style>
+</head>
+<body>
+<h1 align="center">가변 그리드 레이아웃</h1>
+
+<!-- 
+	hidden-사이즈 : 지정 사이즈의 브라우저에서는 사라지게 만드는 클래스
+ -->
+<h3 align="center" class="hidden-md hidden-sm hidden-xs">현재 화면은 데스크탑 전용입니다.</h3>
+<h3 align="center" class="hidden-lg hidden-sm hidden-xs">현재 화면은 노트북 전용입니다.</h3>
+<h3 align="center" class="hidden-lg hidden-md hidden-xs">현재 화면은 태블릿 전용입니다.</h3>
+<h3 align="center" class="hidden-lg hidden-md hidden-sm">현재 화면은 스마트폰 전용입니다.</h3>
+
+<br>
+<!-- 
+	col : 부트스트랩에서 미리 정의해 놓은 컬럼 영역을 사용하는 클래스. (반응형 그리드)
+                        col- : 초소형 기기 - 화면 너비가 576px 미만 -> 항상 세로로 표시
+                        col-sm- : 소형 기기 - 화면 너비가 576px 이상 -> 576px이하에서 세로로 표시
+                        col-md- : 중형 기기 - 화면 너비가 768px 이상 -> 768px이하에서 세로로 표시
+                        col-lg- : 대형 기기 - 화면 너비가 992px 이상 -> 992px이하에서 세로로 표시
+                        col-xl- : xlarge 장치 - 화면 너비가 1200px 이상 -> 1200px이하에서 세로로 표시
+                        col-*-[숫자] : 부트스트랩은 한 화면의 영역을 12개로 나눠놓음.
+                                             정의된 숫자 만큼의 영역을 차지함
+                                             다만 정의된 클래스 사이즈(sm, md, lg, xl) 이하로 줄어들면 모두 동일한 가로길이를 갖게됨
+ -->
+<div class="row">
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">1</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">2</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">3</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">4</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">5</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">6</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">7</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">8</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">9</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">10</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">11</div>
+	<div class="row1 col-lg-1 col-md-2 col-sm-3 col-xs-6">12</div>
+</div>
+<div class="row">
+	<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">1</div>
+	<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">2</div>
+	<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">3</div>
+	<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">4</div>
+	<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">5</div>
+	<div class="row2 col-lg-2 col-md-4 col-sm-6 col-xs-12">6</div>
+</div>
+<div class="row">
+	<div class="row3 col-lg-2 col-md-1 col-sm-1 hidden-xs">1</div>
+	<div class="row3 col-lg-4 col-md-5 col-sm-5 hidden-xs">2</div>
+	<div class="row3 col-lg-4 col-md-5 col-sm-5 hidden-xs">3</div>
+	<div class="row3 col-lg-2 col-md-1 col-sm-1 hidden-xs">4</div>
+	
+	<div class="row3 for-xs hidden-lg hidden-md hidden-sm col-xs-6">1</div>
+	<div class="row3 for-xs hidden-lg hidden-md hidden-sm col-xs-6">2</div>
+	<div class="row3 for-xs hidden-lg hidden-md hidden-sm col-xs-6">3</div>
+	<div class="row3 for-xs hidden-lg hidden-md hidden-sm col-xs-6">4</div>
+</div>
+
+</body>
+</html>

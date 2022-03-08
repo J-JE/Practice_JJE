@@ -1,0 +1,42 @@
+﻿/*
+My Page용 CSS 만들기
+*/
+img{
+    height:200px;
+}
+
+#backtotop{
+    margin-top: 27rem;
+    margin-left: 80%;
+    background: #343a40;
+    position: fixed;
+    z-index: 100;
+}
+
+#backtotop a{
+    color:snow;
+}
+
+.useful-link{
+    list-style-type: none;
+}
+
+.useful-link a{
+    list-style-type: none;
+    color:wheat;
+}
+
+.useful-link a:hover{
+    color:snow;
+}
+
+.curriculum{
+    list-style-type: none;
+    color: snow;
+}
+
+footer p{
+    text-align:center;
+    width: 100%;
+    color:snow;
+}
