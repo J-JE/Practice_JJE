@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>컴포넌트란</h1> 
+    <h3>조합하여 화면을 구성할수있는 블록 (화면의 특정영역)</h3>
+    <h1>뷰컴포넌트란</h1> 
+        <h3> HTML Element를 확장하고 재사용 가능한 형태로 구현하는 것</h3>
+
+    <p>Vue 컴포넌트는 Vue 인스턴스이기도 하다, 그러므로 모든 옵션 객체를 사용할 수 있다.
+        (루트에만 사용하는 옵션은 제외) 그리고 같은 라이프사이클 훅을 사용할 수 있다.</p>
+    
+    <h1>1.컴포넌트 등록</h1> 
+    <h3> 전역(Global)과 지역(Local)의 두 가지의 방법</h3>
+    <p> 지역 컴포넌트는 특정 인스턴스에서만 유효하고, 전역 컴포넌트는 모든 범위의 여러 인스턴스에서 공통으로 사용</p>
+    
+    <div id="app">
+        <label>************ 컴포넌트 등록 ************</label>
+        <my-component></my-component>
+        <my-local-component></my-local-component>
+    </div>
+
+    <div id="app2">
+        <label>************ 지역과 전역차이 ************</label>
+        <my-component></my-component>
+        <my-local-component></my-local-component>
+    </div>
+
+    <script>
+        Vue.component('my-component',{ //전역컴포넌트
+            template:`<div>전역컴포넌트가 등록되었습니다.</div>`
+        })
+
+        let cmp = { //지역컴포넌트
+            template:`<div>지역컴포넌트가 등록되었습니다.</div>`
+        }
+
+        new Vue({
+            el:'#app',
+            components:{
+                'my-local-component':cmp //지역 컴포넌트 호출?
+            }
+        })
+
+        new Vue({
+            el:'#app2'
+        })
+    </script>
+
+    <h1>2.컴포넌트 통신</h1> 
+    <p> - 뷰의 경우는 컴포넌트로 화면을 구성하기 때문에 같은 웹페이지라도 데이터를 공유할 수 없는 경우가 많다.<br>
+        - 각 컴포넌트들의 scope(유효범위)가 독립적이기 때문에 다른 컴포넌트의 값을 직접적으로 참조할 수가 없다.</p>
+    <h3> 상/하위 컴포넌트 관계</h3>    
+    <pre> - 뷰의 가장 기본적인 데이터 전달방법.
+        - 상위(Parent) 컴포넌트에서 props라는 속성으로 전달.
+        - props : 상위 컴포넌트에서 하위 컴포넌트로 데이터를 전달할 때 사용하는 속성. 하위 컴포넌트의 속성에 정의.
+
+        [표현법] Vue.component('child-component',{
+                        props:['props 속성 이름'],
+                    });
+        - 상위 컴포넌트의 HTML 코드에 정의된 child-component 태그에 v-bind 속성을 정의.
+        [표현법]
+    <code> &lt; child-component v-bind:props속성명="상위 컴포넌트의 data속성"&gt;&lt;/ child-component&gt;</code> 
+
+    </pre>
+
+    <div id="app3">
+        <child-component v-bind:propsdata="message"></child-component> <!--4. html에 컴포넌트 태그 추가, 상위 컴포넌트의 message 속성값을 
+                                                                            하위 컴포넌트 propsdata로 전달-->
+    </div>
+    <script>
+        Vue.component('child-component',{ //2.뷰 컴포넌트를 이용해서 child-component를 등록
+            props:['propsdata'], //3. child-component 내용에 props 속성을 이용해서 propsdata를 정의(부모값을 받을 속성)
+            template:'<p>{{propsdata}}</p>'//5. {{propsdata}}에 전달된 메세지를 출력
+        })
+        new Vue({ //1.인스턴스 생성
+            el:'#app3',
+            data:{
+                message:"Parent Component"
+            }
+        })
+    </script>
+    
+    <pre> 
+        * 하위에서 상위로 컴포넌트 전달하기
+        - 이벤트를 발생시켜(event emit) 상위 컴포넌트에 신호를 보냄.
+        - 상위 컴포넌트에서 하위 컴포넌트의 특정 이벤트가 발생하기를 기다리다가
+        이벤트가 발생하면 상위 컴포넌트에서 이벤트를 수신하여 상위 컴포넌트의 메서드를 호출하는 것
+        - 이벤트 발생은 $emit() / 수신은 v-on 속성을 이용
+
+        [표현법]emit을 이용한 이벤트 발생 
+        this.$emit('이벤트명');
+        [표현법]v-on 을 이용한 이벤트 수신
+        &lt; child-component v-on:이벤트명="상위 컴포넌트의 메소드명"&gt;&lt; / child-component&gt;
+
+        - $emit()을 호출하면 괄호안에 정의된 이벤트가 발생됨. 
+        데이터를 상위에 전달하기 위해 주로 하위컴포넌트의 특정 메서드 내부에서 호출.
+        - 호출한 이벤트를 v-on 속성으로 받음. 호출될 상위 메소드명 지정.
+    </pre>
+
+</body>
+</html>

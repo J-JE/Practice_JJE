@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>뷰디렉티브란</h1> <!--https://vuejs.org/api/built-in-directives.html#v-text-->
+    <h3>뷰로 화면을 개발하기위해 필수적으로 생성되어야하는 기본단위</h3>
+    <pre>
+        v-if : if문과 같이 true,false값에 따라 HTML태그를 화면에 표시함
+        
+        v-else: 이전 형제 엘리먼트가 v-if또는 v-else-if여야함
+
+        v-else-if: v-if에 대한 “else if 블록” 역할, 또한 여러 개를 사용가능(=체이닝가능)
+
+        v-for: 지정한 뷰 데이터의 개수만큼 HTML태그를 반복하여 출력
+        
+        v-show: v-if와 유사하게 데이터의 진위여부에따라 HTML 태그를 화면에 표시
+                css의 display:none 으로 속성을 준다.(보이고 안보이고 빈번히 발생 될떄 사용 ) 
+                V-if문의 경우 태그를 완전삭제함(렌더링을 안함, 특정조건에만 보이고 안보이고 함)
+        
+        
+        v-on: 화면요소의 이벤트를 감지하여 처리 할 때 사용, 예로 v-on:click은 해당태그의 클릭이벤트
+        
+        v-model: form에서 주로 사용되는 속성. form태그에 입력한 값을 vue인스턴스의 데이터와 동기화함.
+                화면에 입력된 값을 서버로 보낼때 사용.(watch와 같은 고급 속성을 이용하여 추가 로직 수행 가능함)
+                주의 사항으로는 &ltinput&gt, &ltselect&gt, &lttextarea&gt 태그에만 사용 가능
+        
+        v-text: 엘리먼트의 textContent를 업데이트. textContent의 일부를 갱신해야 하면 {{  }}를 사용   
+
+        v-once : 컴포넌트를 초기에 딱 한번만 렌더링 즉, 자바스크립트에서 사용하는 데이터를 사용하지만
+                변동이 없고 정적인 부분을 보여줄 때 사용
+
+        v-bind : 아이디, 클래스 스타일등의 HTML 속성값에 뷰테이터값 연결할떄 사용 
+                V-bind를  :속성명 으로 간소화        
+        
+        v-html :  html 형식일경우 지정하기 위해 사용
+
+        v-cloak : Vue 인스턴스가 제대로 준비되기 전(자바스크립트가실행 되기전)까지 HTML코드를 숨기고 싶을 때 사용
+                [v-cloak]{ cloak      --style에 명시해야됨 그래야 숨겨짐
+                    display: none;
+                    }
+
+        v-pre : 특정 엘리먼트를 무시하는데 사용
+                이 엘리먼트와 모든 자식 엘리먼트에 대한 컴파일을 건너뛴다, 컴파일속도 향상
+                {{ }} 를 그대로 표시가능
+
+        </pre>
+
+        <div id="app">
+            <a v-once v-text="txt">val은 6보다 크다</a>
+            <a v-if="val > 6 ">val은 6보다 크다.</a>
+            <a v-else-if="val > 3 ">val은 6이하, 3보다 크다.</a>
+            <a v-else>3이하이다.</a>
+            <h2 v-once>초기값:{{val}}</h2> <!--v-once 변동X-->
+            <h2>현재값 : {{val}}<br>
+                <span v-text="txt"></span> : <span v-text="val"></span>
+
+            </h2>
+            <h1 v-pre>{{mustache}}</h1>
+            <ul>
+                <li v-for="system in systems">{{system}}</li>
+                <li v-for="(system, index) in systems">{{index}} {{system}}</li>
+            </ul>
+            <div v-show="flag">show!!</div>
+            <div v-bind:id="textId">bind!!</div>
+            <button v-on:click="showAlert">경고버튼</button>
+            <img v-bind:src="pengsoo">
+            <img :src="pengsoo">
+            <img :src="!flag?pengsoo1:pengsoo">
+            <input type="checkbox" v-model="flag">
+            <input type="text" v-model="val">
+        </div>
+        <script>
+            new Vue({
+                el:'#app',
+                data:{
+                    val:7,
+                    txt:"현재값",
+                    mustache:"<b>콧수염태그</b>",
+                    systems:['a','b','c'],
+                    flag:true,
+                    textId:999,
+                    pengsoo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRhjz0A9EDOAjikl_NqgVX88xrcJ_EpLUVhw&usqp=CAU",
+                    pengsoo1:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMS66m39Sg6qx9SEsPrHy2rqvvOjuDy--DIw&usqp=CAU"
+                },
+                methods:{
+                    showAlert:function(){
+                        return alert("경고창")
+                    }
+                }
+            })
+        </script>
+</body>
+</html>

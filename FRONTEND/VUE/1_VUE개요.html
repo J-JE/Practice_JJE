@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> 버전 명시-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 버전 명시X 가능, 최신버전으로 갖고옴 -->
+    <script src="https://unpkg.com/vue@3"></script> <!--버전3-->
+    <!-- <script src="https://unpkg.com/vue@next"></script> ? -->
+
+</head>
+<body>
+    <!-- https://v2.vuejs.org/v2/guide/installation.html 2-->
+    <!-- https://vuejs.org/guide/quick-start.html#vue-devtools 3-->
+    <h1>개요</h1>
+    <h3>Vue.js?</h3>
+    <p>Vue.js 가볍고 빠르다 
+       Mvvm패턴 에 영감을 받아서 view 에 최적화
+       DOM 조작에 있어 , 기존 JQUERY를 이용한 DOM 조작이 필요 없어짐.
+       앵귤러의 양방향 데이터 바인딩과 리액트의 단방향 데이터 흐름의 장점을 모두결합
+    </p>
+    <div id="app">
+        {{message}}<!--{{}}콧수염 괄호 머스태쉬(mustache)태그, 뷰에서 html을 연결하는 가장 기본적인 삽입방식
+                        뷰의 반응성에 의해서 data 속성값이 바뀌면 자동으로 갱신-->
+    </div>
+
+    <script>
+        //2버전
+        /*new Vue({ //뷰 인스턴스 생성, (el 속성으로 뷰인스턴스가 스려질 지점을 지정, data속성에 message값을 정의)
+            el:'#app',
+            data:{
+                message:"Intro to vue with Vue2" //message에 값 넣기
+            }
+        })*/
+
+        Vue.createApp({
+            data(){
+                return {
+                    message:"Intro to vue with Vue2"
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
