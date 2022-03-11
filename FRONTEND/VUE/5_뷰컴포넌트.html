@@ -34,7 +34,7 @@
 
     <script>
         Vue.component('my-component',{ //전역컴포넌트
-            template:`<div>전역컴포넌트가 등록되었습니다.</div>`
+            template:`<div>전역컴포넌트가 등록되었습니다.</div>`//
         })
 
         let cmp = { //지역컴포넌트
@@ -103,6 +103,70 @@
         데이터를 상위에 전달하기 위해 주로 하위컴포넌트의 특정 메서드 내부에서 호출.
         - 호출한 이벤트를 v-on 속성으로 받음. 호출될 상위 메소드명 지정.
     </pre>
+
+    <div id="app4">
+        {{message}}
+        <child-component v-on:show-log="printText"></child-component> <!--5. 대기-->
+    </div>
+    <script>
+        Vue.component('child-component',{ //2. show 버튼이 보인다
+            template:'<button v-on:click="showLog">Show</button>', //3. 버튼클릭시 showlog 이벤트 발생
+            methods:{
+                showLog:function(){//4. this.$emit('show-log')의 show-Log 이벤트 발생, child-component태그가 기다리고 있는 이벤트임
+                    this.$emit('show-log')
+                }
+            }
+        })
+        
+        var app = new Vue({//1. 인스턴스 생성
+            el:'#app4',
+            data:{
+                message:'Parent Component'
+            },
+            methods:{
+                printText:function(){
+                    console.log("recieved an event") //6. printText 실행
+                }
+            }
+        })
+    </script>
+
+    <pre> 
+    * 같은 레벨(A,B)의 컴포넌트 간의 통신
+    - A에서 B로 전달하려면 상위 컴포넌트에 이벤트로 값을 전달하고 하위 컴포넌트에 props를 내려보내야함.
+    - 다른 컴포넌트의 값을 직접 참조할 수는 없음!! -> 이벤트 버스로 해결 
+    
+    * 이벤트 버스
+    - 개발자가 2개의 컴포넌트 간에 데이터를 주고받을 수 있는 방법.
+   </pre>
+   <div id="app5"></div>
+   <div id="app6">
+       <child-component></child-component>
+   </div>
+   <script>
+       let eBus = new Vue(); //1.이벤트 버스로 활용할 인스턴스 생성
+       Vue.component('child-component',{ //2. 하위 컴포넌트에 template, methods 속성 추가
+            template:'<button v-on:click="showlog">Show</button>', //3. show버튼 클릭시 showlog이벤트 발생
+            methods:{
+                showlog:function(){
+                    eBus.$emit('triggerEventBus',100) //4. 이벤트 버스 변수 eBus.$emit을 선언, triggerEventBus에 인자값을 100으로 둠
+                }
+            }
+       })
+
+       new Vue({
+           el:'#app6'
+       })
+
+       new Vue({
+           el:'#app5',
+           created:function(){ //생성시점에 triggerEventBus(이벤트 버스) 정의 
+               eBus.$on('triggerEventBus', function(value){ //triggerEventBus 이벤트 전달받아서 인자값 출력
+                   console.log('이벤트 전달 받음, 전달받은 값 : '+value)
+               })
+           }
+       })
+   </script>
 
 </body>
 </html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3/dist/vue-router.js"></script>
+    <!-- 뷰2 -> 라우터3, 뷰3 -> 라우터4 -->
+    <!-- https://kr.vuejs.org/v2/guide/join.html -->
+    <!-- https://github.com/vuejs/vue-router/blob/dev/CHANGELOG.md -->
+
+</head>
+<body>
+    <h1>뷰라우터</h1> 
+    <p>라우팅이란 - 웹페이지간의 이동방법 으로 웹페이지요청 -서버 응답- 웹페이지응답 까지 화면상의 깜박거리는 현상방지 <br>
+        싱글페이지 애플리케이션 (SPA)에서 주로사용 <br>
+        * SPA : 페이지를 이동할때 마다 서버에 웹페이지를 요청하여 새로 갱신하는 것이 아니라<br>
+         미리 해당 페이지들을 받아놓고 페이지 이동시에 클라이언트의 라우팅을 이용하여 <br>
+         화면을 갱신하는 패턴을 적용한 애플리케이션 <br>
+        뷰 뿐아니라 리액트, 앵큘러 모두 라우팅을 이용한 화면 전환 
+        
+    </p>
+
+    <h3>뷰라우터란 , 뷰에서 라우팅기능을 구현 할수있도록 지원하는 공식 라이브러리 </h3>
+    <pre>
+        &lt;router-link to="URL값" &gt;
+        페이지 이동 태그, 화면에선 <a> 태그로 치환됨( url 값을 변경하는태그 )
+           
+        &lt;router-view&gt;
+        페이지 표시 태그 , 변경된 URL에 따라 해당 컴포넌트를 뿌려주는 영역
+    </pre>
+    <div id="app">
+        <p>
+            <router-link to="/main">Main이동</router-link><br>
+            <router-link to="/login">Login이동</router-link><br>
+        </p>
+        <div style="width: 50%;height:100px;border:solid 1px black;">
+            <router-view></router-view>
+        </div>
+    </div>
+    <script>
+        //1. 컴포넌트 정의
+        let Main = {
+            template:'<div> Main </div>'
+        }
+
+        let Login = {
+            template:'<div> Login </div>'
+        }
+
+        //2.routes정의 : 반드시 컴포넌트와 매핑이 되어야하고, url에 맞춰 표시할 컴포넌트를 지정
+        var routes=[{
+                path:'/main',
+                component:Main
+            },{
+                path:'/login',
+                component:Login
+            }
+        ]
+
+    //3. 뷰라우터 생성 : url에 따라서 화면이 전환될 수 있게 router 생성하고  routes 정의
+    var router = new VueRouter({
+        mode:'history',//'#해시값을 없애줌'
+        routes // routes:routes줄임
+    })
+
+    new Vue({
+        router
+    }).$mount("#app")
+    </script>
+
+    <h3>네스티드라우터</h3>
+    <p>페이지를 이동할때 최소 2개이상의 컴포넌트 를 화면에 나타냄</p>
+    <pre>
+        화면을 구성하는 컴포넌트 수가 적을때 유용
+        상위 컴포넌트 1개에 하위컴포넌트 1개를 포함하는 구조 
+
+    </pre>
+    <div id = 'app2'>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        var User = {
+            template:`<div>
+                         User Component
+                         <div style="width: 50%;height:100px;border:solid 1px black;">
+                            <router-view></router-view>
+                        </div>
+                     </div>
+                `
+        }
+
+        var UserProfile = {
+            template:'<p> User Profile Component</p>'
+        }
+        var UserPost = {
+            template:'<p> User Post Component</p>'
+        }
+
+        var routes = [{
+            path:"/user",
+            component:User,
+            children:[
+                {
+                    path:'posts',
+                    component:UserPost
+                },{
+                    path:'profile',
+                    component:UserProfile
+                }
+            ]
+        }]
+
+        var router = new VueRouter({
+            routes
+        })
+
+        new Vue({
+            router
+        }).$mount('#app2')
+    </script>
+
+    <h3>네임드 뷰</h3>
+    <p>특정페이지로 이동했을때 여러개의 컴포넌트(같은레벨) 을 동시에 표현하는 라우터 </p>
+    <div id ='app3'>
+        <router-view name="header"></router-view>
+        <router-view name="footer"></router-view>
+        <router-view></router-view><!--디폴트-->
+
+    </div>
+    <script>
+        var DBody={template: '<div> This is Body </div>'}
+        var DHeader={template: '<div> This is Header </div>'}
+        var DFooter={template: '<div> This is Footer </div>'}
+
+        var LoginBody={template: '<div> This is LoginBody </div>'}
+        var LoginHeader={template: '<div> This is LoginHeader </div>'}
+        var LoginFooter={template: '<div> This is LoginFooter </div>'}
+
+        var routes =[{
+                path:"/",
+                components:{
+                    default:DBody,
+                    header:DHeader,
+                    footer:DFooter
+                }
+            },{
+                path:"/login",
+                components:{
+                    default:LoginBody,
+                    header:LoginHeader,
+                    footer:LoginFooter
+                }
+            }
+        ]
+
+        var router = new VueRouter({
+            routes
+        })
+
+        new Vue({
+            router
+        }).$mount('#app3')
+
+    </script>
+</body>
+</html>

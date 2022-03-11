@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>computed와 watch</h1> 
+    <h3>computed</h3>
+    <p>
+      computed는 데이터의 변경에 반응하여 특정 값을 반환해주는 일종의 getter 함수이다. 
+      computed의 장점:  의존성을 가진 데이터가 변경되지 않으면
+      getter 호출 시 내부 로직 연산을 다시 하지 않고, 이미 계산되어 있는 결과를 즉시 반환한다는 점 (컴퓨티드캐싱)이다. 
+   
+      데이터를 능동적으로 갱신하면 computed ,
+      데이터를 수동적으로 갱신하면  method (버튼클릭시 로직수행~)
+    </p>
+
+    <div id = "app1">
+        <input type ="text" v-model="message"/>
+        <p>원본메세지 :{{message}}</p>
+        <p>역순으로표시한메세지 :{{reverseMessage}}</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#app1',
+            data:{message:"안녕하세요"},
+            computed:{
+                reverseMessage:function(){
+                    console.log("새로입력한 값 : "+this.message)
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+
+    <h3>watch</h3>
+    <p>
+        computed 와 비슷하지만 특정데이터가 변경되었을때 지정한
+        callback 함수를 실행하는 사용목적이다른 속성이다.
+
+    </p>
+    <div id = "app2">
+        <input type ="text" v-model="message"/>
+        <p>원본메세지 :{{message}}</p>
+        <p>역순으로표시한메세지 :{{reverseMessage}}</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#app2',
+            data:{
+                message:'안녕하세요',
+                reverseMessage:''
+            },
+            watch:{
+                message:{
+                    handler:function(newVal, oldVal){
+                        if(newVal && newVal !== oldVal){
+                            this.reverseMessage = newVal.split('').reverse().join('')
+                            console.log("이전값 : "+ oldVal)
+                            console.log("새로운값 : "+ newVal)
+                            console.log("새로운값 역순 : "+ this.reverseMessage)
+                        }
+                        
+                        if("exit" === newVal){
+                            this.reverseMessage = "종료"
+                        }
+                    },
+                    //https://kr.vuejs.org/v2/api/#vm-watch
+                    immediate : true
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
