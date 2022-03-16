@@ -2,10 +2,10 @@
 <html>
 <head>
     <!-- <script src="/js/jquery-3.6.0.min.js"></script> -->
-    <script src="../js/jquery-3.6.0.min.js"></script>
+    <!-- <script src="../js/jquery-3.6.0.min.js"></script> -->
 </head>
 <body>
-    <p id="p1">1. jquery 홈페이지에서 js 파일을 다운받아 연결하는 방법 </p>
+    <!-- <p id="p1">1. jquery 홈페이지에서 js 파일을 다운받아 연결하는 방법 </p>
                2. CDN(Content Delevery Network)를 통한 연결
                
     
@@ -21,6 +21,78 @@
         console.log(-3/0);
         console.log(Number.MAX_VALUE*2);
         console.log(typeof Infinity);
+    </script> -->
+
+
+    <!-- 버튼을 클릭하면 Console에 '버튼이 클릭되었습니다.'라는 문구가 출력되도록 아래와 같이 코드를 작성하였으나
+    올바르게 동작하지 않았다.[원인(20점)]에 올바르게 동작하지 않은 원인 2가지를 기술하고
+    [조치내용(30점)]에 올바르게 동작할 수 있게 수정된 코드2가지를 기술하시오. (50점) -->
+
+    <button id="btn">클릭하세요</button>
+
+    <script>
+
+    // var button = document.getElementsByClassName('btn'); id속성을 getElementsByClassName()으로 가져왔음
+    var button = document.getElementById('btn');
+
+    // button.addEventListener('mouseover', function(){ 클릭했을 때 작동해야 하는데 mouseover를 사용함
+    button.addEventListener('click', function(){
+
+    console.log('버튼이 클릭되었습니다.');
+
+    });
+    </script>
+
+
+    <!-- jQuery를 이용하여 ul 요소 클릭 시 배경 색상을 변경하기 위해 아래와 같은 코드를 수행하였으나
+    Console 창에 다음과 같은 오류가 발생하며 올바르게 동작하지 않았다.
+    [원인(10점)]에 Console 창에 발생한 오류의 원인에 대해 기술하고
+    [조치내용(20점)에 해당 오류를 해결하기 위해 필요한 코드를 기술하시오. (30점) -->
+
+    <!-- jQuery가 제대로 로드되지 않아서 발생한 오류다. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <ul id="menu">
+
+        <li>불고기버거</li>
+        
+        <li>치즈버거</li>
+        
+        <li>치킨버거</li>
+        
+        </ul>
+        
+        <script>
+        
+        $("#menu").click(function(){
+        
+        $("#menu").css('background', 'gray');
+        
+        });
+        
+        </script>
+
+
+    <!-- 버튼을 클릭하면 '클릭 후'로 버튼 내부 텍스트가 바뀌고 버튼 내부 글자 색이 붉은 색이 되도록 아래와 같이 코드를 작성하였으나
+    올바르게 동작하지 않았다. [원인(10점)]에 올바르게 동작하지 않은 원인 2가지를 기술하고,
+    [조치내용(10점)]에 올바르게 동작할 수 있게 수정 된 코드 2가지를 기술하시오. (20점) -->
+
+    <button id="btn">클릭 전</button>
+
+    <script>
+
+    var button = document.getElementById('btn');
+
+    button.addEventListener('click', function(){
+
+    // button.value = '클릭 후'; 버튼 태그 안의 텍스트값 변경은 value가 아닌 innerText를 사용해야한다.
+    button.innerText = '클릭 후';
+
+    // button.style.backgroundColor = 'red'; 텍스트 색상 변경은 backgroundColor가 아닌 color를 사용해야한다.
+    button.style.color = 'red';
+
+    });
+
     </script>
 </body>
 </html>
