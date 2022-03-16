@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>어서와 Web은 처음이지?</h1>
+  	<h2>Servlet</h2>
+  	<p>
+  		서블릿이란, 웹 서비스를 위한 자바 클래스를 의미하며 자바를 사용해 웹을 만들기위해 필요한 기술이다.<br>
+  		-> 사용자의 요청을 받아 처리하고 그결과에 해당하는 응답페이지를 만들어 다시 사용자에게 전송하는 역할을 하는 class<br>
+  		-> 즉, 웹에서 동적인 페이지를 java 로 구현 할수있게 도와주는 서버측 프로그램 (톰캣서버에서 구동) <br>
+  		-> 기존의 java 파일에 웹페이지구현을 위한 html 이 들어간구조 <br>
+  	</p>
+  	<!-- @WebServlet -->
+  	<form action = "/dev/test.do" method="get">
+  		<button type="submit">WebServlet 요청</button>
+  	</form>
+  	
+  	<!-- web.xml요청 -->
+  	<form action = "test2" method="get">
+  		<button type="submit">web.xml 요청</button>
+  	</form>
+  	
+  	<h3><a href="views/testServlet1.html">Servlet-GET 방식</h3>
+  	<h3><a href="views/testServlet2.html">Servlet-POST 방식</h3>
+  	<h3><a href="views/testServlet3.html">Servlet+JSP 방식</h3>
+  	
+  	
+</body>
+</html>
