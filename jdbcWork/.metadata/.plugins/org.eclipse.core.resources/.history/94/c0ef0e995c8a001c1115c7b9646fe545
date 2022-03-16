@@ -1,9 +1,0 @@
-package com.kh.model.vo;
-
-public class ProductIO {
-
-	//입출고 정보를 담는 VO 클래스
-	//필드 : ioNum, productId, pName, ioDate, amount, status
-	//(PRODUCT_IO 테이블의 컬럼 값들 외에 추가로 pName 필드도 있는거 확인할 것!)
-	//왜냐면 PRODUCT 테이블과 JOIN을 통해 상품명도 받아올 것이기 때문!
-}

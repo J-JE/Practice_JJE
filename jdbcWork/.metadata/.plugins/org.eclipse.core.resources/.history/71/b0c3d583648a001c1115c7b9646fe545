@@ -1,2 +1,0 @@
-#query.properties
-selectAllIo=SELECT * FROM PRODUCT_IO

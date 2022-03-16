@@ -1,5 +1,0 @@
-package com.uni.common;
-
-public class JDBCTemplate {
-
-}
