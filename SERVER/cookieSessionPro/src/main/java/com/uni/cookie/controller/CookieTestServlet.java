@@ -48,7 +48,8 @@ public class CookieTestServlet extends HttpServlet {
 		String html="<html>";
 		html+="<body>";
 		html+="<p>쿠키가전송되었습니다</p>";
-		html+="<button onclick='location.assign(\"checkCookie.do\");'>쿠키값 확인 </button>";//assign : 히스토리를 가지고 있어 이전페이지로 이동이가능
+		html+="<button onclick='location.assign(\"checkCookie.do\");'>쿠키값 확인 </button>";
+		//assign : 히스토리를 가지고 있어 이전페이지로 이동이가능
 		html+="</body>";
 		html+="</html>";
 		
