@@ -12,6 +12,7 @@
         height:200px;
         margin:auto;
         margin-top:50px;
+        color: white;
     }
     #footer>div{
     	width:100%;
@@ -32,6 +33,7 @@
         margin:10px;
         line-height: 40px;
         color: black;
+        color: white;
     }
     #footer-2>p{
         margin: 0;

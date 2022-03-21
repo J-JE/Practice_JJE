@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <%-- cnd 추가 --%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <%-- cdn 추가 --%>
 <style>
 	body{
 		background:url('<%=request.getContextPath() %>/resources/images/i3.jpg') no-repeat; 
