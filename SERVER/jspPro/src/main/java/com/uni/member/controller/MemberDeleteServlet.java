@@ -8,21 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.uni.member.model.dto.Member;
 import com.uni.member.model.service.MemberService;
 
 /**
- * Servlet implementation class MemberInsertServlet
+ * Servlet implementation class MemberDeleteServlet
  */
-@WebServlet("/insertMember.do")
-public class MemberInsertServlet extends HttpServlet {
+@WebServlet("/deleteMember.do")
+public class MemberDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberInsertServlet() {
+    public MemberDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,29 +31,18 @@ public class MemberInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setCharacterEncoding("UTF-8");
-		
+//		String userId = request.getParameter("loginId");
 		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		String userName = request.getParameter("userName");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		String address = request.getParameter("address");
-		String[] interests = request.getParameterValues("interest");
 		
-		String interest = "";
-		if(interests != null) {
-			interest = String.join(",", interests);
-		}
+		int result = new MemberService().deleteMember(userId);
 		
-		Member mem = new Member(userId, userPwd, userName, phone, email, address, interest);
-		
-		int result = new MemberService().insertMember(mem);
 		if(result > 0) {
-			request.getSession().setAttribute("msg", "회원가입성공");
+			HttpSession session = request.getSession();
+			session.removeAttribute("loginUser");
+			session.setAttribute("msg","회원탈퇴가 완료되었습니다. 북구관련사항은 관리자에게 문의하세요.");
 			response.sendRedirect(request.getContextPath());
 		}else {
-			request.setAttribute("msg", "회원가입 실패");
+			request.setAttribute("msg","회원탈퇴에 실패하였습니다.");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 		}

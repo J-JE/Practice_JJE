@@ -40,11 +40,11 @@ public class MemberDao {
 		String sql = prop.getProperty("loginMember");
 		
 		try {
-			pstmt=conn.prepareStatement(sql); //?
+			pstmt=conn.prepareStatement(sql); //
 			pstmt.setString(1, userId);
 			pstmt.setString(2, userPwd);
 			
-			rset = pstmt.executeQuery(); //?
+			rset = pstmt.executeQuery(); //
 			
 			if(rset.next()) {
 				loginUser = new Member(rset.getInt("USER_NO"),
@@ -89,6 +89,118 @@ public class MemberDao {
 			pstmt.setString(7,mem.getInterest());
 			
 			result = pstmt.executeUpdate(); //레코드 수 반환
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Member selectMember(Connection conn, String userId) {
+		Member mem = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMember");
+//		selectMember=SELECT * FROM MEMBER WHERE USER_ID=? AND STATUS='Y'
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { //java.sql.SQLException: ORA-01407: cannot update ("SERVER"."MEMBER"."USER_NAME") to NULL 오류
+				mem = new Member(rset.getInt("USER_NO"),
+								rset.getString("USER_ID"),
+								rset.getString("USER_PWD"),
+								rset.getString("USER_NAME"),
+								rset.getString("PHONE"),
+								rset.getString("EMAIL"),
+								rset.getString("ADDRESS"),
+								rset.getString("INTEREST"),
+								rset.getDate("ENROLL_DATE"),
+								rset.getDate("MODIFY_DATE"),
+								rset.getString("STATUS")
+								);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return mem;
+	}
+
+	public int updateMember(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+//updateMember=UPDATE MEMBER SET USER_NAME=?, PHONE=?, EMAIL=?, ADDRESS=?, INTEREST=?, MODIFY_DATE=SYSDATE WHERE USER_ID=?
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getUserName());
+			pstmt.setString(2, m.getPhone());
+			pstmt.setString(3, m.getEmail());
+			pstmt.setString(4 ,m.getAddress());
+			pstmt.setString(5, m.getInterest());
+			pstmt.setString(6, m.getUserId());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteMember(Connection conn, String userId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+//deleteMember=UPDATE MEMBER SET STATUS='N' WHERE USER_ID=?
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,userId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updatePwd(Connection conn, String userId, String userPwd, String newPwd) {
+//		updatePwd=UPDATE MEMBER SET USER_PWD=?, MODIFY_DATE=SYSDATE WHERE USER_ID=? AND USER_PWD=?
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String sql = prop.getProperty("updatePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,newPwd);
+			pstmt.setString(2,userId);
+			pstmt.setString(3,userPwd);
+			
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

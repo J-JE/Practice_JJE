@@ -13,16 +13,16 @@ import com.uni.member.model.dto.Member;
 import com.uni.member.model.service.MemberService;
 
 /**
- * Servlet implementation class MemberInsertServlet
+ * Servlet implementation class MemberUpdatePwdServlet
  */
-@WebServlet("/insertMember.do")
-public class MemberInsertServlet extends HttpServlet {
+@WebServlet("/updatePwdMember.do")
+public class MemberUpdatePwdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberInsertServlet() {
+    public MemberUpdatePwdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,32 +31,25 @@ public class MemberInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setCharacterEncoding("UTF-8");
+
+		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
 		
-		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
-		String userName = request.getParameter("userName");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		String address = request.getParameter("address");
-		String[] interests = request.getParameterValues("interest");
+		String newPwd = request.getParameter("newPwd");
+//		String originPwd = request.getParameter("newPwd");
+		String originPwd = (String)request.getAttribute("originPwd");
+		Member updateMem = new MemberService().updatePwd(userId, userPwd, newPwd);
 		
-		String interest = "";
-		if(interests != null) {
-			interest = String.join(",", interests);
-		}
-		
-		Member mem = new Member(userId, userPwd, userName, phone, email, address, interest);
-		
-		int result = new MemberService().insertMember(mem);
-		if(result > 0) {
-			request.getSession().setAttribute("msg", "회원가입성공");
-			response.sendRedirect(request.getContextPath());
+		RequestDispatcher view = request.getRequestDispatcher("views/member/pwdUpdateForm.jsp");
+		if(updateMem != null) {
+			request.setAttribute("sTag", "Y");
+			request.setAttribute("msg", "성공적으로 비밀번호를 변경하였습니다.");
+			request.getSession().setAttribute("loginUser", updateMem);
+			request.getSession().setAttribute("originPwd", originPwd);
 		}else {
-			request.setAttribute("msg", "회원가입 실패");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
+			request.setAttribute("msg", "비밀번호 변경에 실패했습니다.");
 		}
+		view.forward(request, response);
 	}
 
 	/**
