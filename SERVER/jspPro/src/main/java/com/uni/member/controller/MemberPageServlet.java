@@ -32,24 +32,24 @@ public class MemberPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-		String userId = loginUser.getUserId();
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser"); //세션에서 로그인 유저 정보를 받아옴. getAttribute를 사용하면 Object 형태로 넘어오기 때문에 무조건 형변환 시켜야 함
+		String userId = loginUser.getUserId(); //로그인 유저에서 아이디값을 빼서 userId 객체에 저장
 		
-		Member member = new MemberService().selectMember(userId);
+		Member member = new MemberService().selectMember(userId); //userId로 selectMember()메소드를 호출해 Member객체에 담는다.
 		
-		System.out.println(member);
+		System.out.println(member); //로그인 유저의 정보를 콘솔창에서 확인
 		
-		RequestDispatcher view = null;
+		RequestDispatcher view = null; //null값으로 선언
 		
-		if(member != null) {
-			request.setAttribute("loginUser", member);
-			view = request.getRequestDispatcher("views/member/myPage.jsp");
-		}else {
-			request.setAttribute("msg", "조회 실패하였습니다.");
-			view = request.getRequestDispatcher("views/common/errorPage.jsp");
+		if(member != null) { //넘어온 Member객체가 null값이 아닌 경우
+			request.setAttribute("loginUser", member); //request의 loginUser 속성을 member로 설정 
+			view = request.getRequestDispatcher("views/member/myPage.jsp"); //myPage와 연결 
+		}else { //넘어온 Member객체가 null인 경우
+			request.setAttribute("msg", "조회 실패하였습니다."); //request의 msg 속성에 오류 메세지 설정
+			view = request.getRequestDispatcher("views/common/errorPage.jsp"); //errorPage와 연결
 		}
 		
-		view.forward(request, response);
+		view.forward(request, response); //응닶값을 넘김
 	}
 
 	/**

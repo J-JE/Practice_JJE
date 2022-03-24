@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Member m =(Member)request.getAttribute("loginUser");
-	String userId = m.getUserId();
+	Member m =(Member)request.getAttribute("loginUser"); //getAttribute로 넘어옴 -> 형변환, m에 저장
+	String userId = m.getUserId(); //m에서 Id값 가져오기 (get...)
 	String userPwd = m.getUserPwd();
-	String userName = m.getUserName();
-	String phone = m.getPhone() != null ? m.getPhone() : "";
+	String userName = m.getUserName(); //Name까지는 필수값임
+	String phone = m.getPhone() != null ? m.getPhone() : ""; //값이 없을수도 있기 때문에 삼항 연산자를 사용, 값이 없다면 ""공백으로 선언
 	String email = m.getEmail() != null ? m.getEmail() : "";
 	String address = m.getAddress() != null ? m.getAddress() : "";
-	String originPwd = (String)session.getAttribute("originPwd");
+	String originPwd = (String)session.getAttribute("originPwd"); //LoginServlet에서 받아뒀던 originPwd를 불러와서 형변환 후 객체 -> deleteMember()에서 사용됨
 	
-	String[] checkedInterest = new String[6];
-	if(m.getInterest() !=null){
-		String[] interests = m.getInterest().split(",");
+	String[] checkedInterest = new String[6]; //Interest값은 객체로 저장됨, interest가 저장될 객체배열을 먼저 선언
+	if(m.getInterest() !=null){ //getInterest가 null이 아닐 때
+		String[] interests = m.getInterest().split(","); //회원가입 할 때 interest를 ","와 join했기 때문에 split으로 ","으로 구분해서 객체배열에 저장
 		
-		for(int i = 0; i< interests.length; i++){
-			switch(interests[i]){
-			case "운동" : checkedInterest[0] = "checked"; break;
+		for(int i = 0; i< interests.length; i++){ //interest가 들어있는 객체 배열을 for문을 돌리면서
+			switch(interests[i]){ //interests의 i번째 인덱스값이 case와 일치 할 때
+			case "운동" : checkedInterest[0] = "checked"; break; //checkedInterest[0]값을 checked로 저장 -> 화면에 취미 박스가 체크됨
 			case "등산" : checkedInterest[1] = "checked"; break;
 			case "낚시" : checkedInterest[2] = "checked"; break;
 			case "요리" : checkedInterest[3] = "checked"; break;
@@ -63,6 +63,7 @@
 		<h2 align="center">마이페이지</h2>
 		<input type="text" id = "originPwd" name ="originPwd" value="<%=originPwd %>" readonly>
 		<form id="updateForm" action="<%=request.getContextPath() %>/updateMember.do" method="post">
+		<!-- submit 버튼을 누르면 input에 들어있는 값들이 /updateMember.do로 넘어가게 된다.-->
 			<table>
 				<tr>
 					<td width="200px">* 아이디</td>
@@ -128,16 +129,17 @@
 	<script>
 		function updatePwd(){
 			window.open("<%= request.getContextPath()%>/updatePwdForm.do","비밀번호 변경창 ","width=500, height=300")
+			//새 창 띄우기
 		}
 
 		function deleteMember(){
 			var pwd = prompt("현재비밀번호를 입력하세요.");
 			var op = $("#originPwd").val();
 			
-			if(op === pwd){
-				var val = confirm("정말로 탈퇴 하시겠습니까?");
+			if(op === pwd){ //originPwd값과 입력받은 pwd값이 같은 경우
+				var val = confirm("정말로 탈퇴 하시겠습니까?"); //확인 창 띄워서 값을 받기
 				
-				if(val){
+				if(val){ //updateForm의 action 속성 설정 후 submit으로 값 넘기기
 					$("#updateForm").attr("action","<%=request.getContextPath()%>/deleteMember.do");
 					$("#updateForm").submit();
 				}else{

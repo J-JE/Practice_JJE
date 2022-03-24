@@ -45,14 +45,14 @@ public class MemberService {
 
 	public Member updateMember(Member m) {
 		Connection conn = getConnection();
-		Member updateMem = null;
+		Member updateMem = null; //return값으로 넘기기 위해 null값으로 초기화
 		int result = new MemberDao().updateMember(conn, m);
 		
-		if(result > 0) {
-			commit(conn);
-			updateMem = new MemberDao().selectMember(conn, m.getUserId());
+		if(result > 0) { //update값이 여러개일 수 있기 때문에 result > 0
+			commit(conn); //업데이트 되었다면 커밋, 커밋 된(수정된) 값을 가져오기 위함.
+			updateMem = new MemberDao().selectMember(conn, m.getUserId()); //리턴값을 주기 위해서 m의Id를 파라미터로 selectMember에 넘겨서 값을 가져옴 
 		}else {
-			rollback(conn);
+			rollback(conn); //업데이트 실패했다면 rollback
 		}
 		close(conn);
 		return updateMem;
@@ -73,7 +73,7 @@ public class MemberService {
 
 	public Member updatePwd(String userId, String userPwd, String newPwd) {
 		Connection conn = getConnection();
-		Member updateMem = null;
+		Member updateMem = null; //return값으로 넘기기 위해 null값으로 초기화
 		int result = new MemberDao().updatePwd(conn, userId, userPwd, newPwd);
 		
 		if(result > 0) {

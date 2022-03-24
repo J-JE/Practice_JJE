@@ -111,7 +111,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,userId);
 			
-			rset = pstmt.executeQuery();
+			rset = pstmt.executeQuery(); //쿼리 결과를 받아오기 위함
 			
 			if(rset.next()) { //java.sql.SQLException: ORA-01407: cannot update ("SERVER"."MEMBER"."USER_NAME") to NULL 오류
 				mem = new Member(rset.getInt("USER_NO"),
@@ -138,45 +138,45 @@ public class MemberDao {
 	}
 
 	public int updateMember(Connection conn, Member m) {
-		int result = 0;
-		PreparedStatement pstmt = null;
+		int result = 0; //return result해야하기 때문에 우선 초기화
+		PreparedStatement pstmt = null; //텍스트로 된 sql문을 호출하기 위한 객체
 		
 //updateMember=UPDATE MEMBER SET USER_NAME=?, PHONE=?, EMAIL=?, ADDRESS=?, INTEREST=?, MODIFY_DATE=SYSDATE WHERE USER_ID=?
-		String sql = prop.getProperty("updateMember");
+		String sql = prop.getProperty("updateMember"); //프로퍼티즈에 작성된 키값으로 쿼리문을 읽어오기 위한 객체
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql); //conn으로 연결된 객체에게 접근해서 쿼리 작업을 실행하기 위한 객체
 			
-			pstmt.setString(1, m.getUserName());
+			pstmt.setString(1, m.getUserName()); //m에 get으로 접근 해 순서에 맞춰서 타입에 맞게 pstmt에 set으로 값 설정 
 			pstmt.setString(2, m.getPhone());
 			pstmt.setString(3, m.getEmail());
 			pstmt.setString(4 ,m.getAddress());
 			pstmt.setString(5, m.getInterest());
 			pstmt.setString(6, m.getUserId());
 			
-			result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate(); //result에 pstmt의 update된 행의 갯수를 담아둠
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			close(pstmt);
+			close(pstmt); //pstmt 닫아줌
 		}
 		
-		return result;
+		return result; //result값 반환
 	}
 
 	public int deleteMember(Connection conn, String userId) {
-		int result = 0;
+		int result = 0; //변경된 값이 없을 수 있기 때문
 		PreparedStatement pstmt = null;
 
 //deleteMember=UPDATE MEMBER SET STATUS='N' WHERE USER_ID=?
-		String sql = prop.getProperty("deleteMember");
+		String sql = prop.getProperty("deleteMember"); //프로퍼티 파일의 뭐리문을 deleteMember 키값으로 가져오기
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql); //쿼리문을 conn에 연결된 객체에서 실행
 			pstmt.setString(1,userId);
 			
-			result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate(); //executeUpdate : 데이터베이스에서 insert, update, create, delete가 일어난 행의 수를 반환
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -188,8 +188,8 @@ public class MemberDao {
 	}
 
 	public int updatePwd(Connection conn, String userId, String userPwd, String newPwd) {
-//		updatePwd=UPDATE MEMBER SET USER_PWD=?, MODIFY_DATE=SYSDATE WHERE USER_ID=? AND USER_PWD=?
 		int result = 0;
+//		updatePwd=UPDATE MEMBER SET USER_PWD=?, MODIFY_DATE=SYSDATE WHERE USER_ID=? AND USER_PWD=?
 		PreparedStatement pstmt = null;
 
 		String sql = prop.getProperty("updatePwd");

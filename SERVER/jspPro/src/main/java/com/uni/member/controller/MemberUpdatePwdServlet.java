@@ -32,12 +32,13 @@ public class MemberUpdatePwdServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId();
+		String userId = ((Member)request.getSession().getAttribute("loginUser")).getUserId(); //session에 저장된 로그인 유저의 id값을 getAttribute로 받아옴 
 		
-		String userPwd = request.getParameter("userPwd");
-		String newPwd = request.getParameter("newPwd");
+		String userPwd = request.getParameter("userPwd"); //jsp에서 넘어온 기존 비밀번호 값을 객체에 저장
+		String newPwd = request.getParameter("newPwd"); //jsp에서 넘어온 새로운 비밀번호 값을 객체에 저장
 //		String originPwd = request.getParameter("newPwd");
 		String originPwd = (String)request.getAttribute("originPwd");
+		
 		Member updateMem = new MemberService().updatePwd(userId, userPwd, newPwd);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/member/pwdUpdateForm.jsp");

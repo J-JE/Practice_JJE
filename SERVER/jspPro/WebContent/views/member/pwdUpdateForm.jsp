@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-	String msg = (String)request.getAttribute("msg");
+	String msg = (String)request.getAttribute("msg"); //getAttribute로 msg값을 받아서 String에 초기화
 	String sTag = (String)request.getAttribute("sTag");
 	String originPwd = (String)session.getAttribute("originPwd");
 
@@ -21,13 +21,13 @@
 	$(function(){
 		if(msg != "null"){
 			
-			alert(msg)
+			alert(msg);
 		}
 		
 		if(sTag == "Y"){
 			
-			opener.document.getElementById("originPwd").value = originPwd;
-			window.close()
+			opener.document.getElementById("originPwd").value = originPwd; //부모페이지의 originPwd값을 바뀐 pwd로 바꿈
+			window.close();
 		}
 		
 	})
@@ -64,23 +64,23 @@
 	<script>
 		function fnCheckPwd(){
 			var userPwd = $("#userPwd");
-			var newPwd = $("input[name='newPwd']");
+			var newPwd = $("input[name='newPwd']"); //
 			var checkPwd = $("input[name='checkPwd']");
 			
-			if(userPwd.val().trim() === "" || newPwd.val().trim() === "" || checkPwd.val().trim() === ""){
-				alert("비밀번호를 입력하세요")
-				return false;
+			if(userPwd.val().trim() === "" || newPwd.val().trim() === "" || checkPwd.val().trim() === ""){ //입력 값이 하나라도 비어있는 경우
+				alert("비밀번호를 입력하세요") //경고창 출력
+				return false; //false를 반환해서 submit안되게
 			}
 			
-			if(newPwd.val() != checkPwd.val()){
-				alert("비밀번호가 다릅니다.")
-				checkPwd.val('');
-				checkPwd.focus();
-				return false;
+			if(newPwd.val() != checkPwd.val()){//두 값이 다른 경우
+				alert("비밀번호가 다릅니다.") //경고창 출력
+				checkPwd.val(''); //확인 칸 비우기
+				checkPwd.focus(); //포커스 주기
+				return false; //false값 반환
 				
 			}
 			
-			$("#updatePwdForm").submit();
+			$("#updatePwdForm").submit(); //위의 if문을 다 통과한 경우 submit
 		}
 	</script>
 </body>

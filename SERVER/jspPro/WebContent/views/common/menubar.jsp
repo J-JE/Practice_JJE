@@ -87,6 +87,7 @@
 			<br><br>
 			<div class ="btns" align="center">
 				<a href = "<%=request.getContextPath() %>/mypageMember.do">마이페이지</a>
+				<!--/mypageMember.do -> MemberPageServlet -->
 				<a href = "<%=request.getContextPath() %>/logoutMember.do">로그아웃</a>
 			</div>
 		</div>
@@ -113,7 +114,14 @@
 			
 		</div>
 	</div>
-	
+	<script>
+	function goMain(){
+		location.href="<%=request.getContextPath()%>";
+	}
+	function goNotice(){
+		location.href="<%=request.getContextPath()%>/listNotice.do";
+	}
+	</script>
 
 </body>
 </html>
