@@ -9,7 +9,8 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-<filter>
+  	<!-- web.xml을 사용하는 이유는 인코딩 먼저 돌리고 암호화를 돌리기 위해서 -->
+  <filter>
   	<filter-name>encodingFilter</filter-name>
   	<filter-class>com.uni.common.filter.EncodingFilter</filter-class>
   </filter>
@@ -24,6 +25,7 @@
   </filter>
   <filter-mapping>
   	<filter-name>encryptFilter</filter-name>
+  	<!-- 패스워드를 사용하는 경로를 지정해서 encryptFilter를 걸어준다. -->
   	<url-pattern>/insertMember.do</url-pattern>
   	<url-pattern>/loginMember.do</url-pattern>
   	<url-pattern>/updatePwdMember.do</url-pattern>

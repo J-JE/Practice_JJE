@@ -15,12 +15,12 @@ public class EncryptWrapper extends HttpServletRequestWrapper{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+	@Override //HttpServletRequestWrapper를 상속받으면 구현이 가능함
 	public String getParameter(String key) {
 		
 		String value = ""; //value값이 리턴값이기 때문에 전역에서 선언
 		
-		if(key != null && (key.equals("userPwd")||key.equals("newPwd"))) {
+		if(key != null && (key.equals("userPwd")||key.equals("newPwd"))) { //두개의 경우를 제외하고는 암호화 할 필요 없음
 			try {
 				MessageDigest md = MessageDigest.getInstance("SHA-512");//SHA-512 암호화 객체 이용
 				
@@ -35,7 +35,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper{
 				
 			}
 		}else {
-			value = super.getParameter(key);
+			value = super.getParameter(key); //암호화가 필요없는 것들은 super를 사용해 그냥 넣어주면 됨
 		}
 		
 		

@@ -4,6 +4,7 @@
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	String msg = (String)session.getAttribute("msg");
+	String contextPath = request.getContextPath(); //모든 페이지에 들어가는 메뉴바에서 컨텍스트 페스 선언
 %>    
 <!DOCTYPE html>
 <html>

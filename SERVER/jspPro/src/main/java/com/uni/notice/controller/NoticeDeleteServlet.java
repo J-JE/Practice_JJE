@@ -1,4 +1,4 @@
-package com.uni.member.controller;
+package com.uni.notice.controller;
 
 import java.io.IOException;
 
@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.uni.member.model.dto.Member;
-import com.uni.member.model.service.MemberService;
+import com.uni.notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class NoticeDelete
  */
-@WebServlet("/loginMember.do")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/deleteNotice.do")
+public class NoticeDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public NoticeDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +31,18 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.setCharacterEncoding("UTF-8");//인코딩
-		//파라미터 받아오기
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		//비밀번호값 비교할 때 사용
-//		String originPwd = request.getParameter("userPwd"); userPwd는 Wrapper를 거쳐서 암오화 됨
-		String originPwd = (String)request.getAttribute("originPwd");
-		
-		Member loginUser = new MemberService().loginMember(userId, userPwd); 
-		System.out.println("loginUser"+loginUser); //로그인 정보 찍기
-		
-		if(loginUser != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			session.setAttribute("originPwd", originPwd);
-			
-			response.sendRedirect(request.getContextPath()); //?
+		//1. nno값 받기
+		int nno = Integer.parseInt(request.getParameter("nno"));
+		//2. int result로 Service연결해서 반환값 받기
+		int result = new NoticeService().deleteNotice(nno);
+		//3. restult값 if문 돌려서 잘 동작했는지 확인하기
+		if(result > 0) {
+			//3-1. 확인창 띄우기
+			request.getSession().setAttribute("msg","공지 삭제가 완료되었습니다.");
+			response.sendRedirect("listNotice.do");
 		}else {
-			request.setAttribute("msg", "로그인에 실패하였습니다.");
-			
+			//3-2. restult값 0 이하면 에러창 띄우기
+			request.setAttribute("msg","공지 삭제에 실패했습니다.");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);
 		}

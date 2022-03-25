@@ -37,7 +37,9 @@ public class MemberUpdatePwdServlet extends HttpServlet {
 		String userPwd = request.getParameter("userPwd"); //jsp에서 넘어온 기존 비밀번호 값을 객체에 저장
 		String newPwd = request.getParameter("newPwd"); //jsp에서 넘어온 새로운 비밀번호 값을 객체에 저장
 //		String originPwd = request.getParameter("newPwd");
-		String originPwd = (String)request.getAttribute("originPwd");
+		//암호화 필터에서 암호화를 거치기 전에 setAttribute로 originPwd를 설정했음
+		//때문에 originPwd에 newPwd를 담으면 암호화된 비밀번호가 화면에 출력됨 -> Wrapper에서 newPwd와 uerPwd는 암호화 됨
+		String originPwd = (String)request.getAttribute("originPwd"); //인크립트 필터에서 originPwd
 		
 		Member updateMem = new MemberService().updatePwd(userId, userPwd, newPwd);
 		
