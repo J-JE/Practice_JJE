@@ -122,6 +122,9 @@
 	function goNotice(){
 		location.href="<%=request.getContextPath()%>/listNotice.do";
 	}
+	function goBoard(){
+		location.href="<%=request.getContextPath()%>/listBoard.do";
+	}
 	</script>
 
 </body>
