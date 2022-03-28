@@ -121,6 +121,7 @@
 		$(function(){
 			$(".listArea>tbody>tr").click(function(){
 				var nno = $(this).children().eq(0).text();
+				//클릭한 tr의 자식 객체(td)중 첫번째의 text값(NoticeNumber)
 				
 				location.href="<%=contextPath%>/detailNotice.do?nno="+nno;
 			})

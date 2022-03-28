@@ -8,7 +8,7 @@
     column-gap: 50px;
     overflow: hidden;
     /* 넘치는 글을 안보이게 */
-    overflow: scroll;
+    /* overflow: scroll; */
     /* overflow: visible; */
     /* overflow: auto; */
 }

@@ -3,20 +3,28 @@ table{
     height: 400px;
     border: 1px solid black;
     /* border-collapse: separate; */
-    /* border-spacing: 5px; */
-    /*border-collapse: collapse;*//*합쳐짐*/
-    /* empty-cells: hide; */
+    border-spacing: 5px;
+    
+    /*합쳐짐*/
+    /* border-collapse: collapse; */
+    
+    empty-cells: hide;
 
     /* table-layout: auto; */
     table-layout: fixed;
     /*표 크기 고정*/
 
     word-break: break-all;
+    /* word-break:keep-all; */
 }
 
 table td{
     border: 1px solid black;
     width: 150px;
-    text-align: center; /*수평정렬*/
-    vertical-align: top; /*수직정렬*/
+    
+    /*수평정렬*/
+    text-align: center; 
+    
+    /*수직정렬*/
+    vertical-align: top; 
 }
