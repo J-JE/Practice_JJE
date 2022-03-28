@@ -31,16 +31,16 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int nno = Integer.parseInt(request.getParameter("nno"));
+		int nno = Integer.parseInt(request.getParameter("nno")); //noticeListView.jsp에서 파라미터로 넘어온 nno를 int타입으로 받아서 
 		
-		Notice notice = new NoticeService().selectNotice(nno);
+		Notice notice = new NoticeService().selectNotice(nno); //nno로 Notice를 찾아와 객체 생성
 		
 		String view = "";
-		if(notice != null) {
-			request.setAttribute("notice", notice);
+		if(notice != null) { //notice에 값이 담겨 있다면
+			request.setAttribute("notice", notice); //request에 notice정보를 담아서 noticeDetailView.jsp로 넘김
 			view = "views/notice/noticeDetailView.jsp";
 		}else {
-			request.setAttribute("msg", "공지사항 조회에 실패하였습니다.");
+			request.setAttribute("msg", "공지사항 조회에 실패하였습니다."); //errorPage에 오류 메세지 넘김
 			
 			view="views/common/errorPage.jsp";
 		}

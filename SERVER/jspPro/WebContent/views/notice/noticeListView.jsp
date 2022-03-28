@@ -124,6 +124,7 @@
 				//클릭한 tr의 자식 객체(td)중 첫번째의 text값(NoticeNumber)
 				
 				location.href="<%=contextPath%>/detailNotice.do?nno="+nno;
+				//nno를 url에 담아서 (파라미터로) detailNotice.do에 넘김  
 			})
 			
 		})

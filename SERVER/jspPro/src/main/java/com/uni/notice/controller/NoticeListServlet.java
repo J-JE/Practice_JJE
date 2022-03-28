@@ -32,7 +32,7 @@ public class NoticeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Notice> list = new NoticeService().selectList();
+		ArrayList<Notice> list = new NoticeService().selectList(); //Notice로 제네릭한 ArrayList에 list를 담는다.
 		
 		request.setAttribute("list", list);
 		System.out.println(list); //콘솔창에서 list가 제대로 왔는지 확인

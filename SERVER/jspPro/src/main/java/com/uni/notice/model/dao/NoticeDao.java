@@ -1,6 +1,7 @@
 package com.uni.notice.model.dao;
 
-import static com.uni.common.JDBCTemplate.*;
+import static com.uni.common.JDBCTemplate.close;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -36,22 +38,33 @@ public class NoticeDao {
 
 		ArrayList<Notice> list = new ArrayList<Notice>();
 		
-		PreparedStatement pstmt = null; //selectList에는 ?가 없기 때문에 Statement 도 괜찮
+		//PreparedStatement pstmt = null; //selectList에는 ?가 없기 때문에 Statement 도 괜찮
+		Statement stmt = null; //Statement로 해보기
 		ResultSet rset = null;
 		
-//		selectList=SELECT NOTICE_NO, NOTICE_TITLE, USER_ID, COUNT, CREATE_DATE FROM NOTICE N JOIN MEMBER ON (NOTICE_WRITER=USER_NO) WHERE N.STATUS='Y' ORDER BY NOTICE_NO DESC
+//		selectList=SELECT NOTICE_NO, NOTICE_TITLE, USER_ID, COUNT, CREATE_DATE
+//		FROM NOTICE N JOIN MEMBER ON (NOTICE_WRITER=USER_NO) WHERE N.STATUS='Y' ORDER BY NOTICE_NO DESC
 		String sql = prop.getProperty("selectList");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery(); //바로 결과 받기
+			//pstmt = conn.prepareStatement(sql);
+			//rset = pstmt.executeQuery(); //바로 결과 받기
+			
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
 			
 			while(rset.next()) {//생성자가 있는지 확인
-				list.add(new Notice(rset.getInt("NOTICE_NO"), 
+				/*list.add(new Notice(rset.getInt("NOTICE_NO"), 
 									rset.getString("NOTICE_TITLE"),
 									rset.getString("USER_ID"), //->noticeWriter임, 글쓴이
 									rset.getInt("COUNT"),
 									rset.getDate("CREATE_DATE")
+						));*/
+				list.add(new Notice(rset.getInt(1), 
+						rset.getString(2),
+						rset.getString(3),
+						rset.getInt(4),
+						rset.getDate(5)
 						));
 			}
 			
@@ -59,7 +72,8 @@ public class NoticeDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			close(pstmt);
+			//close(pstmt);
+			close(stmt);
 			close(rset);
 		}
 		

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.uni.notice.model.dto.Notice" %>
 <%
-	Notice n = (Notice)request.getAttribute("notice");
+	Notice n = (Notice)request.getAttribute("notice"); /*넘어온 notice값 받아서 객체 생성*/
 %>
 <!DOCTYPE html>
 <html>
@@ -63,10 +63,9 @@
 			<a href="listNotice.do">목록으로</a> &nbsp;&nbsp;
 				
 			
-			<% if(loginUser != null && loginUser.getUserId().equals("admin")) { %>
+			<% if(loginUser != null && loginUser.getUserId().equals("admin")) { /*menubar에 있는 loginUser 정보*/%>
 			<a href="updateFormNotice.do?nno=<%=n.getNoticeNo()%>">수정하기</a> &nbsp;&nbsp;
 			<a href="deleteNotice.do?nno=<%=n.getNoticeNo()%>">삭제하기</a>
-		
 			<% } %>
 			
 		</div>
