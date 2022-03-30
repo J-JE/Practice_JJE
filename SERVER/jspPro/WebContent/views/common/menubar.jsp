@@ -125,6 +125,9 @@
 	function goBoard(){
 		location.href="<%=request.getContextPath()%>/listBoard.do";
 	}
+	function goThumbnail(){
+		location.href="<%=request.getContextPath()%>/listThumb.do";
+	}
 	</script>
 
 </body>

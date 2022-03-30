@@ -360,4 +360,134 @@ public class BoardDao {
 		return result;
 	}
 
+	public ArrayList<Board> selectThList(Connection conn) {
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+/*		selectThList=SELECT BOARD_NO, BOARD_TITLE, COUNT, CHANGE_NAME \
+				FROM BOARD JOIN (SELECT * FROM ATTACHMENT \
+				WHERE FILE_NO IN( \
+				SELECT MIN(FILE_NO) FILE_NO FROM ATTACHMENT WHERE STATUS='Y' GROUP BY REF_BNO)) ON (REF_BNO = BOARD_NO) \
+				WHERE BOARD.STATUS='Y' AND BOARD.BOARD_TYPE=2 ORDER BY BOARD_NO DESC
+*/
+		String sql = prop.getProperty("selectThList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {//생성자가 있는지 확인
+				Board b = new Board();
+				b.setBoardNo(rset.getInt("BOARD_NO"));
+				b.setBoardTitle(rset.getString("BOARD_TITLE"));
+				b.setCount(rset.getInt("COUNT"));
+				b.setTitleImg(rset.getString("CHANGE_NAME"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public int insertThBoard(Connection conn, Board b) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+//		insertThBoard=INSERT INTO BOARD VALUES(SEQ_BNO.NEXTVAL, 2, NULL, ?, ?, ?, DEFAULT, SYSDATE, DEFAULT)
+//		BOARD_TITLE	VARCHAR2(100 BYTE)
+//		BOARD_CONTENT	VARCHAR2(4000 BYTE)
+//		BOARD_WRITER	NUMBER
+		String sql = prop.getProperty("insertThBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBoardTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setInt(3, Integer.parseInt(b.getBoardWriter()));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int insertAttachment(Connection conn, ArrayList<Attachment> fileList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+//		insertAttachment=INSERT INTO ATTACHMENT VALUES(SEQ_FNO.NEXTVAL, SEQ_BNO.CURRVAL, ?, ?, ?, SYSDATE, 2, DEFAULT)
+//		ORIGIN_NAME	VARCHAR2(255 BYTE)
+//		CHANGE_NAME	VARCHAR2(255 BYTE)
+//		FILE_PATH	VARCHAR2(1000 BYTE)
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+//			for(Attachment at : fileList) {
+			for(int i = 0; i<fileList.size(); i++) {
+				Attachment at = fileList.get(i);
+
+				pstmt = conn.prepareStatement(sql);
+
+				pstmt.setString(1, at.getOriginName());
+				pstmt.setString(2, at.getChangeName());
+				pstmt.setString(3, at.getFilePath());
+				
+				result += pstmt.executeUpdate();
+				System.out.println(at.getOriginName());
+				System.out.println(at.getChangeName());
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<Attachment> selectThumbnail(Connection conn, int bId) {
+		ArrayList<Attachment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+//		selectAttachment=SELECT FILE_NO, ORIGIN_NAME, CHANGE_NAME FROM ATTACHMENT WHERE REF_BNO=? AND STATUS='Y'
+		String sql = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bId);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Attachment at = new Attachment();
+				at.setFileNo(rset.getInt("FILE_NO"));
+				at.setOriginName(rset.getString("ORIGIN_NAME"));
+				at.setChangeName(rset.getString("CHANGE_NAME"));
+				list.add(at);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }

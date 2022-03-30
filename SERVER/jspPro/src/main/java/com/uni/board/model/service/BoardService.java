@@ -132,5 +132,36 @@ public class BoardService {
 		return result1 * result2;
 	}
 
+	public ArrayList<Board> selectThList() {
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectThList(conn);
+		
+		close(conn);
+		return list;
+	}
+
+	public int insertThumbnail(Board b, ArrayList<Attachment> fileList) {
+		Connection conn = getConnection();
+		int result1 = new BoardDao().insertThBoard(conn, b); //게시글 등록
+		int result2 = new BoardDao().insertAttachment(conn, fileList); //첨부파일 등록
+		
+		if(result1 >0 && result2 >0) { //항상 첨부파일이 있어야 하는 게시판이기 떄문에 result2도
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result1 * result2;
+	}
+
+	public ArrayList<Attachment> selectThumbnail(int bId) {
+		Connection conn = getConnection();
+		ArrayList<Attachment> list = new BoardDao().selectThumbnail(conn, bId);
+		
+		close(conn);
+		return list;
+	}
+
 
 }

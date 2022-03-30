@@ -37,7 +37,7 @@ public class BoardUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(ServletFileUpload.isMultipartContent(request)) { //멀티파트로 잘 넘어왔을 때
-			int maxSize = 10 * 1024 * 1024;
+			int maxSize = 10 * 1024 * 1024; //? 넘어올 리소스파일 크기 제한?
 			
 			String resources = request.getSession().getServletContext().getRealPath("/resources");
 
