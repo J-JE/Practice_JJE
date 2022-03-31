@@ -10,6 +10,7 @@ import com.uni.board.model.dao.BoardDao;
 import com.uni.board.model.dto.Attachment;
 import com.uni.board.model.dto.Board;
 import com.uni.board.model.dto.PageInfo;
+import com.uni.board.model.dto.Reply;
 
 public class BoardService {
 
@@ -158,6 +159,37 @@ public class BoardService {
 	public ArrayList<Attachment> selectThumbnail(int bId) {
 		Connection conn = getConnection();
 		ArrayList<Attachment> list = new BoardDao().selectThumbnail(conn, bId);
+		
+		close(conn);
+		return list;
+	}
+
+	public int insertReply(Reply r) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().insertReply(conn, r);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
+
+	public ArrayList<Reply> selectRList(int bid) {
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new BoardDao().selectRList(conn, bid);
+		
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<Board> selectTopList() {
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectTopList(conn);
 		
 		close(conn);
 		return list;

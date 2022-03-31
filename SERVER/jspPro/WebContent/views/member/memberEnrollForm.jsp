@@ -103,7 +103,7 @@
 			
 			<div class="btns" align="center">
 				<button type="button" id="goMain" onclick= "location.href='<%= request.getContextPath()%>'">메인으로</button>
-				<button type="submit" id="joinBtn" >가입하기</button> <!-- disabled  추가 -->
+				<button type="submit" id="joinBtn" disabled>가입하기</button> <!-- disabled  추가 -->
 				
 			</div>
 		</form>
@@ -132,6 +132,39 @@
 			
 		}
 		
+		function checkId(){
+			var userId = $("#enrollForm input[name=userId]");
+			if(userId.val()==""){
+				alert("아이디를입력해주세요")
+				return false;
+			}
+			
+			
+			$.ajax({
+				url:"idCheck.do",
+				type:"post",
+				data:{userId:userId.val()},
+				success:function(result){
+					if(result =="fail"){
+						alert("사용할수없는 아이디입니다.");
+						userId.focus();
+						
+					}else{
+						if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){
+							userId.attr("readonly","true");
+							$("#joinBtn").removeAttr("disabled");
+						}else{
+							userId.focus();
+						}
+					}
+				},
+				error:function(){
+					console.log("서버통신실패")
+				}
+			});
+			
+		}
+
 	</script>
 	<%@ include file = "../common/footer.jsp" %>
 </body>

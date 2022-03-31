@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.uni.board.model.dto.Attachment;
 import com.uni.board.model.dto.Board;
 import com.uni.board.model.dto.PageInfo;
+import com.uni.board.model.dto.Reply;
 import com.uni.notice.model.dto.Notice;
 
 public class BoardDao {
@@ -488,6 +489,104 @@ public class BoardDao {
 		}
 		
 		return list;
+	}
+
+	public int insertReply(Connection conn, Reply r) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		
+//		insertReply=INSERT INTO REPLY VALUES(SEQ_RNO.NEXTVAL, ?, ?, ?, SYSDATE, DEFAULT)
+//		REPLY_CONTENT	VARCHAR2(400 BYTE)
+//		REF_BNO	NUMBER
+//		REPLY_WRITER	NUMBER
+		String sql = prop.getProperty("insertReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, r.getReplyContent());
+			pstmt.setInt(2, r.getRefBoardId());
+			pstmt.setInt(3, Integer.parseInt(r.getReplyWriter()));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<Reply> selectRList(Connection conn, int bid) {
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+//		selectRlist=SELECT REPLY_NO, REPLY_CONTENT, USER_ID, CREATE_DATE
+//		FROM REPLY R JOIN MEMBER ON(REPLY_WRITER = USER_NO)
+//		WHERE REF_BNO=? AND R.STATUS='Y' ORDER BY REPLY_NO DESC
+		String sql = prop.getProperty("selectRlist");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bid);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Reply r = new Reply(rset.getInt("REPLY_NO"),
+									rset.getString("REPLY_CONTENT"),
+									rset.getString("USER_ID"),
+									rset.getDate("CREATE_DATE")
+						);
+				list.add(r);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<Board> selectTopList(Connection conn) {
+		
+		ArrayList<Board> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+/*		selectTopList=SELECT * FROM (SELECT BOARD_NO, BOARD_TITLE, COUNT, CHANGE_NAME \
+		FROM BOARD JOIN (SELECT * FROM ATTACHMENT \
+		WHERE FILE_NO IN( \
+		SELECT MIN(FILE_NO) FILE_NO FROM ATTACHMENT WHERE STATUS='Y' GROUP BY REF_BNO)) ON (REF_BNO = BOARD_NO) \
+		WHERE BOARD.STATUS='Y' AND BOARD.BOARD_TYPE=2 ORDER BY COUNT DESC) WHERE ROWNUM <= 3*/	
+		String sql = prop.getProperty("selectTopList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		
+			rset = pstmt.executeQuery();
+			list = new ArrayList<>();
+			while(rset.next()) {
+				Board b = new Board();
+				b.setBoardNo(rset.getInt("BOARD_NO"));
+				b.setBoardTitle(rset.getString("BOARD_TITLE"));
+				b.setTitleImg(rset.getString("CHANGE_NAME"));
+				list.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+
 	}
 
 }
