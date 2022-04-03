@@ -31,7 +31,7 @@ public class JqAjaxServlet3 extends HttpServlet {
 		int age = Integer.parseInt(request.getParameter("age"));
 		
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().print("이믈 : "+ name + ", 나이 : " + age);
+		response.getWriter().print("이름 : "+ name + ", 나이 : " + age);
 	}
 
 	/**
