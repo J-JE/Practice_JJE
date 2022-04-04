@@ -195,76 +195,76 @@
         </section>
 
         <!-- 영아 -->
-        <aside class="col-md-3">
-            <p>측면 메뉴 1</p>
-            <p>측면 메뉴 2</p>
-            <p>측면 메뉴 3</p>
-            <p>측면 메뉴 4</p>
-    <!--
-        BS4 Grid Basic
-        -Bootstrap의 그리드 시스템은 반응형 웹페이지를 위한 기능이다.
-        -flexbox로 구축되어있으며 기본적으로 12개의 열로 구성되어 있다.
-        -.col-(sm|md|lg|xl)-*을 사용하여 배치할 개수와 넓이를 정의할 수 있다.
-          ex) 12개의 열 중 같은 넓이의 3개의 컬럼을 쓰고자 한다면 3개의 .col-(sm|md|lg|xl)-* 사용한다.
-    -->
+    <aside class="col-md-3">
+        <p>측면 메뉴 1</p>
+        <p>측면 메뉴 2</p>
+        <p>측면 메뉴 3</p>
+        <p>측면 메뉴 4</p>
+        <!--
+            BS4 Grid Basic
+            -Bootstrap의 그리드 시스템은 반응형 웹페이지를 위한 기능이다.
+            -flexbox로 구축되어있으며 기본적으로 12개의 열로 구성되어 있다.
+            -.col-(sm|md|lg|xl)-*을 사용하여 배치할 개수와 넓이를 정의할 수 있다.
+            ex) 12개의 열 중 같은 넓이의 3개의 컬럼을 쓰고자 한다면 3개의 .col-(sm|md|lg|xl)-* 사용한다.
+        -->
 
-    <!-- Button to Open the Modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        클릭하세요~
-    </button>
-    <!--
-        BS4 Button
-        -Bootstrap4에서 제공하는 다양한 스타일의 버튼이다. 스타일마다 색상이 정해져 있다.
-        
-        -btn : 기초 스타일
-        -btn btn-primary : 파란색
-        -btn btn-secondary : 회색
-        -btn btn-success : 초록색
-        -btn btn-info : 청록색
-        -btn btn-warning : 노란색
-        -btn btn-danger : 빨간색
-        -btn btn-dark : 검정색
-        -btn btn-light : 밝은 회색
-        -btn btn-link : 일반 링크 모양
-    -->
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            클릭하세요~
+        </button>
+        <!--
+            BS4 Button
+            -Bootstrap4에서 제공하는 다양한 스타일의 버튼이다. 스타일마다 색상이 정해져 있다.
+            
+            -btn : 기초 스타일
+            -btn btn-primary : 파란색
+            -btn btn-secondary : 회색
+            -btn btn-success : 초록색
+            -btn btn-info : 청록색
+            -btn btn-warning : 노란색
+            -btn btn-danger : 빨간색
+            -btn btn-dark : 검정색
+            -btn btn-light : 밝은 회색
+            -btn btn-link : 일반 링크 모양
+        -->
 
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-        <div class="modal-content">
-    <!--
-        BS4 Modal 
-        -Modal은 현재 페이지 상단에 표시되는 대화 상자/팝업 창이다.
-        -Modal은 modal-dialog, modal-content 안에 modal-header, modal-body, modal-footer로 구성되어 있다.
-        
-        <Modal Size>
-        -Small Modal : <div class="modal-dialog modal-sm">
-        -Large Modal : <div class="modal-dialog modal-lg">
-        -Xlarge Modal(초대형 모달) : <div class="modal-dialog modal-xl">
-    -->
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-            <h4 class="modal-title">Modal Heading</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <!-- 
-                data-dismiss="modal" : data-dismiss 속성을 적용하면 modal을 닫게하는 기능을 적용
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+            <!--
+                BS4 Modal 
+                -Modal은 현재 페이지 상단에 표시되는 대화 상자/팝업 창이다.
+                -Modal은 modal-dialog, modal-content 안에 modal-header, modal-body, modal-footer로 구성되어 있다.
+                
+                <Modal Size>
+                -Small Modal : <div class="modal-dialog modal-sm">
+                -Large Modal : <div class="modal-dialog modal-lg">
+                -Xlarge Modal(초대형 모달) : <div class="modal-dialog modal-xl">
             -->
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!-- 
+                            data-dismiss="modal" : data-dismiss 속성을 적용하면 modal을 닫게하는 기능을 적용
+                        -->
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    팝업창입니다.
+                    </div>
+            
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>      
+                </div>
             </div>
-    
-            <!-- Modal body -->
-            <div class="modal-body">
-            팝업창입니다.
-            </div>
-    
-            <!-- Modal footer -->
-            <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>      
         </div>
-        </div>
-    </div>
-</aside>
+    </aside>
 
     <div class="row align-items-end" id="backtotop">
         <button type="button" class="btn btn-info btn-lg" onclick="window.scrollTo(0,0);">
