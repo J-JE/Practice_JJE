@@ -51,15 +51,18 @@
       margin-right: 1px;
       }
 
-      #backtotop{
-      margin-left: 1%;
-      position: fixed;
-      z-index: 10;
+      .btn{
+      	color: white;
+      	background-color:#9372A1;
+      	border-color: #9372A1;
+      	float: right;
+        border-radius: 5px;
       }
+      .btn:hover{ color: white;}
     </style>
 </head>
 <body>
-    <body class="container-fluid" style="margin-top: 55px;">
+    <div class="container-fluid" style="margin-top: 55px;">
         <header>
             <h2>#카테고리</h2>
             <hr>
@@ -155,7 +158,11 @@
                     </div>
                 </div>
             </div>
-
+            <br>
+            <!-- <%-- if(loginUser != null){ --%> -->
+            <button class="btn">레시피 추가</button>
+            <!-- <%-- } --%> -->
+            <br>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="#"> < </a></li>
@@ -166,11 +173,6 @@
                 </ul>
             </nav>
         </header>
-    </body>
-    <!-- <div class="align-items-start" id="backtotop"> -->
-        <!-- <button type="button" class="btn btn-info btn-lg" onclick="window.scrollTo(0,0);">
-            광고
-        </button> -->
-    <!-- </div> -->
+      </div>
 </body>
 </html>
