@@ -18,17 +18,16 @@
       header {
       color: black;
       text-shadow: 1px 1px 2px lightgray;
-      }
-
-      img{
-      height:200px;
-      }
-      header{
       width:80%;
       left:0; right:0;
       margin-left:auto;
       margin-right:auto;
       }
+
+      img{
+      height:200px;
+      }
+      
       .pagination {
       margin-top: 55px;
       width:200px;
@@ -50,15 +49,17 @@
       margin-left: 1px;
       margin-right: 1px;
       }
-
-      .btn{
+      
+      #insertRecipeBtn{
       	color: white;
       	background-color:#9372A1;
-      	border-color: #9372A1;
+      	border: solid 2px rgba(255, 255, 255, 0);
+      	border-radius: 5px;
       	float: right;
-        border-radius: 5px;
       }
-      .btn:hover{ color: white;}
+      #insertRecipeBtn:hover{ color: white;}
+      #searchBtn{background-color: #bce7eb; color: white; border: none; border-radius: unset;}
+      .input-group{width: 50%; margin: auto;}
     </style>
 </head>
 <body>
@@ -66,6 +67,7 @@
         <header>
             <h2>#카테고리</h2>
             <hr>
+            <!-- <h3 style="margin:50px;">결과가 없습니다.</h3> -->
             <div class="row card-group">
                 <div class="card" style="width: 18rem; margin: 15px;">
                     <img src="../resource/images/이미지.png" class="card-img-top" alt="...">
@@ -158,11 +160,26 @@
                     </div>
                 </div>
             </div>
+            
+            <hr style="margin-bottom: 30px;">
+
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="검색어를 입력하세요" id="searchInput">
+              <button class="btn btn-outline-secondary" type="button" id="searchBtn">검색</button>
+            </div>
+            <script>
+              $(function(){
+                $("#searchBtn").click(function(){
+                  var keyword = $("#searchInput").val();
+                  console.log(keyword);
+                  // location.href="<%=contextPath%>/detailThumb.do?keyword=" + keyword;
+                  });
+                });
+              </script>
             <br>
-            <!-- <%-- if(loginUser != null){ --%> -->
-            <button class="btn">레시피 추가</button>
-            <!-- <%-- } --%> -->
+              <button id="insertRecipeBtn" onclick="location.href='<%=contextPath %>/insertRecipeForm.do'">레시피 추가</button>
             <br>
+
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="#"> < </a></li>
