@@ -12,52 +12,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
-        .outer{
-            width:80%;
-            margin-left:auto;
-            margin-right:auto;
-        }
+        .outer{ width:80%; margin-left:auto; margin-right:auto; }
         #cartImg{width: 50px; height: 50px; float: left; margin-right: 10px;}
-        #Payment_Steps{
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 10px;
-            line-height: 25px;
-        }
-        #basket_info{
-            margin-left:auto;
-            margin-right:auto;
-        }
+        #Payment_Steps{ font-size: 24px; font-weight: bold; margin-top: 10px; line-height: 25px; }
+        #basket_info{ margin-left:auto; margin-right:auto;}
+        #info_table tr:nth-child(odd){ background-color:rgb(223 249 251 / 55%); }
+        #info_table th{background-color: rgba(188, 231, 235, 0.55);}
+        .pro_info{ text-align: left !important; padding-left: 10px; }
+        #select_price{ width: 80%; height: 50px; margin-left:auto; margin-right:auto; }
+        #select_price>div{ float: left; font-weight: bold; margin: 0px 30px 0px 30px; }
+        
+        #checkedDelete, #orderBtn{ border: solid 2px rgba(255, 255, 255, 0); border-radius: 5px; }
 
-        #info_table th{
-            background-color: rgba(188, 231, 235, 0.55);
-        }
-        #info_table td,th{
-            /* border: 1px solid black; */
-            text-align: center; 
-        }
-        .pro_info{
-            text-align: left !important;
-            padding-left: 10px;
-        }
-        #select_price{
-            width: 80%;
-            height: 50px;
-            margin-left:auto;
-            margin-right:auto;
-        }
-        #select_price>div{
-            float: left;
-            font-weight: bold;
-            margin: 0px 30px 0px 30px ;
-        }
-        button{
-            color: white;
-            background-color:#9372A1;
-            border: solid 2px rgba(255, 255, 255, 0);
-            border-radius: 5px;
-            float: right;
-      }
+        #checkedDelete{
+			color: #84b8bd;
+            background-color:#ffffff;;
+            border: solid 1px #BCE7EB;;
+        	float: left;
+      	}
+		#orderBtn{
+			width: 120px;
+			height: 40px;
+			font-size:20px;
+        	color: white;
+            background-color:#9f56bf;
+            margin-top:10px;
+            display: block; margin-left: auto; margin-right: auto;
+		}
     </style>
 
 </head>
@@ -68,11 +49,11 @@
             <table>
                 <tr>
                     <td><img id="cartImg" src="../resource/images/shopping-cart.png"></td>
-                    <td>장바구니</td>
+                    <td style="color:#8745a5;">장바구니</td>
                     <td><img src="../resource/images/next.png" style="width: 50px; height: 50px;"></td>
-                    <td>주문하기</td>
+                    <td style="color:#a88bb5;">주문하기</td>
                     <td><img src="../resource/images/next2.png" style="width: 50px; height: 50px;"></td>
-                    <td>결제하기</td>
+                    <td style="color:#a88bb5;">결제하기</td>
                 </tr>
             </table>
         </div>
@@ -86,41 +67,75 @@
                     <th>수량</th>
                     <th>상품금액</th>
                 </tr>
-                <form method="get">
-
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="ingredient1" name="ingredient" value="재료1" checked>
+                <div>
+                    <tr style="border-top: solid 1px lightgray;">
+                        <td style="text-align: center;">
+                            <input type="checkbox" id="ingredient1" name="ingredient" value="1" checked>
                         </td>
                         <td class="pro_info">
-                            <img src="../resource/images/이미지.png" style="width: 50px; height: 50px;">
-                            <label for ="ingredient1">재료1</label>
+                            <img src="../resource/images/이미지.png" style="width: 50px; height: 50px; margin:2px;">
+                            <label for ="ingredient1">ingredient1</label>
                         </td>
                         <td>
                             <label>수량 </label>
-                            <input type="number" name="amount" min="0" max="50" value="1" style="width: 50px;"></td>
-                        <td>
-                            2,380 원
+                            <input type="number" name="amount" min="0" max="50" value="1" style="width: 40px;">
+                            <input type="button" name="updateAmount" value="수정" style="width: 50px;">    
+                        </td>
+                        <td class="price">
+                            2000 원
                         </td>
                     </tr>
-
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="ingredient1" name="ingredient" value="재료1" checked>
+                    <tr style="border-top: solid 1px lightgray;">
+                        <td style="text-align: center;">
+                            <input type="checkbox" id="ingredient2" name="ingredient" value="2" checked>
                         </td>
                         <td class="pro_info">
-                            <img src="../resource/images/이미지.png" style="width: 50px; height: 50px;">
-                            <label for ="ingredient1">재료1</label>
+                            <img src="../resource/images/이미지.png" style="width: 50px; height: 50px; margin:2px;">
+                            <label for ="ingredient2">ingredient2</label>
                         </td>
                         <td>
                             <label>수량 </label>
-                            <input type="number" name="amount" min="0" max="50" value="1" style="width: 50px;"></td>
-                        <td>
-                            2,380 원
+                            <input type="number" name="amount" min="0" max="50" value="1" style="width: 40px;">
+                            <input type="button" name="updateAmount" value="수정" style="width: 50px;">    
+                        </td>
+                        <td class="price">
+                            2000 원
                         </td>
                     </tr>
-
-                </form>
+                    <tr style="border-top: solid 1px lightgray;">
+                        <td style="text-align: center;">
+                            <input type="checkbox" id="ingredient3" name="ingredient" value="3" checked>
+                        </td>
+                        <td class="pro_info">
+                            <img src="../resource/images/이미지.png" style="width: 50px; height: 50px; margin:2px;">
+                            <label for ="ingredient3">ingredient3</label>
+                        </td>
+                        <td>
+                            <label>수량 </label>
+                            <input type="number" name="amount" min="0" max="50" value="1" style="width: 40px;">
+                            <input type="button" name="updateAmount" value="수정" style="width: 50px;">    
+                        </td>
+                        <td class="price">
+                            2000 원
+                        </td>
+                    </tr>
+                    <tr style="border-top: solid 1px lightgray;">
+                        <td style="text-align: center;">
+                            <input type="checkbox" id="ingredient4" name="ingredient" value="4" checked>
+                        </td>
+                        <td class="pro_info">
+                            <img src="../resource/images/이미지.png" style="width: 50px; height: 50px; margin:2px;">
+                            <label for ="ingredient4">ingredient4</label>
+                        </td>
+                        <td>
+                            <label>수량 </label>
+                            <input type="number" name="amount" min="0" max="50" value="1" style="width: 40px;">
+                            <input type="button" name="updateAmount" value="수정" style="width: 50px;">    
+                        </td>
+                        <td class="price">
+                            2000 원
+                        </td>
+                    </tr>
             </table>
         </div>
         <script>
@@ -134,6 +149,11 @@
                         $("input:checkbox[name='ingredient']").prop("checked", false);
                     }
                 });
+
+                $('input[name=updateAmount]').click(function(){
+                    var amount = $(this).prev().val();
+                    console.log(amount);
+                });
             });
         </script>
 
@@ -145,8 +165,8 @@
             <div>총 주문금액 13,480 원</div>
         </div>
         <hr> <!--구분선-->
-        <button>선택 상품 삭제</button><br>
-        <button>주문하기</button>
+        <button id="checkedDelete">선택 상품 삭제</button><br>
+        <button id="orderBtn">주문하기</button>
     </div>
 </body>
 </html>
