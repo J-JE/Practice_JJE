@@ -116,17 +116,24 @@
             <label for="allchecked">전체 선택</label><br><hr style="margin: 0px 0px 10px 0px;">
 			
 			<!-- method="get"선택 상품 장바구니에 담기(시간 남으면 재료 이미지 불러오기)-->
-            <div> 
-                <input type="checkbox" id="ingredient1" name="ingredient" value="재료1" checked>
-                <label for ="ingredient1">재료1</label> |
-                <input type="checkbox" id="ingredient2" name="ingredient" value="재료2" checked>
-                <label for ="ingredient2">재료2</label> |
-                <hr style="margin: 0;"> <!--구분선-->
-                <br>
-                <button type="button" id="basketbtn" style="float: right;" disabled>장바구니에 담기</button>
+            <div class="row row-cols-1 row-cols-md-6 g-4">
+                <div class="col">
+                    <div class="card">
+                        <img src="../resource/images/like_1.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <input type="checkbox" name="ingredient" value="재료 이름" checked>
+                                <h5 class="card-title">[김치] 3000 원</h5>
+                                <div class="card-text"><input type="number" name="amount" min="1" max="50" value="1" style="width: 40px;"><span> 3000 원</span></div>
+                            </div>
+                        </div>
+                </div>
             </div>
-        </div>
+            <br>
+            <button type="button" id="basketbtn" style="float: right;" disabled>장바구니에 담기</button>
 
+            
+            
+        </div>
         <br><br>
         
         <!--목록 버튼-->
