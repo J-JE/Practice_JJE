@@ -1,7 +1,6 @@
 package com.uni.mybatis.member.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,17 +12,17 @@ import com.uni.mybatis.member.model.service.MemberService;
 import com.uni.mybatis.member.model.service.MemberServiceImpl;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class MemberUpdateServlet
  */
-@WebServlet("/login.do")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/updateMember.do")
+public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 	private MemberService memberService = new MemberServiceImpl();
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public MemberUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,32 +31,28 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
+		String userName = request.getParameter("userName");
+		String email = request.getParameter("email");
+		String birthday = request.getParameter("birthday");
+		String gender = request.getParameter("gender");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
 		
-		Member m = new Member();
-		
-		m.setUserId(userId);
-		m.setUserPwd(userPwd);
-		
-		Member loginUser;
+		Member updateMem = new Member(userId, userPwd, userName, email, birthday, gender, phone, address);
 		
 		try {
-			loginUser = memberService.loginMember(m);
-			if(loginUser != null) {
-				request.getSession().setAttribute("loginUser", loginUser);
-				response.sendRedirect(request.getContextPath());
-			}else {
-				throw new Exception();
-			}
+			memberService.updateMember(updateMem);
+			request.getSession().setAttribute("loginUser", updateMem);
+			request.getRequestDispatcher("WEB-INF/views/member/myPage.jsp").forward(request, response);
 		} catch (Exception e) {
-			request.setAttribute("msg", "로그인에 실패하였습니다.");
+			request.setAttribute("msg", "회원정보 수정에 실패하였습니다.");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
-
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**

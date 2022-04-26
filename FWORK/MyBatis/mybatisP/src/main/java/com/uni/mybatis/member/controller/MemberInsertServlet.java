@@ -13,17 +13,19 @@ import com.uni.mybatis.member.model.service.MemberService;
 import com.uni.mybatis.member.model.service.MemberServiceImpl;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class MemberInsertServlet
  */
-@WebServlet("/login.do")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/insertMember.do")
+public class MemberInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
+	//다형성을 활용해서 부모타입이지만 자식 타입으로 생성
 	private MemberService memberService = new MemberServiceImpl();
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public MemberInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,31 +35,27 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8"); //한글 입력값이 있을 수 있기 때문에 인코딩 (post
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
+		String userName = request.getParameter("userName");
+		String email = request.getParameter("email");
+		String birthday = request.getParameter("birthday");
+		String gender = request.getParameter("gender");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
 		
-		Member m = new Member();
-		
-		m.setUserId(userId);
-		m.setUserPwd(userPwd);
-		
-		Member loginUser;
-		
+		Member m = new Member(userId, userPwd, userName, email, birthday, gender, phone, address);
+	
 		try {
-			loginUser = memberService.loginMember(m);
-			if(loginUser != null) {
-				request.getSession().setAttribute("loginUser", loginUser);
-				response.sendRedirect(request.getContextPath());
-			}else {
-				throw new Exception();
-			}
+			memberService.insertMember(m);
+			response.sendRedirect(request.getContextPath()); //메인화면으로 돌려보내기
 		} catch (Exception e) {
-			request.setAttribute("msg", "로그인에 실패하였습니다.");
+			request.setAttribute("msg", "회원가입에 실패하였습니다.");
 			request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
 
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**

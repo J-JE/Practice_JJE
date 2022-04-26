@@ -13,8 +13,9 @@ public class Template {
 		SqlSession sqlSession = null;
 		
 		try {
-			InputStream stream = Resources.getResourceAsStream("/mybatis-config.xml"); //try catch 안뜸
-			sqlSession = new SqlSessionFactoryBuilder().build(stream).openSession();
+			InputStream stream = Resources.getResourceAsStream("/mybatis-config.xml"); //mybatis-config.xml파일 연결
+			//인풋스트림을 사용해서 SqlSessionFactoryBuilder 생성, openSession까지 생성 (sqlSession객체 생성 완료)
+			sqlSession = new SqlSessionFactoryBuilder().build(stream).openSession(false); // openSession(true) = 오토커밋, 기본값은 false임
 			
 		}catch (IOException e) {
 			e.printStackTrace();

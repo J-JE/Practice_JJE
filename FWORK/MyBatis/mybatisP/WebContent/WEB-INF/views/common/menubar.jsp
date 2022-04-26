@@ -69,7 +69,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td><button>마이페이지</button></td>
+					<td><button onclick="location.href='myPage.do';">마이페이지</button></td>
 					<td><button onclick="location.href='logout.do';">로그아웃</button></td>
 				</tr>
 			</table>

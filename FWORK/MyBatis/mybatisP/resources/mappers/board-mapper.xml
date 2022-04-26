@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="boardMapper">
+	
+	<resultMap type="Board" id="BoardResultSet">
+		<!-- id property="boardNo" column="BOARD_NO"/-->
+		<id property="boardNo" column="board_no"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardWriter" column="USER_ID"/>
+		<result property="count" column="COUNT"/>
+		<result property="createDate" column="CREATE_DATE"/>
+	</resultMap>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE STATUS ='Y'
+	</select>
+	
+	<select id="selectList" resultMap="BoardResultSet">
+		SELECT BOARD_NO, BOARD_TITLE, USER_ID, COUNT, CREATE_DATE
+		FROM BOARD B
+		JOIN MEMBER ON(BOARD_WRITER=USER_NO)
+		WHERE B.STATUS='Y'
+		ORDER BY BOARD_NO DESC
+		<!-- RowBounds를 사용해서 Rnum을 사용하지 않아도 됨. RowBounds가 일단 다 읽어온 다음에 -->
+	</select>
+	
+	<select id="getSearchListCount" parameterType="SearchCondition" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN MEMBER ON(BOARD_WRITER=USER_NO)
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<choose>
+				<when test="writer != null">
+				AND USER_ID LIKE '%'||#{writer}||'%'
+				</when>
+				<when test="title != null">
+				AND BOARD_TITLE LIKE '%'||#{title}||'%'
+				</when>
+				<otherwise>
+				AND BOARD_CONTENT LIKE '%'||#{content}||'%'
+				</otherwise>
+			</choose>
+		</trim>
+		AND B.STATUS ='Y'
+		ORDER BY BOARD_NO DESC
+	</select>
+	
+	<select id="selectSearchList" parameterType="SearchCondition" resultMap="BoardResultSet">
+		SELECT BOARD_NO, BOARD_TITLE, USER_ID, COUNT, CREATE_DATE
+		FROM BOARD B
+		JOIN MEMBER ON(BOARD_WRITER=USER_NO)
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<choose>
+				<when test="writer != null">
+				AND USER_ID LIKE '%'||#{writer}||'%'
+				</when>
+				<when test="title != null">
+				AND BOARD_TITLE LIKE '%'||#{title}||'%'
+				</when>
+				<otherwise>
+				AND BOARD_CONTENT LIKE '%'||#{content}||'%'
+				</otherwise>
+			</choose>
+		</trim>
+		AND B.STATUS ='Y'
+		ORDER BY BOARD_NO DESC
+	</select>
+	
+	<select id="selectBoard" parameterType="_int" resultMap="BoardResultSet">
+		SELECT BOARD_NO, BOARD_TITLE, USER_ID, COUNT, CREATE_DATE, BOARD_CONTENT
+		FROM BOARD B
+		JOIN MEMBER ON(BOARD_WRITER = USER_NO)
+		WHERE B.STATUS = 'Y'
+		AND BOARD_NO=#{bno}
+	</select>
+	
+	<update id="updateCount" parameterType="_int">
+		UPDATE BOARD
+		SET COUNT=COUNT+1
+		WHERE BOARD_NO=#{bno}
+	</update>
+</mapper>

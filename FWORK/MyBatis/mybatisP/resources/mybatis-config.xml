@@ -10,6 +10,13 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
+	<!-- 별칭 지정 -->
+	<typeAliases>
+		<typeAlias type="com.uni.mybatis.member.model.dto.Member" alias="Member"/> <!-- 끝태그 마무리 잘하기 -->
+		<typeAlias type="com.uni.mybatis.board.model.dto.Board" alias="Board"/>
+		<typeAlias type="com.uni.mybatis.board.model.dto.SearchCondition" alias="SearchCondition"/>
+	</typeAliases>
+	
 	<!-- environments : DB연결 설정정보 -->
 	<!-- default : 연결 설정 정보를 여러개 생성하여 아이디로 구문하고 기본으로 연결할 설정정보를 지정하는 속성 -->
 	<environments default="development">
@@ -34,4 +41,9 @@
 	      </dataSource>
 	    </environment>
   	</environments>
+  	
+  	<mappers>
+  		<mapper resource="/mappers/member-mapper.xml"/> <!-- DB에 사용할 쿼리문이 담긴 Mapper 경로 지정 -> class path 안에, mappers 폴더 안에 -->
+  		<mapper resource="/mappers/board-mapper.xml"/>
+  	</mappers>
 </configuration>
