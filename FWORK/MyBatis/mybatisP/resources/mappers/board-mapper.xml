@@ -52,20 +52,20 @@
 		SELECT BOARD_NO, BOARD_TITLE, USER_ID, COUNT, CREATE_DATE
 		FROM BOARD B
 		JOIN MEMBER ON(BOARD_WRITER=USER_NO)
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
+		WHERE B.STATUS ='Y'
+		<trim prefix="AND" prefixOverrides="OR">
 			<choose>
 				<when test="writer != null">
-				AND USER_ID LIKE '%'||#{writer}||'%'
+				USER_ID LIKE '%'||#{writer}||'%'
 				</when>
 				<when test="title != null">
-				AND BOARD_TITLE LIKE '%'||#{title}||'%'
+				BOARD_TITLE LIKE '%'||#{title}||'%'
 				</when>
 				<otherwise>
-				AND BOARD_CONTENT LIKE '%'||#{content}||'%'
+				BOARD_CONTENT LIKE '%'||#{content}||'%'
 				</otherwise>
 			</choose>
 		</trim>
-		AND B.STATUS ='Y'
 		ORDER BY BOARD_NO DESC
 	</select>
 	

@@ -10,6 +10,8 @@ public interface MemberService {
 
 	Member selectMember(String userId) throws Exception;
 
-	void updateMember(Member updateMem) throws Exception;
+	void updateMember(Member updateMem) /*throws Exception*/;
+
+	void deleteMember(String userId) /*throws Exception*/;
 
 }

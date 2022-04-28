@@ -63,4 +63,19 @@ public class MemberServiceImpl implements MemberService {
 		sqlSession.close();
 	}
 
+	@Override
+	public void deleteMember(String userId) throws Exception {
+		SqlSession sqlSession = getSqlSession();
+		int result = MemberDao.deleteMember(sqlSession, userId);
+		
+		if(result >0) {
+			sqlSession.commit();
+		}else {
+			sqlSession.rollback();
+			throw new Exception();
+		}
+		
+		sqlSession.close();
+	}
+
 }

@@ -25,8 +25,12 @@ public class MemberDao {
 		return member;
 	}
 
-	public static int updateMember(SqlSession sqlSession, Member updateMem) {
+	public static int updateMember(SqlSession sqlSession, Member updateMem) throws Exception {
 		return sqlSession.insert("memberMapper.updateMember",updateMem);
+	}
+
+	public static int deleteMember(SqlSession sqlSession, String userId) throws Exception {
+		return sqlSession.update("memberMapper.deleteMember",userId);
 	}
 
 }

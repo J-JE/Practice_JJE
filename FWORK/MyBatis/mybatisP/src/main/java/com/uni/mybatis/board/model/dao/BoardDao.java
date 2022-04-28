@@ -49,21 +49,21 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectList", null, rowBounds);
 	}
 
-	public int getSearchListCount(SqlSession sqlSession, SearchCondition sc) {
+	public int getSearchListCount(SqlSession sqlSession, SearchCondition sc) throws Exception{
 		return sqlSession.selectOne("boardMapper.getSearchListCount", sc);
 	}
 
-	public ArrayList<Board> selectSearchList(SqlSession sqlSession, SearchCondition sc, PageInfo pi) {
+	public ArrayList<Board> selectSearchList(SqlSession sqlSession, SearchCondition sc, PageInfo pi) throws Exception{
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchList", sc, rowBounds);
 	}
 
-	public int updateCount(SqlSession sqlSession, int bno) {
+	public int updateCount(SqlSession sqlSession, int bno) throws Exception{
 		return sqlSession.update("boardMapper.updateCount",bno);
 	}
 
-	public Board selectBoard(SqlSession sqlSession, int bno) {
+	public Board selectBoard(SqlSession sqlSession, int bno) throws Exception{
 		Board b = sqlSession.selectOne("boardMapper.selectBoard",bno);
 		System.out.println("BoardDao selectBoard() : "+b);
 		return b;
