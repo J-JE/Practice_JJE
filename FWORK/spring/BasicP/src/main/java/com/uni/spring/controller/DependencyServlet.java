@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.uni.spring.model.dto.BeanFactory;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
 import com.uni.spring.model.dto.Singer;
+import com.uni.spring.model.dto.SingerMgt;
 
 /**
  * Servlet implementation class DependencyServlet1
@@ -53,7 +56,18 @@ public class DependencyServlet extends HttpServlet {
 		
 		//3. 전략 디자인 패턴으로 결합도 낮추기 (전달받은 값에 따라서 바뀌는 방법) - 전달받은 값에 따라 해당하는 객체를 생성해주는 방식(이런 구조의 beanFactory를 스프링이 제공)
 		
-		Singer singer = (Singer)BeanFactory.getBean(request.getParameter("bean"));
+		/*Singer singer = (Singer)BeanFactory.getBean(request.getParameter("bean"));
+		singer.sing();
+		singer.compose();
+		singer.dance();*/
+		
+		//4. 스프링 컨테이너를 사용한 객체 생성하기  (xml)-xml문서를 읽어들여 객체에 대한 결합도를  xml파일에 양도 (제어의 역전) -> 개발자 중심의 코드가 아닌 스프링 프레임워크 중심의 제어의 반전(IoC)
+		
+		AbstractApplicationContext cntx = new GenericXmlApplicationContext("/sample-context.xml"); //xml을 읽어서 컨테이너 역할
+		
+		Singer singer = (cntx.getBean("singerMgt", SingerMgt.class)).getSinger(); //xml에 설정되어있는 bean을 통해서 객체 생성
+//		Singer singer = ((SingerMgt) cntx.getBean("singerMgt")).getSinger();
+		
 		singer.sing();
 		singer.compose();
 		singer.dance();

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 생성자를 통한 의존성 주입 -->
+	<bean id="person1" class="com.uni.spring.model.xml.dto.Person">
+		<constructor-arg index="0" value="남주혁"/>
+		<constructor-arg index="1" ref="food1"/>
+	</bean>
+	
+	<bean id="food1" class="com.uni.spring.model.xml.dto.Chicken"/> <!-- 치킨을 등록을 해야만 주입이 가능 -->
+	<bean id="food2" class="com.uni.spring.model.xml.dto.Pizza"/>
+	
+	<!-- setter를 통한 의존성 주입 -->
+	<bean id="person2" class="com.uni.spring.model.xml.dto.Person">
+		<property name="name" value="로운"/>
+		<property name="myFood" ref="food2"/>
+	</bean>
+</beans>
