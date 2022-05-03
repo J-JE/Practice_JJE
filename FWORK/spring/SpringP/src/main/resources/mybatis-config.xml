@@ -8,5 +8,11 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 
+	<typeAliases>
+		<typeAlias type="com.uni.spring.member.model.dto.Member" alias="Member"/>
+	</typeAliases>
 
+	<mappers>
+		<mapper resource="/mappers/member-mapper.xml"/>
+	</mappers>
 </configuration>

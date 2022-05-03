@@ -22,7 +22,7 @@ public class Member {
 	private String email;
 	private String gender;
 	//private int age;
-	private String age; // 나중에 회원가입 시
+	private String age; // 나중에 회원가입 시 기입을 안하면 빈문자열로 들어오기 때문에 문자열로 받아오는 중
 	private String phone;
 	private String address;
 	private Date enrollDate;
