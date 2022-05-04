@@ -138,7 +138,7 @@ public class MemberController {
 	}*/
 	
 	//3. session에 loginUser를 저장할때 @SessionAttribute어노테이션 사용하기
-	@RequestMapping(value="login.do", method=RequestMethod.POST)
+	/*@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public String loginMember(Member m, Model model) {
 		System.out.println(m.getUserId());
 		
@@ -155,7 +155,7 @@ public class MemberController {
 			return "common/errorPage";
 		}
 		
-	}
+	}*/
 	
 	//로그아웃 변경 (@SessionAttributes)
 	@RequestMapping("logout.do")
@@ -178,6 +178,7 @@ public class MemberController {
 
 		System.out.println("암호화 전 : "+m.getUserPwd());
 		
+		//비밀번호 salting기법을 사용해 암호화 -> 기존의 암호에 salt값을 붙여서 암호화
 		String encPwd = bCryptPasswordEncoder.encode(m.getUserPwd());
 		
 		System.out.println("암호화  후 : "+encPwd);
@@ -191,6 +192,47 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//비밀번호 salting기법을 사용해 암호화 -> 기존의 암호에 salt값을 붙여서
+	//암호화 처리 후 로그인
+	@RequestMapping(value="login.do", method=RequestMethod.POST)
+	public String loginMember(Member m, Model model) {
 	
+		//bCryptPasswordEncoder를 넘겨서 비즈니스 단에서 처리
+		Member loginUser = memberService.loginMember(bCryptPasswordEncoder, m);
+		model.addAttribute("loginUser", loginUser);
+		return "redirect:/";
+		
+	}
+		
+	@RequestMapping("myPage.do")
+	public String myPage() {
+		return "member/myPage";
+	}
+	
+	@RequestMapping("updateMember.do")
+	public String updateMember(@ModelAttribute Member m, @RequestParam("post")String post,
+			@RequestParam("address1") String address1, @RequestParam("address2") String address2, Model model) throws Exception{ //스프링으로 예외 던져짐
+
+		//주소 설정
+		m.setAddress(post+"/"+address1+"/"+address2);
+		//수정된 유저정보 다시 받아오기
+		Member userInfo = memberService.updateMember(m);
+		//수정된 유저 정보 loginUser에 담아주기
+		model.addAttribute("loginUser", userInfo);
+		
+		
+		return "member/myPage";
+	}
+	
+	@RequestMapping(value="updatePwd.do", method=RequestMethod.POST)
+	public String updatePwd(@RequestParam("originPwd") String originPwd, @RequestParam("updatePwd") String updatePwd,
+							Model model, HttpSession session/*, @ModelAttribute("loginUser") Member m/*매개변수로*/) throws Exception{
+
+		Member m = (Member) session.getAttribute("loginUser"); //세션에서 로그인유저 정보 갖고오기
+		
+		Member userInfo = memberService.updatePwd(bCryptPasswordEncoder, originPwd, updatePwd, m);
+		
+		model.addAttribute("loginUser", userInfo); // 안해도 될듯?
+		
+		return "member/myPage";
+	}
 }

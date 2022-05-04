@@ -157,7 +157,6 @@
 		    <version>1.4</version>
 		</dependency>
 		
-		
 		<!-- 추가라이브러리 -->
 		<!-- lombok -->   
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -167,7 +166,6 @@
 		    <version>1.18.12</version>
 		    <scope>provided</scope>
 		</dependency>
-				  
 				  
 		<!-- security  -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
@@ -189,7 +187,14 @@
 		    <artifactId>spring-security-config</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
-				  
+		
+		<!-- aop처리를 위한 라이브러리 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		 
 	</dependencies>
     <build>
         <plugins>

@@ -15,8 +15,15 @@ public class MemberDao { //("memberDao")
 	}
 
 	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("memberMapper.insertMember", m);
+	}
+
+	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateMember", m);
+	}
+
+	public int updatePwd(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updatePwd", m);
 	}
 
 }
