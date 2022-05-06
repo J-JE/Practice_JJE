@@ -52,6 +52,7 @@
 			<version>${org.slf4j-version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- 로그포 제이 (보안관련 이슈 때문에 로그백으로 대체)
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -82,7 +83,7 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
-
+		 -->
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -194,7 +195,21 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
-		 
+		
+		<!-- 로그백   -->
+		<!-- 쿼리 로그 추가 관련 라이브러리  -->
+		<dependency>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+			<version>0.2.7</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.9</version>
+		</dependency>
+		
+		
 	</dependencies>
     <build>
         <plugins>

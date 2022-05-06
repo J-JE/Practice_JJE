@@ -11,8 +11,8 @@ import com.uni.spring.common.CommException;
 import com.uni.spring.member.model.dao.MemberDao;
 import com.uni.spring.member.model.dto.Member;
 
-@EnableAspectJAutoProxy //트랜젝션 같은 경우에 발생하는것마다 우리가 일일히 처리되게, 행당 관점
-@Transactional//(noRollbackFor = Exception.class) //트랜젝션 처리
+//@EnableAspectJAutoProxy //트랜젝션 같은 경우에 발생하는것마다 우리가 일일히 처리되게, 행당 관점
+//@Transactional//(noRollbackFor = Exception.class) //트랜젝션 처리
 @Service //비즈니스 로직을 처리하는 클래스(빈)이다.
 public class MemberServiceImpl implements MemberService {
 

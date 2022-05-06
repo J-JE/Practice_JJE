@@ -7,6 +7,17 @@
 
 	
 	<aop:aspectj-autoproxy/>
+	
+	<bean id="loggerAspect1" class="com.uni.spring.common.aop.LoggerAspect"/> <!-- 어노테이션 컴포넌트의 역할을 한다 -->
+	<aop:config>
+		<aop:aspect id="loggerAspect" ref="loggerAspect1">
+			<aop:pointcut expression="execution(* com.uni.spring.member..*(..))" id="pcForAll"/>
+			<aop:around method="aroundLogAdvice" pointcut-ref="pcForAll"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+</beans>	
 	<!--
 	
 		* AOP(Aspect Oriented Programming) - ppt에도 설명되어있으니 참고 바람
@@ -71,6 +82,3 @@
 		 => 런타임시에 weaving 하기(spring)
 	
 	 -->
-		 
-	
-</beans>

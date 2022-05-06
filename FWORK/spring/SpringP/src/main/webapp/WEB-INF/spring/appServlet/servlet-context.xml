@@ -26,7 +26,15 @@
 	
 	<!-- 등록된 bean을 조회하는 범위 -->
 	<context:component-scan base-package="com.uni.spring" />
-	
-	
-	
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/*"/>
+			<beans:bean id="testInterceptor" class="com.uni.spring.common.interceptor.TestInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/login.do"/><!-- 이 url로 호출됐을 때 로깅 -->
+			<beans:bean id="loginInterceptor" class="com.uni.spring.common.interceptor.LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.uni.spring.member.model.dto.Member;
 import com.uni.spring.member.model.service.MemberService;
+import com.uni.spring.member.model.service.MemberServiceImpl2;
 
 
 @SessionAttributes("loginUser") //Model에 (loginUser라는 키값으로  객체가 추가되면) Attribute 추가할때 자동으로 설정된 키값을 세션에 등록 시키는 기능
@@ -23,6 +24,9 @@ public class MemberController {
 
 	@Autowired //서비스 구현체(@Service로  등록된 클래스)가 하나밖에 없기 때문에 Impl로 바로 연결된다. 
 	private MemberService memberService;
+	
+//	@Autowired
+//	private MemberServiceImpl2 memberServiceImpl2;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -216,6 +220,8 @@ public class MemberController {
 		m.setAddress(post+"/"+address1+"/"+address2);
 		//수정된 유저정보 다시 받아오기
 		Member userInfo = memberService.updateMember(m);
+//		Member userInfo = memberServiceImpl2.updateMember(m); ->proxy 테스트
+		
 		//수정된 유저 정보 loginUser에 담아주기
 		model.addAttribute("loginUser", userInfo);
 		
