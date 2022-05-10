@@ -66,4 +66,20 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<error-page>
+		<error-code>404</error-code> <!-- 페이지 잘못 연결 (잘안됨) -->
+  		<location>/WEB-INF/views/common/errorPageFilter.jsp</location>
+  	</error-page>
+  	
+	<error-page>
+		<error-code>500</error-code> <!-- 서버 오류 -->
+  		<location>/WEB-INF/views/common/errorPageFilter.jsp</location>
+  	</error-page>
+  	
+  	<!-- 
+  	<error-page>
+  		<exception-type>java.lang.Exception</exception-type> error-code보다 error-page가 우선순위가 높음
+  		<location>/WEB-INF/views/common/errorPage.jsp</location>
+  	</error-page>
+  	 -->
 </web-app>

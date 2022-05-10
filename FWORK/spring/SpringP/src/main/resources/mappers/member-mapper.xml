@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND STATUS = 'Y'
 		 -->
 		 
+		<!-- FROMMEMBER 예외 테스트-->
 		<!-- 암호화 후 -->
 		SELECT *
 		FROM MEMBER

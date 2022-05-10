@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.uni.spring.member.model.dto.Member;
 import com.uni.spring.member.model.service.MemberService;
@@ -25,11 +27,21 @@ public class MemberController {
 	@Autowired //서비스 구현체(@Service로  등록된 클래스)가 하나밖에 없기 때문에 Impl로 바로 연결된다. 
 	private MemberService memberService;
 	
-//	@Autowired
-//	private MemberServiceImpl2 memberServiceImpl2;
+	@Autowired
+	private MemberServiceImpl2 memberServiceImpl2;
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	//filter에서 잡지 않고 컨트롤러에서 에러 잡기
+/*	@ExceptionHandler(value = Exception.class)//어떤 에러를 받을지 작성
+	public ModelAndView controllerExceptionHandler (Exception e) {
+		
+		e.printStackTrace(); //어떤 에러가 발생했는지
+		return new ModelAndView("common/errorPageServer").addObject("msg",e.getMessage()); //ModelAndView : 페이지와 넘길값 같이
+	}
+*/	
+	
 	
 	//1. HttpServletRequest를 통해 전송받기 (기존 jsp/servlet 방식)
 	/*@RequestMapping(value="login.do", method=RequestMethod.POST) //@RequestMapping을 붙여줌으로써 HandlerMapping으로 등록
