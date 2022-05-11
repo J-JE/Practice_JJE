@@ -11,4 +11,12 @@ public interface BoardService {
 
 	ArrayList<Board> selectList(PageInfo pi);
 
+	void insertBoard(Board b);
+
+	Board selectBoard(int bno);
+
+	void updateBoard(Board b);
+
+	void deleteBoard(int bno);
+
 }

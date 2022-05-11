@@ -15,7 +15,7 @@ public class BListInterceptor extends HandlerInterceptorAdapter{
 	private static final Logger logger=(Logger) LoggerFactory.getLogger(BListInterceptor.class);
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) //Object handler -> servlet-context.xml <mapping path="/listBoard.do"/>
 			throws Exception {
 		
 		HttpSession session = request.getSession();
@@ -32,7 +32,5 @@ public class BListInterceptor extends HandlerInterceptorAdapter{
 		
 		return true;
 	}
-	
-	
 
 }
