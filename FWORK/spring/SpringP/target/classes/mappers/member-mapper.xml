@@ -52,4 +52,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET USER_PWD=#{userPwd}, MODIFY_DATE=SYSDATE
 		WHERE USER_ID=#{userId}
 	</update>
+	
+	<select id="idCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USER_ID=#{userId}
+	</select>
 </mapper>

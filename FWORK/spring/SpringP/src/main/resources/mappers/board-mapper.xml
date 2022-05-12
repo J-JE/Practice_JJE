@@ -72,4 +72,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE STATUS = 'Y'
 		AND BOARD_NO = #{bno}
 	</update>
+
+	<resultMap type="Reply" id="ReplyResultSet">
+		<id property="replyNo" column="REPLY_NO"/>
+		<result property="replyContent" column="REPLY_CONTENT"/>
+		<result property="refBoardNo" column="REF_BNO"/>
+		<result property="replyWriter" column="REPLY_WRITER"/>
+		<result property="createDate" column="CREATE_DATE"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
+
+	<select id="selectReplyList" parameterType="_int" resultMap="ReplyResultSet">
+	<!-- <![CDATA[]]> -->
+		SELECT REPLY_NO, REPLY_CONTENT, REPLY_WRITER, CREATE_DATE
+		FROM REPLY
+		WHERE STATUS='Y'
+		AND REF_BNO=#{bno}
+		ORDER BY REPLY_NO DESC
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO REPLY
+		VALUES(SEQ_RNO.NEXTVAL, #{replyContent}, #{refBoardNo}, #{replyWriter}, SYSDATE, DEFAULT)
+	</insert>
+	
+	<select id="selectTopList" resultMap="BoardResultSet">
+		<![CDATA[
+		SELECT *
+		FROM( 
+			SELECT * FROM BOARD
+			WHERE STATUS='Y'
+			ORDER BY COUNT DESC
+			)
+		WHERE ROWNUM <=5
+		]]>
+	</select>
+	
 </mapper>

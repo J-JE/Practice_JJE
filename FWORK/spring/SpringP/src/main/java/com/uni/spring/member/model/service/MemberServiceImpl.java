@@ -106,4 +106,15 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	
+	@Override
+	public int idCheck(String userId) {
+		int count = memberDao.idCheck(sqlSession, userId);
+		
+		if(count < 0) {
+			throw new CommException("아이디 체크에 실패했습니다.");
+		}
+		return count;
+	}
+
 }

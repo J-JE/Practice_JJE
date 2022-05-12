@@ -16,4 +16,6 @@ public interface MemberService {
 
 	Member updatePwd(BCryptPasswordEncoder bCryptPasswordEncoder, String originPwd, String encPwd, Member m)throws Exception;
 
+	int idCheck(String userId);
+
 }

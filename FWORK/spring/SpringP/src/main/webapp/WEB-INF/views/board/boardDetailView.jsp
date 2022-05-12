@@ -105,7 +105,73 @@
         </div>
         <br><br>
     </div>
-   
+    <!-- 댓글 작성 ajax -->
+	<script>
+ 	$(function(){
+		selectReplyList();
+		
+		$("#addReply").click(function(){
+    		var bno = ${b.boardNo};
+
+			if($("#replyContent").val().trim().length != 0){
+				
+				$.ajax({
+					url:"rinsertBoard.do",
+					type:"post",
+					data:{replyContent:$("#replyContent").val(),
+						  refBoardNo:bno,
+						  replyWriter:"${loginUser.userId}"},
+					success:function(result){
+						if(result > 0){
+							$("#replyContent").val("");
+							selectReplyList();
+							
+						}else{
+							alert("댓글등록실패");
+						}
+					},error:function(){
+						console.log("댓글 작성 ajax 통신 실패");
+					}
+				});
+				
+			}else{
+				alert("댓글등록하셈");
+			}
+			
+		});
+	});
+ 	
+ 	function selectReplyList(){
+		var bno = ${b.boardNo};
+		$.ajax({
+			url:"rlistBoard.do",
+			data:{bno:bno},
+			type:"get", //필수는 아닌데 get은 read 방식일 때 쓴다.(한글은 사용 불가능) post는 insert할 때 주로 사용.
+			success:function(list){
+				$("#rcount").text(list.length);
+				
+				var value="";
+				$.each(list, function(i, obj){
+					
+					if("${loginUser.userId}" == obj.replyWriter){
+						value += "<tr style='background:#EAFAF1'>";
+					}else{
+						value += "<tr>";
+					}
+					
+					value += "<th>" + obj.replyWriter + "</th>" + 
+								 "<td>" + obj.replyContent + "</td>" + 
+								 "<td>" + obj.createDate + "</td>" +
+						 "</tr>";
+				});
+				$("#replyArea tbody").html(value);
+			},error:function(){
+				console.log("댓글 리스트조회용 ajax 통신 실패");
+			}
+		});
+	}
+	</script>
+
     <jsp:include page="../common/footer.jsp"/>
 </body>
 </html>

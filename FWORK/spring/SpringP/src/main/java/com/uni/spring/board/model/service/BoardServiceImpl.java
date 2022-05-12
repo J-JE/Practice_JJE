@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.uni.spring.board.model.dao.BoardDao;
 import com.uni.spring.board.model.dto.Board;
 import com.uni.spring.board.model.dto.PageInfo;
+import com.uni.spring.board.model.dto.Reply;
 import com.uni.spring.common.CommException;
 
 @Service
@@ -70,6 +71,21 @@ public class BoardServiceImpl implements BoardService {
 		if(result < 0) {
 			throw new CommException("게시글 삭제 실패");
 		}
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(int bno) {
+		return boardDao.selectReplyList(sqlSession, bno);
+	}
+
+	@Override
+	public int insertReply(Reply r) {
+		return boardDao.insertReply(sqlSession, r);
+	}
+
+	@Override
+	public ArrayList<Board> selectTopList() {
+		return boardDao.selectTopList(sqlSession);
 	}
 
 }

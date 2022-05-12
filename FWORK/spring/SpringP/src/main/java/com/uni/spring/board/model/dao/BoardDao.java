@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.uni.spring.board.model.dto.Board;
 import com.uni.spring.board.model.dto.PageInfo;
+import com.uni.spring.board.model.dto.Reply;
 
 @Repository
 public class BoardDao {
@@ -43,6 +44,18 @@ public class BoardDao {
 	public int deleteBoard(SqlSessionTemplate sqlSession, int bno) {
 //		return sqlSession.delete("boardMapper.deleteBoard", bno);
 		return sqlSession.update("boardMapper.deleteBoard", bno);
+	}
+
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int bno) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectReplyList", bno);
+	}
+
+	public int insertReply(SqlSessionTemplate sqlSession, Reply r) {
+		return sqlSession.insert("boardMapper.insertReply", r);
+	}
+
+	public ArrayList<Board> selectTopList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectTopList");
 	}
 
 }

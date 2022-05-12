@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -42,7 +43,6 @@ public class MemberController {
 	}
 */	
 	
-	
 	//1. HttpServletRequest를 통해 전송받기 (기존 jsp/servlet 방식)
 	/*@RequestMapping(value="login.do", method=RequestMethod.POST) //@RequestMapping을 붙여줌으로써 HandlerMapping으로 등록
 	public String loginMember(HttpServletRequest request) {
@@ -54,7 +54,6 @@ public class MemberController {
 		return "main"; //리턴되는 문자열을 servlet-context.xml의 viewResolver에 의해서 사용자가 보게될 뷰로 포워딩
 	}*/
 		
-	
 	//2.@RequestParam - 스프링에서 제공하는 파라미터를 받아오는 방식\
 	/*@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public String loginMember(@RequestParam("userId") String userId, @RequestParam("userPwd") String userPwd) {
@@ -252,5 +251,15 @@ public class MemberController {
 		model.addAttribute("loginUser", userInfo); // 안해도 될듯?
 		
 		return "member/myPage";
+	}
+	
+	@ResponseBody
+	@RequestMapping("idCheck.do")
+	public String checkId(String userId) {
+		
+		int count = memberService.idCheck(userId);
+		
+		return String.valueOf(count);
+		
 	}
 }

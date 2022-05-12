@@ -13,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.GsonBuilder;
 import com.uni.spring.board.model.dto.Board;
 import com.uni.spring.board.model.dto.PageInfo;
+import com.uni.spring.board.model.dto.Reply;
 import com.uni.spring.board.model.service.BoardService;
 import com.uni.spring.common.CommException;
 import com.uni.spring.common.Pagination;
@@ -194,11 +197,39 @@ public class BoardController {
 
 		//첨부파일 삭제
 //		if(fileName != null) {
-		if(!fileName.equals("")/* != null*/) { //changeName
+		if(!fileName.equals("")) { //changeName
 			deleteFile(fileName, request);
 		}
 		
 		//메인으로
 		return "redirect:listBoard.do";
 	}
+	
+	/*Reply*/
+	//응답할 때 화면이 아니라 json처럼 다른 타입으로 넘길 때는 requestbody 사용
+	//그 페이지가 아니라 데이터 자체를 넘길것
+	@ResponseBody //붙이지 않고 찾으면...? 안되겠지
+	@RequestMapping(value="rlistBoard.do", produces="application/json; charset=utf-8")
+	public String selectReplyList(int bno) {
+		ArrayList<Reply> list = boardService.selectReplyList(bno);
+
+		return new GsonBuilder().setDateFormat("yyyy 년 MM 월 dd 일  HH:mm:ss").create().toJson(list);
+	}
+	
+	@ResponseBody
+	@RequestMapping("rinsertBoard.do")
+	public String insertReply(Reply r) {
+		int result = boardService.insertReply(r);
+		
+		return String.valueOf(result); //...?int형 인식
+	}
+
+	@ResponseBody
+	@RequestMapping(value="topListBoard.do", produces="application/json; charset=utf-8")
+	public String selectTopList() {
+		ArrayList<Board> list = boardService.selectTopList();
+		
+		return new GsonBuilder().setDateFormat("yyyy 년 MM 월 dd 일  HH:mm:ss").create().toJson(list);
+	}
+	
 }
