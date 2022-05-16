@@ -5,7 +5,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -43,6 +45,24 @@ public class MemberController {
 	@RequestMapping("logout.do")
 	public String logoutMember(SessionStatus status) {
 		status.setComplete(); //@SessionAttributes 저장 세션 삭제하는 메소드
+		return "redirect:/";
+	}
+
+	//회원가입
+	@RequestMapping("enrollForm.do")
+	public String enrollForm() {
+		
+		return "member/memberEnrollForm";
+	}
+	
+	@RequestMapping("insertMember.do")
+	public String insertMember(@ModelAttribute Member m, @RequestParam("post") String post,
+								@RequestParam("address1") String address1, @RequestParam("address2") String address2,
+								HttpSession session) throws Exception/*메세지 전달을 위함*/ {
+		
+		m.setAddress(post+"/"+address1+"/"+address2); //주소 더하기
+		memberService.insertMember(m);
+		session.setAttribute("msg", "회원가입 성공");
 		return "redirect:/";
 	}
 }

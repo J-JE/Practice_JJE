@@ -27,5 +27,11 @@
 		where user_id=#{userId} and user_pwd=#{userPwd} and status='Y'
 	
 	</select>
+	
+	<insert id="insertMember" parameterType="Member">
+		insert into member
+		values(#{userId}, #{userPwd}, #{userName}, #{email}, #{gender}, #{age}, #{phone}, #{address}, sysdate, sysdate, default)
+	</insert>
+
 
 </mapper>

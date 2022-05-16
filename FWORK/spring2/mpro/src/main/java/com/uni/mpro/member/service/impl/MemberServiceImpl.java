@@ -2,11 +2,13 @@ package com.uni.mpro.member.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.uni.mpro.member.dao.MemberMapper;
 import com.uni.mpro.member.dto.Member;
 import com.uni.mpro.member.service.MemberService;
 
+@Transactional(rollbackFor = Exception.class)
 @Service
 public class MemberServiceImpl implements MemberService {
 
@@ -20,6 +22,15 @@ public class MemberServiceImpl implements MemberService {
 		
 		Member loginUser = memberMapper.loginMember(m);
 		return loginUser;
+	}
+
+	@Override
+	public void insertMember(Member m) throws Exception {
+		int restult = memberMapper.insertMember(m);
+		
+		if(restult < 0) {
+			throw new Exception("회원가입에 실패했습니다.");
+		}
 	}
 
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>thymeleaf</h1>
+    <pre>
+        1)${...}
+        JSP의 EL 표현식인 ${}와 마찬가지로 타임리프도 ${} 표현식을 사용
+        컨트롤러에서 전달받은 데이터에 접근할 수 있고 th:속성명 내에서만 사용
+
+        2) @{...} 표현식
+        서버의 contextPath를 의미하며 @{/} 는 "/contextPath/" 를 의미
+
+        3) 문자 합치기
+        합치고 싶은 문자열을 "|" 으로 감싸거나 + 연산자를 이용해 문자를 합침
+
+    </pre>
+    <h3>th:text</h3>
+    <pre>일반적인 텍스트 형식으로 화면에 출력</pre>
+    <h5 th:text="${'hello'}"></h5>
+
+
+    <h3>th:value</h3>
+    <pre>태그 내에 value를 수정</pre>
+    <input type="text" th:value="${'hello'}">
+    <hr>
+
+    <h3>th:each</h3>
+    <pre>JSTL의 'c:foreach' , 자바의 forEach와 유사한 기능
+         each문을 이용해 반복문을 표현
+    </pre>
+    <ul>
+        <li th:each="list:${lists}">
+            [[${list}]] <!-- 인라인 표현식 : 별도의 태그속성을 지정하지 않고 사용할때 사용 -->
+        </li>
+
+    </ul>
+</body>
+</html>
