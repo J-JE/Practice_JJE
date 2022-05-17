@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--namespace설정-->
+<th:block th:replace="~{thyme/thymeleaf4 :: setContent(~{this :: content})}"> <!--이 페이지의 content를 setContent에 편입-->
+
+    <th:block th:fragment="content">
+        <h1>exSidebar Page</h1>
+    </th:block>
+
+
+</th:block>
+
+</html>
