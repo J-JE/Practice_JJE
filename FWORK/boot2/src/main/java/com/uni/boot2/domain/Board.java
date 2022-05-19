@@ -30,4 +30,15 @@ public class Board extends BaseTimeEntity{
     @Column
     private String status;
 
+
+    public void changeTitle(String title){ this.boardTitle = title;}
+    public void changeContent(String content){ this.boardContent = content;}
+    public void changeWriter(String writer){ this.boardWriter = writer;}
+
+    public void changeBoard(String title, String content, String writer){
+        this.boardTitle = title;
+        this.boardContent = content;
+        this.boardWriter = writer;
+    }
+
 }
